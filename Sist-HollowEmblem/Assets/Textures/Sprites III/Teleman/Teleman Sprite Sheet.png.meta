@@ -1,0 +1,651 @@
+fileFormatVersion: 2
+guid: 7384b4180f28fc44c82c24f72c7a5488
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3987866186034306678
+    second: Teleman Sprite Sheet_0
+  - first:
+      213: -1087672251720993101
+    second: Teleman Sprite Sheet_1
+  - first:
+      213: -3851768576093169881
+    second: Teleman Sprite Sheet_2
+  - first:
+      213: 5523631188211462402
+    second: Teleman Sprite Sheet_3
+  - first:
+      213: -6764931850866211738
+    second: Teleman Sprite Sheet_4
+  - first:
+      213: 5687553428933573041
+    second: Teleman Sprite Sheet_5
+  - first:
+      213: -7568722340137368138
+    second: Teleman Sprite Sheet_6
+  - first:
+      213: -8886198523355568862
+    second: Teleman Sprite Sheet_7
+  - first:
+      213: -1678176621313516503
+    second: Teleman Sprite Sheet_8
+  - first:
+      213: 5719150764534963837
+    second: Teleman Sprite Sheet_9
+  - first:
+      213: -2840123790986346513
+    second: Teleman Sprite Sheet_10
+  - first:
+      213: 1855937947652688665
+    second: Teleman Sprite Sheet_11
+  - first:
+      213: -6723583962344634778
+    second: Teleman Sprite Sheet_12
+  - first:
+      213: -8856037934629283597
+    second: Teleman Sprite Sheet_13
+  - first:
+      213: 470667837472999943
+    second: TeleMan Floor 5
+  - first:
+      213: -8127513178193567321
+    second: Teleman Sprite Sheet_15
+  - first:
+      213: 5313943432323442323
+    second: Teleman Sprite Sheet_16
+  - first:
+      213: -8421328411408491483
+    second: TeleMan Floor 1
+  - first:
+      213: 6871113615290703917
+    second: TeleMan Floor 2
+  - first:
+      213: -8644054473236877726
+    second: Teleman Sprite Sheet_19
+  - first:
+      213: -1787894129652691649
+    second: Teleman Sprite Sheet_20
+  - first:
+      213: -2584060007576671826
+    second: TeleMan Floor 3
+  - first:
+      213: -1740404023807977565
+    second: TeleMan Floor 4
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 3104
+        width: 300
+        height: 858
+      alignment: 9
+      pivot: {x: 0.5939456, y: 0.5927473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67edd56ea2fb75730800000000000000
+      internalID: 3987866186034306678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 3110
+        width: 428
+        height: 808
+      alignment: 9
+      pivot: {x: 0.5468237, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6fe1c89dfc7e0f0800000000000000
+      internalID: -1087672251720993101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 3110
+        width: 412
+        height: 800
+      alignment: 9
+      pivot: {x: 0.4999997, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72754f833e4cb8ac0800000000000000
+      internalID: -3851768576093169881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 3114
+        width: 450
+        height: 782
+      alignment: 9
+      pivot: {x: 0.54613143, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201fc9bdc41e7ac40800000000000000
+      internalID: 5523631188211462402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 2198
+        y: 3144
+        width: 480
+        height: 810
+      alignment: 9
+      pivot: {x: 0.6210958, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 664c463e2522e12a0800000000000000
+      internalID: -6764931850866211738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2744
+        y: 3145
+        width: 486
+        height: 782
+      alignment: 9
+      pivot: {x: 0.62814367, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9f3aca5bf3eee40800000000000000
+      internalID: 5687553428933573041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 3316
+        y: 3154
+        width: 474
+        height: 784
+      alignment: 9
+      pivot: {x: 0.63357735, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b58c88e12f76f690800000000000000
+      internalID: -7568722340137368138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 2154
+        width: 324
+        height: 816
+      alignment: 9
+      pivot: {x: 0.5664749, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c1e38114be5b8e0800000000000000
+      internalID: -1678176621313516503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 2130
+        width: 406
+        height: 802
+      alignment: 9
+      pivot: {x: 0.44212875, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e9209a1518e5f40800000000000000
+      internalID: 5719150764534963837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 2174
+        width: 454
+        height: 728
+      alignment: 9
+      pivot: {x: 0.3986507, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef7f10b57ad598d0800000000000000
+      internalID: -2840123790986346513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 2166
+        width: 406
+        height: 778
+      alignment: 9
+      pivot: {x: 0.47106454, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b810feabd91c910800000000000000
+      internalID: 1855937947652688665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2434
+        y: 2162
+        width: 338
+        height: 798
+      alignment: 9
+      pivot: {x: 0.50845176, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6664fe2620801b2a0800000000000000
+      internalID: -6723583962344634778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 3036
+        y: 2174
+        width: 318
+        height: 840
+      alignment: 9
+      pivot: {x: 0.47978932, y: 0.65}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f899057b68091580800000000000000
+      internalID: -8856037934629283597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleMan Floor 5
+      rect:
+        serializedVersion: 2
+        x: 3464
+        y: 2182
+        width: 588
+        height: 826
+      alignment: 9
+      pivot: {x: 0.48370528, y: 0.6043964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a87cb87e5288600800000000000000
+      internalID: 470667837472999943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1162
+        width: 990
+        height: 894
+      alignment: 9
+      pivot: {x: 0.17199174, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a1677a63d5453f80800000000000000
+      internalID: -8127513178193567321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 1184
+        width: 1524
+        height: 862
+      alignment: 9
+      pivot: {x: 0.16526878, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396a820b56beeb940800000000000000
+      internalID: 5313943432323442323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleMan Floor 1
+      rect:
+        serializedVersion: 2
+        x: 2996
+        y: 1134
+        width: 344
+        height: 880
+      alignment: 9
+      pivot: {x: 0.5924846, y: 0.5747993}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c971d8d6e612b80800000000000000
+      internalID: -8421328411408491483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleMan Floor 2
+      rect:
+        serializedVersion: 2
+        x: 3524
+        y: 1150
+        width: 344
+        height: 828
+      alignment: 9
+      pivot: {x: 0.582917, y: 0.6006961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20a0caad691b5f50800000000000000
+      internalID: 6871113615290703917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 106
+        width: 748
+        height: 888
+      alignment: 9
+      pivot: {x: 0.26902354, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ee69731462a0880800000000000000
+      internalID: -8644054473236877726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Teleman Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 216
+        width: 1590
+        height: 872
+      alignment: 9
+      pivot: {x: 0.12077452, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d8b0203cf1037e0800000000000000
+      internalID: -1787894129652691649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleMan Floor 3
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 180
+        width: 614
+        height: 828
+      alignment: 9
+      pivot: {x: 0.554406, y: 0.6085136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea969123d13932cd0800000000000000
+      internalID: -2584060007576671826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleMan Floor 4
+      rect:
+        serializedVersion: 2
+        x: 3506
+        y: 148
+        width: 588
+        height: 826
+      alignment: 9
+      pivot: {x: 0.49020407, y: 0.6018035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a7d34be2c7d8d7e0800000000000000
+      internalID: -1740404023807977565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

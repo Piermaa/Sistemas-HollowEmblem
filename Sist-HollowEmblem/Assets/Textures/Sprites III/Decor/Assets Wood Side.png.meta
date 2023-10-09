@@ -1,0 +1,648 @@
+fileFormatVersion: 2
+guid: ea537b221a9a94e4bbf64514e9670c3f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2319728656356247669
+    second: Assets Wood Side_0
+  - first:
+      213: 1771355226210347664
+    second: Assets Wood Side_1
+  - first:
+      213: -9051769273546090282
+    second: Assets Wood Side_2
+  - first:
+      213: 189220756820945568
+    second: Assets Wood Side_3
+  - first:
+      213: 3347117503606763901
+    second: Assets Wood Side_4
+  - first:
+      213: 6946379643871260045
+    second: Assets Wood Side_5
+  - first:
+      213: -2613772081231754469
+    second: Assets Wood Side_6
+  - first:
+      213: 5962654356190506522
+    second: Assets Wood Side_7
+  - first:
+      213: -6177483963642237741
+    second: Assets Wood Side_8
+  - first:
+      213: 4846794906084118713
+    second: Assets Wood Side_9
+  - first:
+      213: 7668401559544074085
+    second: Assets Wood Side_10
+  - first:
+      213: 6051754703686681336
+    second: Assets Wood Side_11
+  - first:
+      213: -4931216152637206843
+    second: Assets Wood Side_12
+  - first:
+      213: 2662118021212588853
+    second: Assets Wood Side_13
+  - first:
+      213: -33054536656394116
+    second: Assets Wood Side_14
+  - first:
+      213: 4756680878404415403
+    second: Assets Wood Side_15
+  - first:
+      213: -3288911457920349900
+    second: Assets Wood Side_16
+  - first:
+      213: 749436247788021710
+    second: Assets Wood Side_17
+  - first:
+      213: 4857422657143259094
+    second: Assets Wood Side_18
+  - first:
+      213: 1719747974001657879
+    second: Assets Wood Side_19
+  - first:
+      213: 4688175463959044561
+    second: Assets Wood Side_20
+  - first:
+      213: -6596938754131496393
+    second: Assets Wood Side_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Assets Wood Side_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 3568
+        width: 334
+        height: 502
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b877796d31baecfd0800000000000000
+      internalID: -2319728656356247669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_1
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 3986
+        width: 244
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09aac45713e159810800000000000000
+      internalID: 1771355226210347664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_2
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 3580
+        width: 292
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d85d75ddc7a16280800000000000000
+      internalID: -9051769273546090282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_3
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 3930
+        width: 184
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aa617a964f30a200800000000000000
+      internalID: 189220756820945568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_4
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 3484
+        width: 328
+        height: 612
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7139ffb2a9537e20800000000000000
+      internalID: 3347117503606763901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_5
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 3618
+        width: 530
+        height: 425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d63fb8b7f766060800000000000000
+      internalID: 6946379643871260045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_6
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 3872
+        width: 354
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b0956f3240abbd0800000000000000
+      internalID: -2613772081231754469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_7
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 3612
+        width: 258
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1eab23ab8a9fb250800000000000000
+      internalID: 5962654356190506522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_8
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 3786
+        width: 348
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dcae65901b254aa0800000000000000
+      internalID: -6177483963642237741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_9
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 3734
+        width: 336
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b01154a946434340800000000000000
+      internalID: 4846794906084118713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_10
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 3642
+        width: 132
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f0da7e692ab6a60800000000000000
+      internalID: 7668401559544074085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_11
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 3636
+        width: 118
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f24b05e6d62cf350800000000000000
+      internalID: 6051754703686681336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_12
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 3218
+        width: 212
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce046f290dc09bb0800000000000000
+      internalID: -4931216152637206843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_13
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 3504
+        width: 392
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53bca8c5c3eb1f420800000000000000
+      internalID: 2662118021212588853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_14
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 3482
+        width: 132
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c786164f2119a8ff0800000000000000
+      internalID: -33054536656394116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_15
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 3110
+        width: 346
+        height: 484
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baf20339e00230240800000000000000
+      internalID: 4756680878404415403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_16
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 3218
+        width: 234
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43902f454707b52d0800000000000000
+      internalID: -3288911457920349900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2388
+        width: 328
+        height: 777
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec7e433fb48866a00800000000000000
+      internalID: 749436247788021710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_18
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 2370
+        width: 652
+        height: 776
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df35f2cb28096340800000000000000
+      internalID: 4857422657143259094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_19
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 2354
+        width: 184
+        height: 858
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7180195bba5cdd710800000000000000
+      internalID: 1719747974001657879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_20
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1888
+        width: 1252
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d12bf5debebf0140800000000000000
+      internalID: 4688175463959044561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Assets Wood Side_21
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 2393
+        width: 370
+        height: 757
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732fbfab727f274a0800000000000000
+      internalID: -6596938754131496393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,432 @@
+fileFormatVersion: 2
+guid: c8e93d1387dcc8c4c9ebd75c2ac460f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5182439415034086472
+    second: (1Fix)Teleman Walk_Death_0
+  - first:
+      213: -8601727509750916775
+    second: (1Fix)Teleman Walk_Death_1
+  - first:
+      213: 8667505069950573182
+    second: (1Fix)Teleman Walk_Death_2
+  - first:
+      213: -1160655018091132338
+    second: (1Fix)Teleman Walk_Death_3
+  - first:
+      213: 7119037350100611493
+    second: (1Fix)Teleman Walk_Death_4
+  - first:
+      213: -8042679191309089191
+    second: (1Fix)Teleman Walk_Death_5
+  - first:
+      213: 6975534779928342620
+    second: (1Fix)Teleman Walk_Death_6
+  - first:
+      213: -286469183937019941
+    second: (1Fix)Teleman Walk_Death_7
+  - first:
+      213: 5785172771574169707
+    second: (1Fix)Teleman Walk_Death_8
+  - first:
+      213: 2833949930023431059
+    second: (1Fix)Teleman Walk_Death_9
+  - first:
+      213: 1066841154851903354
+    second: (1Fix)Teleman Walk_Death_10
+  - first:
+      213: -443116669553765819
+    second: (1Fix)Teleman Walk_Death_11
+  - first:
+      213: -495247956532422826
+    second: (1Fix)Teleman Walk_Death_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1566
+        width: 267
+        height: 357
+      alignment: 9
+      pivot: {x: 0.51542825, y: 0.5461549}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8440713b039bbe740800000000000000
+      internalID: 5182439415034086472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_1
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 1561
+        width: 255
+        height: 381
+      alignment: 9
+      pivot: {x: 0.5646171, y: 0.5605466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 959579e576680a880800000000000000
+      internalID: -8601727509750916775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_2
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1545
+        width: 251
+        height: 396
+      alignment: 9
+      pivot: {x: 0.51919955, y: 0.5878906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a1d4f40f9294870800000000000000
+      internalID: 8667505069950573182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_3
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 1533
+        width: 247
+        height: 391
+      alignment: 9
+      pivot: {x: 0.46314663, y: 0.584906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4a47e3196684efe0800000000000000
+      internalID: -1160655018091132338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_4
+      rect:
+        serializedVersion: 2
+        x: 1268
+        y: 1545
+        width: 208
+        height: 383
+      alignment: 9
+      pivot: {x: 0.3249459, y: 0.57269907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a13c7b60c6ebc260800000000000000
+      internalID: 7119037350100611493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_5
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 1545
+        width: 245
+        height: 380
+      alignment: 9
+      pivot: {x: 0.4038355, y: 0.574682}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 956889f23e9a26090800000000000000
+      internalID: -8042679191309089191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1159
+        width: 243
+        height: 358
+      alignment: 9
+      pivot: {x: 0.47355765, y: 0.5478618}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50f204ace31ec060800000000000000
+      internalID: 6975534779928342620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1157
+        width: 246
+        height: 360
+      alignment: 9
+      pivot: {x: 0.51741326, y: 0.54313385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf76548bc1460cf0800000000000000
+      internalID: -286469183937019941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_8
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1111
+        width: 197
+        height: 381
+      alignment: 9
+      pivot: {x: 0.61415833, y: 0.5730807}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60c0fd0cff094050800000000000000
+      internalID: 5785172771574169707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_9
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1090
+        width: 150
+        height: 393
+      alignment: 9
+      pivot: {x: 0.48929077, y: 0.5831116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39b2a4a4276345720800000000000000
+      internalID: 2833949930023431059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_10
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1059
+        width: 141
+        height: 384
+      alignment: 9
+      pivot: {x: 0.46582118, y: 0.5752986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7717b2c06e2ece00800000000000000
+      internalID: 1066841154851903354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_11
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 1062
+        width: 175
+        height: 382
+      alignment: 9
+      pivot: {x: 0.5703739, y: 0.5672825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542913d9cbbb9d9f0800000000000000
+      internalID: -443116669553765819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (1Fix)Teleman Walk_Death_12
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 1067
+        width: 180
+        height: 381
+      alignment: 9
+      pivot: {x: 0.5565199, y: 0.57448596}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65795238b968029f0800000000000000
+      internalID: -495247956532422826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
