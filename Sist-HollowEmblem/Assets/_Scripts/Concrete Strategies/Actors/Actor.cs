@@ -11,7 +11,7 @@ public class Actor : MonoBehaviour, IDamageable
     public int MaxHealth => _actorStats.MaxLife;
     public SpriteRenderer ActorSprite => _spriteRenderer;
     public Material FlashingWhiteMaterial => _flashingWhiteMaterial;
-    public ParticleSystem TakingDamageParticles { get; }
+    public ParticleSystem TakingDamageParticles { get; } //todo
     public AudioSource TakingDamageSound { get; }
 
     #endregion

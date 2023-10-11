@@ -14,16 +14,16 @@ public class Player : Actor
     [SerializeField] private KeyCode _reload = KeyCode.R;
     
     [SerializeField] private KeyCode _jump = KeyCode.Space;
+    [SerializeField] private AudioSource _abilityAudioSource;
 
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
-    [SerializeField] private AudioSource _abilityAudioSource;
     private float _horizontalMove;
-    private float _inmunityTime;
+    private float _immunityTime;
     private bool _mustJump;
     #endregion
 
     private IMovable _movable;
-    private float _inmunityTimer;
+    private float _immunityTimer;
 
     #endregion
 
@@ -43,11 +43,12 @@ public class Player : Actor
     private void Update()
     {
         InputProcess();
+        AbilityInputsAndCooldowns();
     }
 
     private void FixedUpdate()
     {
-        _inmunityTimer = _inmunityTimer > 0 ? _inmunityTimer - Time.deltaTime : 0;
+        _immunityTimer = _immunityTimer > 0 ? _immunityTimer - Time.deltaTime : 0;
         _movable.Move(_horizontalMove* Time.fixedDeltaTime, _mustJump);
         _mustJump = false;
     }
@@ -68,7 +69,6 @@ public class Player : Actor
  
         
         MovementInputs();
-        AbilityInputsAndCooldowns();
     }
 
     private void MovementInputs()
@@ -104,10 +104,10 @@ public class Player : Actor
 
     public override void TakeDamage(int damageTaken)
     {
-        if (_inmunityTimer<=0)
+        if (_immunityTimer<=0)
         {
             base.TakeDamage(damageTaken);
-            _inmunityTimer = _inmunityTime;
+            _immunityTimer = _immunityTime;
         }
     }
 
