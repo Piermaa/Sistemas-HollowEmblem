@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class Player : Actor
@@ -16,13 +13,13 @@ public class Player : Actor
     [SerializeField] private KeyCode _aim = KeyCode.Mouse1;
     [SerializeField] private KeyCode _reload = KeyCode.R;
     
-    [SerializeField] private KeyCode _dash = KeyCode.LeftShift;
     [SerializeField] private KeyCode _jump = KeyCode.Space;
 
+    [SerializeField] private List<PlayerAbility> _playerAbilities = new();
+    [SerializeField] private AudioSource _abilityAudioSource;
     private float _horizontalMove;
     private float _inmunityTime;
     private bool _mustJump;
-    private Animator _animator;
     #endregion
 
     private IMovable _movable;
@@ -36,7 +33,11 @@ public class Player : Actor
     {
         base.Awake();
         _movable = GetComponent<IMovable>();
-        _animator = GetComponent<Animator>();
+
+        foreach (var abilty in _playerAbilities)
+        {
+           abilty.Init(gameObject,_abilityAudioSource);
+        }
     }
 
     private void Update()
@@ -61,13 +62,13 @@ public class Player : Actor
        // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
 
       //  if (Input.GetKeyUp(_aim)) StopAiming();
-
-    
+        
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
-        //Movement
+ 
         
         MovementInputs();
+        AbilityInputsAndCooldowns();
     }
 
     private void MovementInputs()
@@ -75,6 +76,29 @@ public class Player : Actor
         if (Input.GetKeyDown(_jump)) _mustJump = true;
         _horizontalMove = Input.GetAxisRaw(_moveAxis) * _actorStats.MovementSpeed;
     }
+
+    /// <summary>
+    /// Updates ability cooldowns and checks if their required input in order to use them 
+    /// </summary>
+    private void AbilityInputsAndCooldowns()
+    {
+        foreach (var ability in _playerAbilities)
+        {
+            ability.AbilityUpdate();
+            
+            if (Input.GetKeyDown(ability.AbilityKey))
+            {
+                ability.Use();
+            }
+        }
+    }
+
+    public void UnlockAbility(PlayerAbility abilityToUnlock)
+    {
+        _playerAbilities.Add(abilityToUnlock);
+        abilityToUnlock.Init(gameObject,_abilityAudioSource);
+    }
+
 
     #region Actor Methods Overrides
 
