@@ -48,6 +48,5 @@ public class BombThrowed : MonoBehaviour, IPooledObject
                 collision.gameObject.TryGetComponent<HealthController>(out var target);
                 target.TakeDamage(1);
         }
-
     }
 }

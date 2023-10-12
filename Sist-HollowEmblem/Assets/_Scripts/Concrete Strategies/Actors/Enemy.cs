@@ -8,12 +8,14 @@ public class Enemy : Actor
 {
     protected IEnemyAttack _enemyAttack;
     protected float _attackCooldownTimer;
-
+    protected Animator _animator;
+    
     protected EnemyStats _enemyStats;
 
     protected override void Awake()
     {
         base.Awake();
+        _animator = GetComponent<Animator>();
         _enemyStats = _actorStats as EnemyStats;
     }
 

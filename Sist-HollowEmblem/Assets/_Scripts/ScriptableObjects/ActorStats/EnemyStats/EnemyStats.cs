@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "EnemyStats", menuName = "Stats/ActorStats/EnemyStats", order = 0)]
 public class EnemyStats : ActorStats
 {
     [SerializeField] protected EnemyStatValues _enemyStats;
@@ -9,6 +8,7 @@ public class EnemyStats : ActorStats
     public int AttackDamage => _enemyStats.AttackDamage;
 }
 
+[Serializable]
 public struct EnemyStatValues
 {
     public float AttackCooldown;
