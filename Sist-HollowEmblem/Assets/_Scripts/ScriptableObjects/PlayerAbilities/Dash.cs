@@ -18,7 +18,7 @@ public class Dash : PlayerAbility
     private float _dashTimeTimer=0;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    
+    private DashUIManager _dashUIManager;
     #endregion
     
     #region IPlayerAbility Method Overrides
@@ -28,6 +28,8 @@ public class Dash : PlayerAbility
         base.Init(playerGameObject, audioSource);
         _rigidbody2D = _playerGameObject.GetComponent<Rigidbody2D>();
         _animator = _playerGameObject.GetComponent<Animator>();
+        _dashUIManager = UIManager.Instance.GetDashUIManager;
+        _dashUIManager.UnlockAbility();
     }
 
     public override void Use()
@@ -53,7 +55,7 @@ public class Dash : PlayerAbility
     public override void AbilityUpdate()
     {
         base.AbilityUpdate();
-  
+        _dashUIManager.UpdateCooldown(_coolDownTimer,_cooldown);
         
         if (_dashTimeTimer <= 0)
         {
