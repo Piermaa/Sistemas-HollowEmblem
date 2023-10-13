@@ -278,7 +278,7 @@ public class Boss : MonoBehaviour
         crashSound.Play();
         if (drop)
         {
-            GameManager.instance.StartVictory(this.transform.position, "Dash");
+            //GameManager.Instance.StartVictory(this.transform.position, "Dash");
         }
     }
     public void StepSoundEffect()

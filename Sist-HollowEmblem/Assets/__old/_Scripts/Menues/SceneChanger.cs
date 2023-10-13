@@ -86,6 +86,7 @@ public class SceneChanger : MonoBehaviour
 
     public void Resume()
     {
+        // GameManager has change
         gameManager.Resume();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;

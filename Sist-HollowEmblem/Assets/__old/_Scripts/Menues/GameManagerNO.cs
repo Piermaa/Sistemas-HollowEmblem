@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManagerNO : MonoBehaviour
 {
     [SerializeField] GameObject victorySprite;
     [SerializeField] GameObject defeatSprite;
@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
 
     public Animator animator;
 
-    public static GameManager instance = null;
+    public static GameManagerNO instance = null;
 
-    public static GameManager Instance;
+    public static GameManagerNO Instance;
     
     private void Awake()
     {
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         animator.SetTrigger("Victory");
     }
+
     public void StartVictory(Vector3 position, string AbilityName)
     {
         if(animator!=null)
