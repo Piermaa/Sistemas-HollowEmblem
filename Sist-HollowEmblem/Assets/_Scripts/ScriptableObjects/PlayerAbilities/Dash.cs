@@ -15,7 +15,7 @@ public class Dash : PlayerAbility
 
     #endregion
     
-    private float _dashTimeTimer=0;
+    private float _dashTimeTimer = 0;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     
@@ -63,7 +63,7 @@ public class Dash : PlayerAbility
         {
             _dashTimeTimer -= Time.deltaTime;
             
-            if (_dashTimeTimer<0)
+            if (_dashTimeTimer < 0)
             {
                 _dashTimeTimer = 0;
             }

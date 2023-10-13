@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d7d847ca44c2649a55757408da8464, type: 3}
+  m_Name: Slam
+  m_EditorClassIdentifier: 
+  _cooldown: 0.5
+  _abilitySound: {fileID: 8300000, guid: 1944661f5689080429d316a131cf28c6, type: 3}
+  _abilityKey: 102
+  _slamForce: 20
+  _slamTimer: 0.3
+  _playerMovementController: {fileID: 0}
