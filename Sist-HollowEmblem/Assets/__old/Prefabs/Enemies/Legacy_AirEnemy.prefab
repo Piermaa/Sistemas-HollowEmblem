@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 2928917235160616555}
   - component: {fileID: 6461239125300537165}
   m_Layer: 7
-  m_Name: AirEnemy
+  m_Name: Legacy_AirEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
