@@ -6,7 +6,18 @@ using UnityEngine;
 public class EnemyAirChase : EnemyFootChase
 {
     [SerializeField] private Vector2 _chasingOffset=new Vector2(5,1.5f);
+
+    #region Monobehaviour Callbacks
+    private void OnDrawGizmos()
+    {
+        Gizmos.color=Color.cyan;
+        Gizmos.DrawSphere(_currentWaypoint,.1f);
+    }
     
+    #endregion
+    
+    #region EnemyMovement Overrided Methods
+
     public override void Move()
     {
         float dirMultpiplier = (_playerTransform.position.x < transform.position.x) ? 1 : -1;
@@ -38,9 +49,5 @@ public class EnemyAirChase : EnemyFootChase
         transform.localScale = theScale;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color=Color.cyan;
-        Gizmos.DrawSphere(_currentWaypoint,.1f);
-    }
+    #endregion
 }

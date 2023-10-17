@@ -9,11 +9,13 @@ public class VulcanBulletStats : ScriptableObject
     public float Force=> _vulcanBulletStatsValues.Force;
     public string ObjectPoolerKey => _vulcanBulletStatsValues.ObjectPoolerKey;
     public string ExplosionObjectPoolerKey => _vulcanBulletStatsValues.ExplosionObjectPoolerKey;
+    public int Damage => _vulcanBulletStatsValues.Damage;
 }
 
 [System.Serializable]
 public struct VulcanBulletStatsValues
 {
+    public int Damage;
     public Vector2 ImpulseDirection;
     public float Force;
     public string ObjectPoolerKey;

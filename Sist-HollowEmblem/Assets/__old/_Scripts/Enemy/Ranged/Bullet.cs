@@ -17,17 +17,43 @@ public class Bullet : MonoBehaviour, IPooledProduct
 
     #endregion
 
-    [SerializeField] private BulletStats _bulletStats;
-    
-    private Rigidbody2D _rigidbody2D;
+    #region ClassProperties
 
+    #region Serialized Properties
+    [SerializeField] private BulletStats _bulletStats;
+    #endregion
+    private Rigidbody2D _rigidbody2D;
     private float _despawnTimer;
     private int _direction;
+    #endregion
+
+    #region MonoBehaviour Callbacks
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
+   
+    private void Update()
+    {
+        _despawnTimer += Time.deltaTime;
 
+        if (_despawnTimer>_bulletStats.TimeLimit)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(_bulletStats.Damage);
+        }
+        gameObject.SetActive(false);
+    }
+    #endregion
+    
+    #region IPooledProduct Methods
     public void OnObjectSpawn()
     {
         _rigidbody2D.velocity = Vector3.zero;
@@ -52,24 +78,5 @@ public class Bullet : MonoBehaviour, IPooledProduct
         
         return product;
     }
-
-    private void Update()
-    {
-        _despawnTimer += Time.deltaTime;
-
-        if (_despawnTimer>_bulletStats.TimeLimit)
-        {
-           gameObject.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(_bulletStats.Damage);
-        }
-        gameObject.SetActive(false);
-    }
-    
+    #endregion
 }

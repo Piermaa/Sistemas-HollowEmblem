@@ -1026,16 +1026,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: LFVulcanBullet
+  - tag: FarVulcanBullet
     prefab: {fileID: 8845292994303759772, guid: c1b75cefa11bb9e4da9864da373e1e56, type: 3}
     size: 5
-  - tag: RFVulcanBullet
-    prefab: {fileID: 8845292994303759772, guid: bf82c16323748d34cb444dc9a31b2de8, type: 3}
-    size: 5
-  - tag: LVulcanBullet
-    prefab: {fileID: 8845292994303759772, guid: 4073daef33a27414c8e9b98fb9f8f5e2, type: 3}
-    size: 5
-  - tag: RVulcanBullet
+  - tag: NearVulcanBullet
     prefab: {fileID: 8845292994303759772, guid: 91e69aadf774c514e8925dffdbc65198, type: 3}
     size: 5
   - tag: VExplosion
@@ -18086,6 +18080,10 @@ PrefabInstance:
     - target: {fileID: 6398537861417278284, guid: 96489b3240bffdd429797a2c5486b207, type: 3}
       propertyPath: m_Name
       value: VulcanEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6398537861417278284, guid: 96489b3240bffdd429797a2c5486b207, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96489b3240bffdd429797a2c5486b207, type: 3}
@@ -48202,8 +48200,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.28275, y: -0.03094995, z: 0}
-    m_Extent: {x: 2.2888498, y: 2.23775, z: 0}
+    m_Center: {x: 0.27670002, y: -0.032949924, z: 0}
+    m_Extent: {x: 2.2826, y: 2.24055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
