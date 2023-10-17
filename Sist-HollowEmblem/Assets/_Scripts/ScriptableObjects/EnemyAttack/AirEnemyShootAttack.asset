@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: AirEnemyShootAttack
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 4818572543945461635, guid: 14177be2a6b350242957c43305c2d07a, type: 3}
+  _bulletStats: {fileID: 11400000, guid: 3764a5d10bf2df347899fbb983e18cff, type: 2}

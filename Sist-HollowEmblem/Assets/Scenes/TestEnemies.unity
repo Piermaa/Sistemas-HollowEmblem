@@ -18013,7 +18013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6398537861417278284, guid: 96489b3240bffdd429797a2c5486b207, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96489b3240bffdd429797a2c5486b207, type: 3}
@@ -41513,7 +41513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426794111383733916, guid: d9ccd2068720ac54ead3d67d2ef1c7b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7245139835147682199, guid: d9ccd2068720ac54ead3d67d2ef1c7b4, type: 3}
       propertyPath: _waypoints.Array.data[0]
@@ -42518,8 +42518,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.27900004, y: -0.025950074, z: 0}
-    m_Extent: {x: 2.2988, y: 2.2311502, z: 0}
+    m_Center: {x: 0.2838, y: -0.027050018, z: 0}
+    m_Extent: {x: 2.2894, y: 2.24175, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
