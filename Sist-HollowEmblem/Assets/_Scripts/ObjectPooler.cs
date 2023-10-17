@@ -107,9 +107,8 @@ public class ObjectPooler : MonoBehaviour
     }
     
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, int direction)
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, int direction, ScriptableObject stats)
     {
-
         if (!poolDictionary.ContainsKey(tag))
         {
             print("Tag" + tag + "does not exists");
@@ -123,12 +122,12 @@ public class ObjectPooler : MonoBehaviour
         
         objectToSpawn.transform.SetPositionAndRotation(position, Quaternion.Euler( new Vector3(rotation.x,0,0)));
         
-        IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
-
+        IPooledProduct pooledObj = objectToSpawn.GetComponent<IPooledProduct>();     //busca que haya una interface en el objeto a spawnear
         
         if (pooledObj != null)
         {
-            (pooledObj as IPooledProduct).Direction = direction;
+            pooledObj.SetStats(stats);
+            pooledObj.Direction = direction;
             pooledObj.OnObjectSpawn(); // si tiene el tipo IPooledObject se llamara el metodo OnObjectSpawn() al spawnear el obj  //accede a la interfaz, busca la implementacion del metodo y lo executa
         }
 

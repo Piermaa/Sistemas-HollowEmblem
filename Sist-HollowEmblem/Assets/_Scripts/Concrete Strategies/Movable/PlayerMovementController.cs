@@ -7,6 +7,8 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 {
 	#region Class Properties
 
+	public bool MustSlam => _mustSlam;
+	
 	#region Class Serialized Properties
 
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
@@ -18,14 +20,14 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	[Header("Events")]	[Space]
 	[SerializeField] private UnityEvent OnLandEvent;
-	[SerializeField] private UnityEvent OnSlamEvent;
+	[SerializeField] public UnityEvent OnSlamEvent;
 	#endregion
 	
 	private const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-	private bool triggerSlam;
+	private bool _mustSlam;
 	private bool canDoubleJump;
 
 	private Animator _animator;
@@ -37,8 +39,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	private const string DOUBLE_JUMP_ANIMATOR_PARAMETER = "DoubleJump";
 	private const string RUN_ANIMATOR_PARAMETER = "Run";
 	#endregion
-
-
+    
 	#region Monobehaviour Callbacks
 
 	private void Awake()
@@ -75,10 +76,10 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 					_animator.SetTrigger(IDLE_ANIMATOR_PARAMETER);
 					_animator.SetBool(FALLING_ANIMATOR_PARAMETER, false);
 
-					if (triggerSlam)
+					if (_mustSlam)
 					{
 						OnSlamEvent.Invoke();
-						triggerSlam = false;
+						_mustSlam = false;
 					}
 
 				}
@@ -188,9 +189,9 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 		return m_Grounded;
 	}
 
-	public void MustSlam()
+	public void SetMustSlam(bool mustSlam)
 	{
-		triggerSlam = true;
+		_mustSlam = mustSlam;
 	}
 	private void Flip()
 	{

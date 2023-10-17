@@ -1026,10 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: FarVulcanBullet
-    prefab: {fileID: 8845292994303759772, guid: c1b75cefa11bb9e4da9864da373e1e56, type: 3}
-    size: 5
-  - tag: NearVulcanBullet
+  - tag: VulcanBullet
     prefab: {fileID: 8845292994303759772, guid: 91e69aadf774c514e8925dffdbc65198, type: 3}
     size: 5
   - tag: VExplosion
@@ -41514,6 +41511,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AirEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3426794111383733916, guid: d9ccd2068720ac54ead3d67d2ef1c7b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7245139835147682199, guid: d9ccd2068720ac54ead3d67d2ef1c7b4, type: 3}
       propertyPath: _waypoints.Array.data[0]
       value: 
@@ -42517,8 +42518,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.27795005, y: -0.032950044, z: 0}
-    m_Extent: {x: 2.28885, y: 2.23975, z: 0}
+    m_Center: {x: 0.27900004, y: -0.025950074, z: 0}
+    m_Extent: {x: 2.2988, y: 2.2311502, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

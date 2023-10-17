@@ -11,6 +11,7 @@ public class EnemyFootPatrol : EnemyMovement
     #endregion
     private int _waypointIndex;
     private float _waitTimeTimer;
+    private bool _turned;
     #endregion
 
     #region Class Methods
@@ -22,6 +23,7 @@ public class EnemyFootPatrol : EnemyMovement
         Stop(_enemyStats.WaitTime);
         Transform newWaypoint = _waypoints[_waypointIndex];
         _currentWaypoint = new Vector3(newWaypoint.position.x ,transform.position.y);
+        _turned = false;
     }
     
     public void Stop(float time) 
@@ -37,12 +39,24 @@ public class EnemyFootPatrol : EnemyMovement
         base.Move();
         
         _waitTimeTimer -= Time.deltaTime;
-        _currentMoveSpeed = _waitTimeTimer >= 0 ? 0 : MoveSpeed;
+
+        if (_waitTimeTimer >= 0 )
+        {
+            _currentMoveSpeed = 0;
+        }
+        else
+        {
+            _currentMoveSpeed = MoveSpeed;
+            if (!_turned)
+            {
+                SetScale();
+            }
+        }
         
+
         if (transform.position == _currentWaypoint)
         {
             SetNextWaypoint();
-            SetScale();
         }
     }
 
@@ -51,6 +65,12 @@ public class EnemyFootPatrol : EnemyMovement
         base.InitEnemyMovement(enemyGameObject, enemyStats);
         SetNextWaypoint();
         _currentMoveSpeed = MoveSpeed;
+    }
+
+    public override void SetScale()
+    {
+        base.SetScale();
+        _turned = true;
     }
 
     #endregion

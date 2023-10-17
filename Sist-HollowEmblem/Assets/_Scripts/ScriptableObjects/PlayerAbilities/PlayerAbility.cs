@@ -48,7 +48,7 @@ public class PlayerAbility : ScriptableObject, IPlayerAbility
         _audioSource = audioSource;
     }
 
-    public bool CanBeUsed()
+    public virtual bool CanBeUsed()
     {
         return _coolDownTimer <= 0;
     }

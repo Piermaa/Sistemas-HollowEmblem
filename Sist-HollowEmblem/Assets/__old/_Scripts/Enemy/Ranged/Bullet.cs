@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour, IPooledProduct
 {
     #region IPooledProduct Properties
 
+    public ScriptableObject Stats => _bulletStats;
+
     public string ObjectPoolerKey => _bulletStats.ObjectPoolerKey;
     public GameObject MyGameObject => gameObject;
 
@@ -71,12 +73,17 @@ public class Bullet : MonoBehaviour, IPooledProduct
         partscale.localScale = theScale;
     }
 
-    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction)
+    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction, ScriptableObject stats)
     {
-        var product = ObjectPooler.Instance.SpawnFromPool(ObjectPoolerKey,position, rotation, direction)
+        var product = ObjectPooler.Instance.SpawnFromPool(ObjectPoolerKey,position, rotation, direction, stats)
             .GetComponent<IPooledProduct>();
         
         return product;
+    }
+    
+    public void SetStats(ScriptableObject stats)
+    {
+        _bulletStats= stats as BulletStats;
     }
     #endregion
 }

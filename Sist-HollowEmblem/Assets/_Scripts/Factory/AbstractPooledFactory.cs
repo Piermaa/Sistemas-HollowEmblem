@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class AbstractPooledFactory<T> where T : IPooledProduct
 {
     protected T _product;
-    public abstract T CreateProduct(Vector3 position, Quaternion rotation, int direction);
+    public abstract T CreateProduct(Vector3 position, Quaternion rotation, int direction, ScriptableObject stats);
     public AbstractPooledFactory(T productToProduce)
     {
         _product = productToProduce;

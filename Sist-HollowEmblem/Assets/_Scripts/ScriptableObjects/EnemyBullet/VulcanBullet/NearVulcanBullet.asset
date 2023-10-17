@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: NearVulcanBullet
   m_EditorClassIdentifier: 
   _vulcanBulletStatsValues:
-    Damage: 0
+    Damage: 1
     ImpulseDirection: {x: 1, y: 4}
     Force: 1.7
-    ObjectPoolerKey: NearVulcanBullet
+    ObjectPoolerKey: VulcanBullet
     ExplosionObjectPoolerKey: VExplosion

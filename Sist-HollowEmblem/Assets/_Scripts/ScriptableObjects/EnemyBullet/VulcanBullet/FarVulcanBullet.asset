@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FarVulcanBullet
   m_EditorClassIdentifier: 
   _vulcanBulletStatsValues:
-    Damage: 0
+    Damage: 1
     ImpulseDirection: {x: 1, y: 7}
     Force: 1.7
-    ObjectPoolerKey: FarVulcanBullet
+    ObjectPoolerKey: VulcanBullet
     ExplosionObjectPoolerKey: VExplosion

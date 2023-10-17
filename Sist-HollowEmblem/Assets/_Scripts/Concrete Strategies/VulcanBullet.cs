@@ -14,6 +14,11 @@ public class VulcanBullet : MonoBehaviour, IPooledProduct, IVulcanBullet
         set=>_direction=value;
     }
 
+    public ScriptableObject Stats
+    {
+        get =>_vulcanBulletStats;
+    }
+
     public string ObjectPoolerKey => _vulcanBulletStats.ObjectPoolerKey;
 
     #endregion
@@ -54,9 +59,9 @@ public class VulcanBullet : MonoBehaviour, IPooledProduct, IVulcanBullet
         rb2D.AddForce(_vulcanBulletStats.Force * dir,ForceMode2D.Impulse);
     }
     
-    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction)
+    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction, ScriptableObject stats)
     {
-        return ObjectPooler.Instance.SpawnFromPool(_vulcanBulletStats.ObjectPoolerKey, position, rotation, direction)
+        return ObjectPooler.Instance.SpawnFromPool(_vulcanBulletStats.ObjectPoolerKey, position, rotation, direction, stats)
             .GetComponent<IPooledProduct>();
     }
 
@@ -85,5 +90,10 @@ public class VulcanBullet : MonoBehaviour, IPooledProduct, IVulcanBullet
         }
     }
 
+    public void SetStats(ScriptableObject stats)
+    {
+        _vulcanBulletStats=stats as VulcanBulletStats;
+    }
+    
     #endregion
 }

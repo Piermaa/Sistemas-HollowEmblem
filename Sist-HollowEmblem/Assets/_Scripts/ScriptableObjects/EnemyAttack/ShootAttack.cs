@@ -8,7 +8,7 @@ public class ShootAttack : EnemyAttack
     #region Serialized Properties
 
     [SerializeField] private GameObject _bulletPrefab;
-
+    [SerializeField] private BulletStats _bulletStats;
     #endregion
 
     private BulletFactory _bulletFactory;
@@ -26,7 +26,7 @@ public class ShootAttack : EnemyAttack
     public override void Attack()
     {
         _bulletFactory.CreateProduct(_spawnPos.position, Quaternion.identity, 
-             (int)_spawnPos.parent.localScale.x);
+             (int)_spawnPos.parent.localScale.x, _bulletStats);
     }
 
     #endregion
