@@ -81,7 +81,7 @@ public class DashBossController : MonoBehaviour
             Shoot(); //jefe dispara
         }
         //changin sides-------------------.---------.--.-.-.-.-.-.-.-.-.-.-.-.
-        if (bossState == BossState.Waiting && changeSideCounter < maxChangeSide) //si el jefe està esperando y su contador de cambios de lado es menor al màximo, se le resta tiempo el timer de cambio de lado
+        if (bossState == BossState.Waiting && changeSideCounter < maxChangeSide) //si el jefe estÃ  esperando y su contador de cambios de lado es menor al mÃ ximo, se le resta tiempo el timer de cambio de lado
         {
             changePosTimer -= Time.deltaTime;
         }
