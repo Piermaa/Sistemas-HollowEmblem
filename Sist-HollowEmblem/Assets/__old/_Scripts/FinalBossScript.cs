@@ -172,19 +172,19 @@ public class FinalBossScript : MonoBehaviour
 
     public void InitializeShootOne()
     {
-        objectPooler.SpawnFromPool("Bullet", shootStartUp.position, shootStartUp.rotation, direction);
+     //   objectPooler.SpawnFromPool("Bullet", shootStartUp.position, shootStartUp.rotation, direction); COMENTADO BY PIERMA WHEN HIZO EL DISPARO DEL AIR ENEMY
         shootAttackSound.Play();
     }
 
     public void InitializeShootTwo()
     {
-        objectPooler.SpawnFromPool("Bullet", shootStartDown.position, shootStartDown.rotation, directionDown);
+      //  objectPooler.SpawnFromPool("Bullet", shootStartDown.position, shootStartDown.rotation, directionDown);
         shootAttackSound.Play();
     }
 
     public void InitializeShootThree()
     {
-        objectPooler.SpawnFromPool("Bullet", shootStartMiddle.position, shootStartMiddle.rotation, directionDown);
+      //  objectPooler.SpawnFromPool("Bullet", shootStartMiddle.position, shootStartMiddle.rotation, directionDown);
         shootAttackSound.Play();
     }
 

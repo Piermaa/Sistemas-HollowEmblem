@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class StaticEnemy : Enemy
 {
-   [SerializeField] private Transform _attackOrigin;
+   #region Class Properties
+
+   #region Serialized Properties
+
    [SerializeField] private VulcanAttack[] _vulcanAttacks;
+   [SerializeField] private ParticleSystem[] _shootParticles;
+   [SerializeField] private Transform _attackOrigin;
+
+   #endregion
+   
    private const string ATTACK_ANIMATOR_PARAMETER = "Shoot";
 
+   #endregion
+
+   #region Monobehaviour Callbacks
+    
    protected override void Awake()
    {
       base.Awake();
       foreach (var vulcanAttack in _vulcanAttacks)
       {
-         vulcanAttack.InitializeEnemyAttack(_attackOrigin.position);
+         vulcanAttack.InitializeEnemyAttack(_attackOrigin, gameObject);
       }
    }
-
+   
    protected override void Update()
    {
       base.Update();
@@ -26,12 +38,19 @@ public class StaticEnemy : Enemy
          _attackCooldownTimer = _enemyStats.AttackCooldown;
       }
    }
-/// <summary>
-/// LLamar en animation event
-/// </summary>
-/// <param name="index"></param>
+   #endregion
+
+   #region Class Methods
+    
+   /// <summary>
+   /// LLamar en animation event
+   /// </summary>
+   /// <param name="index"></param>
    public void Attack(int index)
    {
       _vulcanAttacks[index].Attack();
+      _shootParticles[index].Play();
    }
+
+   #endregion
 }

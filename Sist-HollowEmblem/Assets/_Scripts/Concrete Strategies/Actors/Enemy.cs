@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class Enemy : Actor
 {
-    protected IEnemyAttack _enemyAttack;
-    protected float _attackCooldownTimer;
+    #region Class Properties
+
     protected Animator _animator;
-    
     protected EnemyStats _enemyStats;
+    protected float _attackCooldownTimer;
+
+    #endregion
+
+    #region Monobehaviour Callbacks
 
     protected override void Awake()
     {
@@ -23,5 +27,8 @@ public class Enemy : Actor
     {
         _attackCooldownTimer = _attackCooldownTimer > 0 ? _attackCooldownTimer - Time.deltaTime : 0;
     }
+
+    #endregion
+   
 }
 

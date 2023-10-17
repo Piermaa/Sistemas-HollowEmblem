@@ -2,76 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour, IPooledObject
+public class Bullet : MonoBehaviour, IPooledProduct
 {
-    Rigidbody2D rb;
-    public float speed;
-    public float timeToDespawn;
-    public float timeLimit = 5;
-    public float xvelocity;
-    public Vector3 moveDirection;
+    #region IPooledProduct Properties
 
-    bool verifyScale=false;
-  
+    public string ObjectPoolerKey => _bulletStats.ObjectPoolerKey;
+    public GameObject MyGameObject => gameObject;
 
-    private void Awake()
+    public int Direction
     {
-        rb = GetComponent<Rigidbody2D>();
+        get => _direction;
+        set => _direction = value;
     }
 
-    private void OnEnable()
-    {
+    #endregion
 
-      
+    [SerializeField] private BulletStats _bulletStats;
+    
+    private Rigidbody2D _rigidbody2D;
+
+    private float _despawnTimer;
+    private int _direction;
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     public void OnObjectSpawn()
     {
-        rb.velocity = Vector3.zero;
-        verifyScale = true;
-        moveDirection -= transform.position;
-        moveDirection.Normalize();
-        //Debug.Log("VelocimoveDirection * speed,ty before force:" +rb.velocity);
-        rb.velocity = moveDirection * speed;
-      
-        //Debug.Log("Velocity after force:" + rb.velocity);
-        if (verifyScale)
-        {
-            if (rb.velocity.x < 0)
-            {
-                var partscale = GetComponentInChildren<ParticleSystem>().gameObject.transform;
-                Vector3 theScale = transform.localScale;
-                theScale.x = 1;
-                this.transform.localScale = theScale;
-                theScale = partscale.localScale;
-                theScale.x = 1;
-                partscale.localScale = theScale;
-            }
-            else
-            {
-                var partscale = GetComponentInChildren<ParticleSystem>().gameObject.transform;
-                Vector3 theScale = transform.localScale;
-                theScale.x = -1;
-                this.transform.localScale = theScale;
-                theScale = partscale.localScale;
-                theScale.x = -1;
-                partscale.localScale = theScale;
+        _rigidbody2D.velocity = Vector3.zero;
+        
+        _rigidbody2D.velocity = new Vector2(-_direction * _bulletStats.Speed,0) ;
 
-            }
-            verifyScale = false;
-        }
+        var partscale = GetComponentInChildren<ParticleSystem>().gameObject.transform;
+        
+        Vector3 theScale = transform.localScale;
+        theScale.x = _direction;
+        transform.localScale = theScale;
+        
+        theScale = partscale.localScale;
+        theScale.x = _direction;
+        partscale.localScale = theScale;
     }
+
+    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction)
+    {
+        var product = ObjectPooler.Instance.SpawnFromPool(ObjectPoolerKey,position, rotation, direction)
+            .GetComponent<IPooledProduct>();
+        
+        return product;
+    }
+
     private void Update()
     {
-      
+        _despawnTimer += Time.deltaTime;
 
-        xvelocity = rb.velocity.x;
-        timeToDespawn += Time.deltaTime;
-
-        if (timeToDespawn>timeLimit)
+        if (_despawnTimer>_bulletStats.TimeLimit)
         {
-            //var pool =  FindObjectOfType<ObjectPooler>();
-           this.gameObject.SetActive(false);
+           gameObject.SetActive(false);
         }
     }
 
@@ -79,23 +67,9 @@ public class Bullet : MonoBehaviour, IPooledObject
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.TryGetComponent<HealthController>(out var health))
-            {
-                health.TakeDamage(1);
-            }
+            collision.gameObject.GetComponent<IDamageable>()?.TakeDamage(_bulletStats.Damage);
         }
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
-
-
-    //-----------------------Feliz Cumple Dante-----------------------|
-    //                          $10000                                |
-    //                                                                |
-    //                                                                |
-    //                                                                |
-    //                     navidad                                    |
-    //                                                                |
-    //                                                                |
-    //                                                                |
-    //----------------------------------------------------------------|
+    
 }

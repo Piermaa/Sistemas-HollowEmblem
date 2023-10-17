@@ -1,21 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "VulcanAttack", menuName = "Attacks/EnemyAttacks/VulcanATtack", order = 0)]
 public class VulcanAttack : EnemyAttack
 {
-    [SerializeField] private GameObject _bulletPrefab;
+    #region Class Properties
 
+    #region Serialized Properties
+
+    [SerializeField] private GameObject _leftBulletPrefab;
+    [SerializeField] private GameObject _rightBulletPrefab;
+
+    #endregion
+    private VulcanBulletFactory _leftVulcanBulletFactory;
+    private VulcanBulletFactory _rightVulcanBulletFactory;
     private Vector3 _spawnPos;
-    public void InitializeEnemyAttack(Vector3 spawnpos)
+    #endregion
+    
+    #region EnemyAttack Overrides
+
+    public override void InitializeEnemyAttack(Transform attackOrigin, GameObject owner)
     {
-        _spawnPos = spawnpos;
+        _leftVulcanBulletFactory = new VulcanBulletFactory(_leftBulletPrefab.GetComponent<VulcanBullet>());
+        _rightVulcanBulletFactory = new VulcanBulletFactory(_rightBulletPrefab.GetComponent<VulcanBullet>());
+        _spawnPos = attackOrigin.position;
     }
 
     public override void Attack()
     {
-        //todo usar pool como corresponde gracias
-        Instantiate(_bulletPrefab, _spawnPos, Quaternion.Euler(new Vector3(0,0,0))).GetComponent<IPooledObject>().OnObjectSpawn();
-        Instantiate(_bulletPrefab, _spawnPos, Quaternion.Euler(new Vector3(0,0,-1))).GetComponent<IPooledObject>().OnObjectSpawn();;
+        _leftVulcanBulletFactory.CreateProduct().transform.position = _spawnPos;
+        _rightVulcanBulletFactory.CreateProduct().transform.position = _spawnPos;
     }
+
+    #endregion
 }

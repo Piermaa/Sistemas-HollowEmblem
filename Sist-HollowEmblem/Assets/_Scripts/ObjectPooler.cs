@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ObjectPooler : MonoBehaviour
 {
@@ -43,36 +44,6 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position,Quaternion rotation)
-    {
-
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            print("Tag"+ tag +"does not exists");
-            return null;
-        }
-
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        //saca de la cola al objeto a despawnear
-
-
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.SetPositionAndRotation(position, rotation);
-        //objectToSpawn.transform.position = position;
-        //objectToSpawn.transform.rotation= rotation;
-
-        IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
-
-        if (pooledObj!= null)
-        {
-            pooledObj.OnObjectSpawn(); // si tiene el tipo IPooledObject se llamara el metodo OnObjectSpawn() al spawnear el obj  //accede a la interfaz, busca la implementacion del metodo y lo executa
-        }
-
-        poolDictionary[tag].Enqueue(objectToSpawn);
-
-        return objectToSpawn;
-    }
-
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, Rigidbody2D rb, Vector3 scale)
     {
 
@@ -107,8 +78,9 @@ public class ObjectPooler : MonoBehaviour
 
         return objectToSpawn;
     }
-
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, Vector3 direction)
+    
+    
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
 
         if (!poolDictionary.ContainsKey(tag))
@@ -119,20 +91,74 @@ public class ObjectPooler : MonoBehaviour
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
         //saca de la cola al objeto a despawnear
-
-
+        
         objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = Quaternion.Euler( new Vector3(rotation.x,0,0));
+        
+        objectToSpawn.transform.SetPositionAndRotation(position, Quaternion.Euler( new Vector3(rotation.x,0,0)));
+        
+        IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
+        
+        if (pooledObj != null)
+        {
+            pooledObj.OnObjectSpawn(); // si tiene el tipo IPooledObject se llamara el metodo OnObjectSpawn() al spawnear el obj  //accede a la interfaz, busca la implementacion del metodo y lo executa
+        }
+
+        poolDictionary[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
+    }
+    
+    
+
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation, int direction)
+    {
+
+        if (!poolDictionary.ContainsKey(tag))
+        {
+            print("Tag" + tag + "does not exists");
+            return null;
+        }
+
+        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        //saca de la cola al objeto a despawnear
+        
+        objectToSpawn.SetActive(true);
+        
+        objectToSpawn.transform.SetPositionAndRotation(position, Quaternion.Euler( new Vector3(rotation.x,0,0)));
+        
+        IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
+
+        (pooledObj as IPooledProduct).Direction = direction;
+        
+        if (pooledObj != null)
+        {
+            pooledObj.OnObjectSpawn(); // si tiene el tipo IPooledObject se llamara el metodo OnObjectSpawn() al spawnear el obj  //accede a la interfaz, busca la implementacion del metodo y lo executa
+        }
+
+        poolDictionary[tag].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
+    }
+    
+    
+    public GameObject SpawnFromPool(string tag)
+    {
+        if (!poolDictionary.ContainsKey(tag))
+        {
+            print("Tag"+ tag +"does not exists");
+            return null;
+        }
+
+        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        //saca de la cola al objeto a despawnear
+        
+        objectToSpawn.SetActive(true);
+        //objectToSpawn.transform.position = position;
+        //objectToSpawn.transform.rotation= rotation;
 
         IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
-        objectToSpawn.TryGetComponent<Bullet>(out var bullet);
 
-        if (bullet!=null)
-        {
-            bullet.moveDirection = direction;
-        }
-        if (pooledObj != null)
+        if (pooledObj!= null)
         {
             pooledObj.OnObjectSpawn(); // si tiene el tipo IPooledObject se llamara el metodo OnObjectSpawn() al spawnear el obj  //accede a la interfaz, busca la implementacion del metodo y lo executa
         }

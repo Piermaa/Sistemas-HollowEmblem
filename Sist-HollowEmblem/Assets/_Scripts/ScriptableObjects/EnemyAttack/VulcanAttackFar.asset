@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6efe4b27872385488bd1300247419ee, type: 3}
   m_Name: VulcanAttackFar
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 8845292994303759772, guid: c1b75cefa11bb9e4da9864da373e1e56, type: 3}
+  _leftBulletPrefab: {fileID: 8845292994303759772, guid: c1b75cefa11bb9e4da9864da373e1e56, type: 3}
+  _rightBulletPrefab: {fileID: 8845292994303759772, guid: bf82c16323748d34cb444dc9a31b2de8, type: 3}

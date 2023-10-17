@@ -153,7 +153,7 @@ public class AirIA : MonoBehaviour
     public void Shot()
     {
         shootParticles.Play();
-        objectPooler.SpawnFromPool("Bullet", bulletOrigin.position, Quaternion.Euler(playerTransform.position - bulletOrigin.position), (playerTransform.position));//- transform.position);
+     //   objectPooler.SpawnFromPool("Bullet", bulletOrigin.position, Quaternion.Euler(playerTransform.position - bulletOrigin.position), (playerTransform.position));//- transform.position);
     }
     public void PlayShotSund()
     {
