@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
     public enum DirectionsToAttack
     {
-        Up, Down, Front
+        Front, Up, Down, 
     }
     public DirectionsToAttack directionsToAttack;
 
@@ -48,9 +49,15 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
         _rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
-    public void Attack(int direction)
+    private void Update()
     {
-        ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[direction].position, _attackDirections[direction].rotation, _rigidbody2d, transform.localScale);
+        SetAttackDirection();
+        Debug.Log($"Dirección es {directionsToAttack}");
+    }
+
+    public void Attack()
+    {
+        ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[(int)directionsToAttack].position, _attackDirections[(int)directionsToAttack].rotation, _rigidbody2d, transform.localScale);
     }
 
     public void SetAttackDirection()
@@ -61,25 +68,17 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
         {
             directionsToAttack = DirectionsToAttack.Front;
 
-            _attackStartPosition.position = _attackDirections[0].position;
-            _attackStartPosition.rotation = _attackDirections[0].rotation;
-
         }
 
         if (y > 0)
         {
             directionsToAttack = DirectionsToAttack.Up;
 
-            _attackStartPosition.position = _attackDirections[1].position;
-            _attackStartPosition.rotation = _attackDirections[1].rotation;
-
         }
 
         if (y < 0)
         {
             directionsToAttack = DirectionsToAttack.Down;
-            _attackStartPosition.position = _attackDirections[2].position;
-            _attackStartPosition.rotation = _attackDirections[2].rotation;
 
         }
     }

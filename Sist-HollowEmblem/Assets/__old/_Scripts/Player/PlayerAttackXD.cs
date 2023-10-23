@@ -51,7 +51,6 @@ public class PlayerAttackXD : MonoBehaviour, IPooledObject
 
             playerRigidBody.velocity = Vector2.zero;
             playerRigidBody.AddForce((playerRigidBody.gameObject.transform.position - this.gameObject.transform.position).normalized * 5, ForceMode2D.Impulse);
-
         }
     }
 }

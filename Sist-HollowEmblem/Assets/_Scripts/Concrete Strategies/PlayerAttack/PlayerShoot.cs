@@ -48,7 +48,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         }
     }
 
-    public void Attack(int direction)
+    public void Attack()
     {
         throw new System.NotImplementedException();
     }

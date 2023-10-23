@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IPlayerAttack
 {
-    void Attack(int direction);
+    void Attack();
     void SetAttackDirection();
     PlayerMovementController PlayerMovementController { get; }
     GameObject Projectile { get; }

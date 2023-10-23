@@ -64,8 +64,9 @@ public class Player : Actor
 
         if (Input.GetKeyDown(_attack))
         {
-            _playerAttack.Attack(0);
+            _playerAttack.Attack();
         }
+
         // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
 
         //  if (Input.GetKeyUp(_aim)) StopAiming();
