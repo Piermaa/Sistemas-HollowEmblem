@@ -22,7 +22,7 @@ public class Platform : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space)&& boxCollider.enabled == true && playerCollides)
                 {
-                    PlayerInventory.Instance.TryGetComponent<Animator>(out var a);
+                    Legacy_PlayerInventory.Instance.TryGetComponent<Animator>(out var a);
                     a.SetBool("Falling",true);
                     boxCollider.enabled = false;
                 }

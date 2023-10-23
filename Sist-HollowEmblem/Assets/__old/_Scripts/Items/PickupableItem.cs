@@ -29,7 +29,7 @@ public class PickupableItem : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerSounds.PlaySound(playerSounds.pickupable);
-            var inventory = PlayerInventory.Instance;
+            var inventory = Legacy_PlayerInventory.Instance;
             inventory.AddItem(itemToAdd, amount);
             Destroy(this.gameObject);
         }

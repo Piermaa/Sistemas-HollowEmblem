@@ -31,7 +31,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> items=new List<Item>();
 
     public Dictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
-    public PlayerInventory inventory;
+    public Legacy_PlayerInventory inventory;
 
     GameObject player;
 
@@ -55,7 +55,7 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = PlayerInventory.Instance;
+        inventory = Legacy_PlayerInventory.Instance;
         player = inventory.gameObject;
        
     }

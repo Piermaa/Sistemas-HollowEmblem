@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Objects")]
     ObjectPooler objectPooler;
-    PlayerInventory inventory;
+    Legacy_PlayerInventory inventory;
     [SerializeField] PlayerSounds sounds;
     Rigidbody2D rb;
     Animator animator;
@@ -62,7 +62,7 @@ public class PlayerCombat : MonoBehaviour
       
         bulletShootParticles = bulletShootLights.GetComponentInChildren<ParticleSystem>();
         bulletShootLights.SetActive(false);
-        inventory = PlayerInventory.Instance;
+        inventory = Legacy_PlayerInventory.Instance;
         controller = GetComponent<CharacterController2D>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
