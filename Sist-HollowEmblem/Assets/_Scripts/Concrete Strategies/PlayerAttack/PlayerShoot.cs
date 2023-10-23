@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
-    //[SerializeField] Animator animator;
-    [SerializeField] Transform _attackStartPosition;
-    [SerializeField] float _damage;
+    [SerializeField] private Transform _attackStartPosition;
+    [SerializeField] private float _damage;
     [SerializeField] private bool _isAiming;
+    private Animator _animator;
 
     #region IPlayerAttack properties
     public PlayerMovementController PlayerMovementController => throw new System.NotImplementedException();
@@ -25,15 +25,13 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
     public bool IsAiming => _isAiming;
 
-    private void Update()
+    private void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
     public void Attack(int direction)
     {
-        //animator.SetTrigger("Shot");}
-        Debug.Log("IS SHOOTINNN");
         if (Physics2D.Raycast(_attackStartPosition.transform.position, _attackStartPosition.transform.forward, 100))
         {
             RaycastHit2D hit2D = Physics2D.Raycast(_attackStartPosition.transform.position, _attackStartPosition.transform.forward, 100);
@@ -45,8 +43,10 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         }
     }
 
-    public void Aim(bool isTrue)
+    public void Aim (bool isTrue)
     {
         _isAiming = isTrue;
+        _animator.SetTrigger("AimFront");
+        _animator.SetBool("Aiming", _isAiming);
     }
 }

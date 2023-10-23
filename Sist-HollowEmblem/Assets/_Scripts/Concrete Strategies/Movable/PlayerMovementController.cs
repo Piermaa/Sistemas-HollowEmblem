@@ -8,6 +8,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	#region Class Properties
 
 	public bool MustSlam => _mustSlam;
+	public bool CanMove { get { return _canMove; } set { _canMove = value; } }
 	
 	#region Class Serialized Properties
 
@@ -24,11 +25,12 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	#endregion
 	
 	private const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 m_Velocity = Vector3.zero;
+	private bool _isGrounded;            // Whether or not the player is grounded.
+	private bool _isFacingRight = true;  // For determining which way the player is currently facing.
+	private Vector3 _velocity = Vector3.zero;
 	private bool _mustSlam;
-	private bool canDoubleJump;
+	private bool _canDoubleJump;
+	private bool _canMove = true;
 
 	private Animator _animator;
 	private bool _jumpTransitionDelayOn=false;
@@ -53,8 +55,8 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
-		m_Grounded = false;
+		bool wasGrounded = _isGrounded;
+		_isGrounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -84,12 +86,12 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 				}
 
-				m_Grounded = true;
+				_isGrounded = true;
 			}
 		}
 		// #### Animations ######
 
-		if (m_Grounded) // si esta tocando el piso:
+		if (_isGrounded) // si esta tocando el piso:
 		{
 			// desactivar el salto si ya paso el tiempo de delay
 			if (!_jumpTransitionDelayOn) 
@@ -129,49 +131,55 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	public void Move(float move, bool jump)
 	{
+		if (!_canMove)
+		{
+			m_Rigidbody2D.velocity = Vector2.zero;
+			return;
+		}
+
 		//only control the player if grounded or airControl is turned on
-		if (m_Grounded || m_AirControl)
+		if (_isGrounded || m_AirControl)
 		{
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 
 			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref _velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+			if (move > 0 && !_isFacingRight)
 			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
+			else if (move < 0 && _isFacingRight)
 			{
 				// ... flip the player.
 				Flip();
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump)
+		if (_isGrounded && jump)
 		{
 			// Add a vertical force to the player.
-			m_Grounded = false;
+			_isGrounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			jump = false;
-			canDoubleJump = true;
+			_canDoubleJump = true;
 			_animator.SetBool(JUMP_ANIMATOR_PARAMETER, true);
 
 			_jumpTransitionDelayOn = true;
 			StartCoroutine(JumpTransitionDelay());
 		}
 		
-		if(canDoubleJump && jump &&!m_Grounded)
+		if(_canDoubleJump && jump &&!_isGrounded)
 		{
 			_animator.SetBool(DOUBLE_JUMPING_ANIMATOR_PARAMETER, true);
 			_animator.SetTrigger(DOUBLE_JUMP_ANIMATOR_PARAMETER);
 
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x ,0); 
-			canDoubleJump = false;
+			_canDoubleJump = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
@@ -186,7 +194,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	public bool CheckGround()
 	{
-		return m_Grounded;
+		return _isGrounded;
 	}
 
 	public void SetMustSlam(bool mustSlam)
@@ -196,7 +204,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		_isFacingRight = !_isFacingRight;
 
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;

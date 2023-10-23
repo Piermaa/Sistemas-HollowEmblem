@@ -17,8 +17,8 @@ public class Player : Actor
     [SerializeField] private AudioSource _abilityAudioSource;
 
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
-    PlayerAttack _playerAttack;
-    PlayerShoot _playerShoot;
+    private PlayerAttack _playerAttack;
+    private PlayerShoot _playerShoot;
 
     private float _horizontalMove;
     private float _immunityTime;
@@ -69,13 +69,15 @@ public class Player : Actor
     private void InputProcess()
     {
         // if (Input.GetKeyDown(_aim)) Aiming();
-        if (Input.GetKey(_aim))
+        if (Input.GetKey(_aim) && _movable.CheckGround())
         {
             _playerShoot.Aim(true);
+            _movable.CanMove = false;
         }
         else
         {
             _playerShoot.Aim(false);
+            _movable.CanMove = true;
         }
 
         if (Input.GetKeyDown(_attack) && _playerShoot.IsAiming)
@@ -95,7 +97,6 @@ public class Player : Actor
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
  
-        
         MovementInputs();
     }
 
