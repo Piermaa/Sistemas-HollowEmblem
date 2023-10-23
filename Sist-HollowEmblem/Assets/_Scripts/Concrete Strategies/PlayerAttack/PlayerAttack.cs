@@ -67,19 +67,16 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
         if (y == 0)
         {
             directionsToAttack = DirectionsToAttack.Front;
-
         }
 
         if (y > 0)
         {
             directionsToAttack = DirectionsToAttack.Up;
-
         }
 
         if (y < 0)
         {
             directionsToAttack = DirectionsToAttack.Down;
-
         }
     }
 }

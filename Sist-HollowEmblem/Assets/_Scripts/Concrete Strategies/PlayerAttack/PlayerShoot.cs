@@ -7,7 +7,9 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     [SerializeField] Animator animator;
     [SerializeField] GameObject fpsCam;
     [SerializeField] float _damage;
+    private bool _isAiming;
 
+    #region IPlayerAttack properties
     public PlayerMovementController PlayerMovementController => throw new System.NotImplementedException();
 
     public GameObject Projectile => throw new System.NotImplementedException();
@@ -19,16 +21,17 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     public float Speed => throw new System.NotImplementedException();
 
     public float Damage => _damage;
+    #endregion
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && _isAiming)
         {
-            ShotSniper();
+            Attack();
         }
     }
 
-    public void ShotSniper()
+    public void Attack()
     {
         animator.SetTrigger("Shot");
         if (Physics2D.Raycast(fpsCam.transform.position, fpsCam.transform.forward, 100))
@@ -48,13 +51,13 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         }
     }
 
-    public void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void SetAttackDirection()
     {
         throw new System.NotImplementedException();
     }
+
+    //private void Aim()
+    //{
+    //    _isAiming;
+    //}
 }

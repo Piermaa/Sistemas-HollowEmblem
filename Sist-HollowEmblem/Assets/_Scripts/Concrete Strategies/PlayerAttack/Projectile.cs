@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour, IProjectile
     private Vector2 _direction;
     private Rigidbody2D _rb;
     [SerializeField] private float _forceMultiplier;
+    PlayerAttack _playerAttack;
 
     #region IProjectile Properties
 
@@ -27,19 +28,13 @@ public class Projectile : MonoBehaviour, IProjectile
 
     #endregion
 
-    //public void OnObjectSpawn()
-    //{
-
-    //}
-
     private void Awake()
     {
         //animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
-
+        _playerAttack = GetComponent<PlayerAttack>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         TranslateProjectile();
@@ -66,21 +61,8 @@ public class Projectile : MonoBehaviour, IProjectile
 
     private void TranslateProjectile()
     {
-        Debug.Log("IS MOVING");
-
-        //if (Direction.y == 0)
-        //{
-            Vector2 moveDirection = new Vector2(_forceMultiplier, 0.0f);
-            Vector2 movement = moveDirection.normalized * _speed;
-            _rb.velocity = movement;
-        //}
-        //else
-        //{
-        //    Vector2 moveDirection = new Vector2(_forceMultiplier, 0.0f);
-        //    Vector2 movement = moveDirection.normalized * _speed;
-        //    _rb.velocity = movement;
-        //    //Rb.AddForce(Direction * forceMultiplier, ForceMode2D.Impulse);
-        //}
-        //animator.SetTrigger("Spawn");}
+        Vector2 moveDirection = new Vector2(_forceMultiplier, 0.0f);
+        Vector2 movement = moveDirection.normalized * _speed;
+        _rb.velocity = movement;
     }
 }
