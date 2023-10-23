@@ -12,8 +12,6 @@ public class PopUp : MonoBehaviour
     private int yIndex;
     
     private Slot _slotOwner;
-    
-
     public void SetSlot(Slot slot)
     {
         _slotOwner = slot;
