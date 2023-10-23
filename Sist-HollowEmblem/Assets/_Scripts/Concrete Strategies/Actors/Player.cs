@@ -17,6 +17,8 @@ public class Player : Actor
     [SerializeField] private AudioSource _abilityAudioSource;
 
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
+    PlayerAttack _playerAttack;
+
     private float _horizontalMove;
     private float _immunityTime;
     private bool _mustJump;
@@ -33,6 +35,7 @@ public class Player : Actor
     {
         base.Awake();
         _movable = GetComponent<IMovable>();
+        _playerAttack = GetComponent<PlayerAttack>();
 
         foreach (var abilty in _playerAbilities)
         {
@@ -57,13 +60,16 @@ public class Player : Actor
 
     private void InputProcess()
     {
-       // if (Input.GetKeyDown(_aim)) Aiming();
-        
-       // if (Input.GetKeyDown(_attack)) //GameManager.instance.AddEvents(_cmdAttack);
-       // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
+        // if (Input.GetKeyDown(_aim)) Aiming();
 
-      //  if (Input.GetKeyUp(_aim)) StopAiming();
-        
+        if (Input.GetKeyDown(_attack))
+        {
+            _playerAttack.Attack(0);
+        }
+        // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
+
+        //  if (Input.GetKeyUp(_aim)) StopAiming();
+
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
  
