@@ -9,6 +9,6 @@ public interface IProjectile
     float Speed { get; }
     float ForceMultiplier { get; }
     LayerMask Layer { get; }
-    Vector2 Direction { get; }
+    int Direction { get; set; }
     Rigidbody2D Rb { get; }
 }

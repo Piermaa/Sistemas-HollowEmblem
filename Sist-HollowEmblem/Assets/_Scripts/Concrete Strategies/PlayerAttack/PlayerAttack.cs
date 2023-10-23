@@ -14,7 +14,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     //public Rigidbody2D playerRigidBody;
     //float forceMultiplier = 7;
 
-    [SerializeField] private GameObject _projectile;    // Se instancia desde la pool I guess
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _attackDirections;
     private PlayerMovementController _playerMovementController;
@@ -24,7 +23,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
 
     #region IPlayerAttack Properties
-    public GameObject Projectile => _projectile;
 
     public float Speed => _speed;
 
@@ -37,46 +35,16 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     public float Damage => _damage;
     #endregion
 
-    public enum DirectionsToAttack
-    {
-        Front, Up, Down, 
-    }
-    public DirectionsToAttack directionsToAttack;
-
     private void Awake()
     {
         _playerMovementController = GetComponent<PlayerMovementController>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void Attack(int direction)
     {
-        SetAttackDirection();
-        Debug.Log($"Dirección es {directionsToAttack}");
-    }
+        var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[direction].position, _attackDirections[direction].rotation, _rigidbody2d, transform.localScale * -1);
+        projectile.GetComponent<Projectile>().Direction = direction;
 
-    public void Attack()
-    {
-        ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[(int)directionsToAttack].position, _attackDirections[(int)directionsToAttack].rotation, _rigidbody2d, transform.localScale);
-    }
-
-    public void SetAttackDirection()
-    {
-        float y = Input.GetAxis("Vertical");
-
-        if (y == 0)
-        {
-            directionsToAttack = DirectionsToAttack.Front;
-        }
-
-        if (y > 0)
-        {
-            directionsToAttack = DirectionsToAttack.Up;
-        }
-
-        if (y < 0)
-        {
-            directionsToAttack = DirectionsToAttack.Down;
-        }
     }
 }

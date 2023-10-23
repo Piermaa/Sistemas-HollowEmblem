@@ -4,10 +4,8 @@ using UnityEngine;
 
 public interface IPlayerAttack
 {
-    void Attack();
-    void SetAttackDirection();
+    void Attack(int direction);
     PlayerMovementController PlayerMovementController { get; }
-    GameObject Projectile { get; }
     Rigidbody2D Rigidbody2d { get; }
     Transform AttackStartPosition { get; }
     float Speed { get; }

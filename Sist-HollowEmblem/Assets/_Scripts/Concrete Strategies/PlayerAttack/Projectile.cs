@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IProjectile
+public class Projectile : MonoBehaviour, IProjectile, IPooledObject
 {
     [SerializeField] private float delayTime;
     [SerializeField] private float delayCooldown;
     [SerializeField] private float _speed;
     [SerializeField] private LayerMask _layer;
     //Animator animator;
-    private Vector2 _direction;
+    private int _direction;
     private Rigidbody2D _rb;
     [SerializeField] private float _forceMultiplier;
-    PlayerAttack _playerAttack;
+
+    
 
     #region IProjectile Properties
 
@@ -22,17 +23,25 @@ public class Projectile : MonoBehaviour, IProjectile
     public float ForceMultiplier => _forceMultiplier;
     public LayerMask Layer => _layer;
 
-    public Vector2 Direction => _direction;
+    public int Direction
+    {
+        get => _direction;
+        set => _direction = value;
+    }
 
     public Rigidbody2D Rb => _rb;
 
     #endregion
 
+    public void OnObjectSpawn()
+    {
+
+    }
+
     private void Awake()
     {
         //animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
-        _playerAttack = GetComponent<PlayerAttack>();
     }
 
     void Update()
@@ -52,7 +61,6 @@ public class Projectile : MonoBehaviour, IProjectile
     {
         if (collision.CompareTag("Enemy") && collision.TryGetComponent<IDamageable>(out var damageable))
         { 
-            //collision.TryGetComponent<HealthController>(out var enemyH);
             damageable.TakeDamage(1);
             Rb.velocity = Vector2.zero;
             Rb.AddForce((Rb.gameObject.transform.position - this.gameObject.transform.position).normalized * 5, ForceMode2D.Impulse);
@@ -61,7 +69,9 @@ public class Projectile : MonoBehaviour, IProjectile
 
     private void TranslateProjectile()
     {
-        Vector2 moveDirection = new Vector2(_forceMultiplier, 0.0f);
+        int x = Direction == 0 ? 1 : 0;
+
+        Vector2 moveDirection = new Vector2(x, Direction);
         Vector2 movement = moveDirection.normalized * _speed;
         _rb.velocity = movement;
     }

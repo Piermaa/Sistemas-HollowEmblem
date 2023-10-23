@@ -18,6 +18,7 @@ public class Player : Actor
 
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
     PlayerAttack _playerAttack;
+    PlayerShoot _playerShoot;
 
     private float _horizontalMove;
     private float _immunityTime;
@@ -30,12 +31,18 @@ public class Player : Actor
     #endregion
 
     #region Monobehaviour Callbacks
+    public enum DirectionsToAttack
+    {
+        Front, Up, Down,
+    }
+    public DirectionsToAttack directionsToAttack;
 
     protected override void Awake()
     {
         base.Awake();
         _movable = GetComponent<IMovable>();
         _playerAttack = GetComponent<PlayerAttack>();
+        _playerShoot = GetComponent<PlayerShoot>();
 
         foreach (var abilty in _playerAbilities)
         {
@@ -47,6 +54,7 @@ public class Player : Actor
     {
         InputProcess();
         AbilityInputsAndCooldowns();
+        SetAttackDirection();
     }
 
     private void FixedUpdate()
@@ -61,12 +69,25 @@ public class Player : Actor
     private void InputProcess()
     {
         // if (Input.GetKeyDown(_aim)) Aiming();
-
-        if (Input.GetKeyDown(_attack))
+        if (Input.GetKey(_aim))
         {
-            _playerAttack.Attack();
+            _playerShoot.Aim(true);
+        }
+        else
+        {
+            _playerShoot.Aim(false);
         }
 
+        if (Input.GetKeyDown(_attack) && _playerShoot.IsAiming)
+        {
+            _playerShoot.Attack((int)directionsToAttack);
+        }
+
+        if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming)
+        {
+            _playerAttack.Attack((int)directionsToAttack);
+        }
+        
         // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
 
         //  if (Input.GetKeyUp(_aim)) StopAiming();
@@ -119,4 +140,24 @@ public class Player : Actor
     }
 
     #endregion
+
+    public void SetAttackDirection()
+    {
+        float y = Input.GetAxis("Vertical");
+
+        if (y == 0)
+        {
+            directionsToAttack = DirectionsToAttack.Front;
+        }
+
+        if (y > 0)
+        {
+            directionsToAttack = DirectionsToAttack.Up;
+        }
+
+        if (y < 0)
+        {
+            directionsToAttack = DirectionsToAttack.Down;
+        }
+    }
 }

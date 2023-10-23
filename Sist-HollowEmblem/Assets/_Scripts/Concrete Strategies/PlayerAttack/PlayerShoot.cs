@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
-    [SerializeField] Animator animator;
-    [SerializeField] GameObject fpsCam;
+    //[SerializeField] Animator animator;
+    [SerializeField] Transform _attackStartPosition;
     [SerializeField] float _damage;
-    private bool _isAiming;
+    [SerializeField] private bool _isAiming;
 
     #region IPlayerAttack properties
     public PlayerMovementController PlayerMovementController => throw new System.NotImplementedException();
@@ -16,48 +16,37 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
     public Rigidbody2D Rigidbody2d => throw new System.NotImplementedException();
 
-    public Transform AttackStartPosition => throw new System.NotImplementedException();
+    public Transform AttackStartPosition => _attackStartPosition;
 
     public float Speed => throw new System.NotImplementedException();
 
     public float Damage => _damage;
     #endregion
 
+    public bool IsAiming => _isAiming;
+
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && _isAiming)
-        {
-            Attack();
-        }
+        
     }
 
-    public void Attack()
+    public void Attack(int direction)
     {
-        animator.SetTrigger("Shot");
-        if (Physics2D.Raycast(fpsCam.transform.position, fpsCam.transform.forward, 100))
+        //animator.SetTrigger("Shot");}
+        Debug.Log("IS SHOOTINNN");
+        if (Physics2D.Raycast(_attackStartPosition.transform.position, _attackStartPosition.transform.forward, 100))
         {
-            RaycastHit2D hit2D = Physics2D.Raycast(fpsCam.transform.position, fpsCam.transform.forward, 100);
+            RaycastHit2D hit2D = Physics2D.Raycast(_attackStartPosition.transform.position, _attackStartPosition.transform.forward, 100);
 
-            Debug.Log(hit2D.collider.name);
-            Target target = hit2D.transform.GetComponent<Target>();
-
-            //Instantiate(hitOther, hit.transform.position, hit.transform.rotation);
-
-            if (target != null)
+            if (hit2D.transform.CompareTag("Enemy") && hit2D.transform.TryGetComponent<IDamageable>(out var damageable))
             {
-                target.TakeDamage(Damage);
-                //Instantiate(hitWeakpoint, hit2D.transform.position, hit2D.transform.rotation);
+                damageable.TakeDamage(1);
             }
         }
     }
 
-    public void SetAttackDirection()
+    public void Aim(bool isTrue)
     {
-        throw new System.NotImplementedException();
+        _isAiming = isTrue;
     }
-
-    //private void Aim()
-    //{
-    //    _isAiming;
-    //}
 }
