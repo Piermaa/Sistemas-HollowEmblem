@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IMovable
 {
    void Move(float move, bool jump);
+    bool CanMove { get; set; }
+    bool CheckGround();
 }

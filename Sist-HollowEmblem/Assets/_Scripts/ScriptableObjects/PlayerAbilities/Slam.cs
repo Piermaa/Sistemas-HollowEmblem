@@ -77,7 +77,7 @@ public class Slam : PlayerAbility
 
         foreach (Collider2D collided in colliders)
         {
-            if (collided.CompareTag("Enemy")  && collided.TryGetComponent<IDamageable>(out var damageable))
+            if (collided.CompareTag("Enemy") && collided.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.TakeDamage(2);
             }

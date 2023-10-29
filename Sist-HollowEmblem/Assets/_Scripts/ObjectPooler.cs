@@ -62,10 +62,10 @@ public class ObjectPooler : MonoBehaviour
         objectToSpawn.transform.localScale = scale;
         var pAttack = objectToSpawn.GetComponent<PlayerAttack>();
         //Debug.Log("Has");
-        if (pAttack.playerRigidBody == null)
-        {
-            pAttack.playerRigidBody = rb;
-        }
+        //if (pAttack.Rigidbody2d == null)
+        //{
+        //    pAttack.Rigidbody2d = rb;
+        //}
         IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
 
         if (pooledObj != null)
