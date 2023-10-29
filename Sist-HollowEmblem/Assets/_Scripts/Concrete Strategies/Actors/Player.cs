@@ -1,9 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Actor
 {
     #region Class Properties
+
+    #region Public Properties
+
+    public enum DirectionsToAttack
+    {
+        Front, Up, Down,
+    }
+    private DirectionsToAttack directionsToAttack;
+    #endregion
     #region Serialized Properties
 
     [SerializeField] private string _moveAxis = "Horizontal";
@@ -31,12 +41,6 @@ public class Player : Actor
     #endregion
 
     #region Monobehaviour Callbacks
-    public enum DirectionsToAttack
-    {
-        Front, Up, Down,
-    }
-    public DirectionsToAttack directionsToAttack;
-
     protected override void Awake()
     {
         base.Awake();
@@ -48,6 +52,12 @@ public class Player : Actor
         {
            abilty.Init(gameObject,_abilityAudioSource);
         }
+    }
+
+    private void Start()
+    {
+        ActionsManager.RegisterAction(ItemConstants.USE_HEAL);
+        ActionsManager.SubscribeToAction(ItemConstants.USE_HEAL, Heal);
     }
 
     private void Update()
@@ -106,6 +116,7 @@ public class Player : Actor
         _horizontalMove = Input.GetAxisRaw(_moveAxis) * _actorStats.MovementSpeed;
     }
 
+    
     /// <summary>
     /// Updates ability cooldowns and checks if their required input in order to use them 
     /// </summary>
@@ -141,6 +152,15 @@ public class Player : Actor
     }
 
     #endregion
+
+    public void Heal()
+    {
+        //todo heal sound
+        if (_currentHealth<MaxHealth)
+        {
+            _currentHealth++;
+        }
+    }
 
     public void SetAttackDirection()
     {

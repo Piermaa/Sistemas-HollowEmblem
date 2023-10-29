@@ -1,65 +1,139 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
-public class EventsManager
+using System;
+public static class ActionsManager
 {
-    public static EventsManager Instance
-    {
-        get
-        {
-            // Lazy singleton
-            // No se puede usar en un MonoBehaviours
-            if (instance == null)
-                instance = new EventsManager();
+    private static Dictionary<string, Action> actions = new ();
 
-            return instance;
+    public static void InvokeAction(string name)
+    {
+        if (!actions.ContainsKey(name))
+        {
+            Debug.LogWarning($"Tried to invoke {name}, but no action was found");
+            return;
         }
+
+        actions[name]?.Invoke();
     }
 
-    private static EventsManager instance;
-
-    //Simple Events
-    private Dictionary<string, List<IListener>> simpleEvents = new();
-
-    public void AddListener(string eventID, IListener p_listener)
+    public static void RegisterAction(string name)
     {
-        if (simpleEvents.TryGetValue(eventID, out var listeners) && !listeners.Contains(p_listener))
+        if (actions.ContainsKey(name))
         {
-            listeners.Add(p_listener);
+            Debug.LogWarning($"Tried to register {name}, but it is already registered");
+            return;
         }
+
+        actions.Add(name, new Action(() => { }));
     }
 
-    public void RemoveListener(string eventID, IListener p_listener)
+    public static void SubscribeToAction(string name, Action action)
     {
-        if (simpleEvents.TryGetValue(eventID, out var listeners) && listeners.Contains(p_listener))
+        if (!actions.ContainsKey(name))
         {
-            listeners.Remove(p_listener);
+            RegisterAction(name);
         }
+
+        actions[name] += action;
     }
 
-    public void DispatchSimpleEvent(string eventID)
+    public static void UnsubscribeToAction(string name, Action action)
     {
-        if (simpleEvents.TryGetValue(eventID, out var listeners))
+        if (!actions.ContainsKey(name))
         {
-            for (int i = listeners.Count - 1; i >= 0; i--)
-            {
-                listeners[i].OnEventDispatch();
-            }
+            Debug.LogWarning($"Tried to unsubscribe to {name}, but no action was found");
+            return;
         }
 
-        else
-        {
-            Debug.LogWarning($"{eventID} NO SE ENCONTRO");
-        }
+        actions[name] -= action;
     }
 
-    public void RegisterEvent(string eventID)
+    public static void DeleteAction(string name)
     {
-        if (!simpleEvents.ContainsKey(eventID))
+        if (!actions.ContainsKey(name))
         {
-            simpleEvents[eventID] = new List<IListener>();
+            Debug.LogWarning($"Tried to delete {name}, but no action was found");
+            return;
+        }
+
+        actions[name] = null;
+        actions.Remove(name);
+    }
+
+    public static void DeleteAllActions()
+    {
+        foreach (var item in actions)
+        {
+            DeleteAction(item.Key);
+        }
+    }
+}
+
+internal static class InventoryActionsManager
+{
+    private static Dictionary<string, Action<Slot>> actions = new Dictionary<string, Action<Slot>>();
+
+    public static void InvokeAction(string name, Slot slot)
+    {
+        if (!actions.ContainsKey(name))
+        {
+            Debug.LogWarning($"Tried to invoke {name}, but no action was found");
+            return;
+        }
+
+        actions[name]?.Invoke(slot);
+    }
+
+    public static void RegisterAction(string name)
+    {
+        if (actions.ContainsKey(name))
+        {
+            Debug.LogWarning($"Tried to register {name}, but it is already registered");
+            return;
+        }
+
+        actions.Add(name, new Action<Slot>((Slot s) => { }));
+    }
+
+    public static void SubscribeToAction(string name, Action<Slot> action)
+    {
+        if (!actions.ContainsKey(name))
+        {
+            RegisterAction(name);
+        }
+
+        actions[name] += action;
+    }
+
+    public static void UnsubscribeToAction(string name, Action<Slot> action)
+    {
+        if (!actions.ContainsKey(name))
+        {
+            Debug.LogWarning($"Tried to unsubscribe to {name}, but no action was found");
+            return;
+        }
+
+        actions[name] -= action;
+    }
+
+    public static void DeleteAction(string name)
+    {
+        if (!actions.ContainsKey(name))
+        {
+            Debug.LogWarning($"Tried to delete {name}, but no action was found");
+            return;
+        }
+
+        actions[name] = null;
+        actions.Remove(name);
+    }
+
+    public static void DeleteAllActions()
+    {
+        foreach (var item in actions)
+        {
+            DeleteAction(item.Key);
         }
     }
 }

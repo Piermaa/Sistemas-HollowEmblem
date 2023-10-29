@@ -33,10 +33,14 @@ public class Slot: MonoBehaviour
         {
             _amount = value;
             _amountText.text = _amount.ToString();
+
+            _amountText.enabled = _amount > 0;
         }
     }
 
     #endregion
+
+    public Action onItemUse= () => { };
     
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _amountText;
@@ -113,6 +117,6 @@ public class Slot: MonoBehaviour
     {
         return  _item.MaxStackeable - _amount;
     }
-    
+     
     #endregion
 }

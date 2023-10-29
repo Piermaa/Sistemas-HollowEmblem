@@ -14981,6 +14981,7 @@ GameObject:
   - component: {fileID: 4344375614529401998}
   - component: {fileID: 4344375614529401985}
   - component: {fileID: 4344375614529402014}
+  - component: {fileID: 1657819094}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -15465,7 +15466,6 @@ MonoBehaviour:
   _jump: 32
   _abilityAudioSource: {fileID: 4344375614677067339}
   _playerAbilities: []
-  directionsToAttack: 0
 --- !u!114 &4344375614529401998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15478,7 +15478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63896c8d7519f0c4f9effda5c3dcda7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 1000
+  m_JumpForce: 600
   m_MovementSmoothing: 0.091
   m_AirControl: 1
   m_WhatIsGround:
@@ -15526,6 +15526,23 @@ MonoBehaviour:
   _attackStartPosition: {fileID: 4344375616215784646}
   _damage: 0
   _isAiming: 0
+--- !u!114 &1657819094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344375614529402033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4738eacd587c9534fb7dcc9796cc793a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows:
+  - {fileID: 0}
+  - {fileID: 0}
+  _rows: 2
+  _columns: 4
 --- !u!1 &4344375614554238507
 GameObject:
   m_ObjectHideFlags: 0
@@ -21495,8 +21512,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.28174996, y: -0.029950023, z: 0}
-    m_Extent: {x: 2.29085, y: 2.2305498, z: 0}
+    m_Center: {x: 0.28094995, y: -0.018350005, z: 0}
+    m_Extent: {x: 2.28645, y: 2.2372499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

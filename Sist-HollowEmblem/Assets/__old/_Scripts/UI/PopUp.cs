@@ -15,15 +15,9 @@ public class PopUp : MonoBehaviour
     public void SetSlot(Slot slot)
     {
         _slotOwner = slot;
-        _discardButton.onClick.AddListener(_slotOwner.Deplete);
+        
         
         DeactivatePanel();
-    }
-
-    public void ResetPopUp()
-    {
-        _useButton.onClick.RemoveAllListeners();
-        _useButton.onClick.AddListener(_slotOwner.Item.Use);
     }
 
     public void ActivatePanel()
@@ -37,8 +31,38 @@ public class PopUp : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+    public void Use()
+    {
+        switch (_slotOwner.ItemType)
+        {
+            case ItemTypes.HEAL:
+                UseHeal();
+                break;
+            case ItemTypes.AMMO:
+                UseAmmo();
+                break;
+        }
+        
+    }
+
+    private void UseHeal()
+    {
+        ActionsManager.InvokeAction(ItemConstants.USE_HEAL);
+        InventoryActionsManager.InvokeAction(ItemConstants.USE_HEAL, _slotOwner);
+    }
+
+    private void UseAmmo()
+    {
+        InventoryActionsManager.InvokeAction(ItemConstants.USE_AMMO, _slotOwner);
+    }
+
     public void Discard() // SE añade el listener desde el inspector **
     {
-        DeactivatePanel();
+        InventoryActionsManager.InvokeAction(ItemConstants.DISCARD, _slotOwner);
+        if (_slotOwner.IsEmpty())
+        {
+            DeactivatePanel();
+        }
     }
 }

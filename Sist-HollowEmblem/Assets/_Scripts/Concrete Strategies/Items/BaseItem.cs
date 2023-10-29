@@ -5,6 +5,7 @@ public class BaseItem : Pickupable, IItem
 {
     #region IItem Properties
 
+    public Slot ItemSlot { get; }
     public ItemTypes ItemType => _itemType;
     public int Amount => _amount;
     public int MaxStackeable => _maxStackeable;
@@ -24,6 +25,7 @@ public class BaseItem : Pickupable, IItem
 
     #endregion
     private SpriteRenderer _spriteRenderer;
+    private Slot _itemSlot;
     #endregion
 
     #region Monobehaviour Callbacks
@@ -40,18 +42,23 @@ public class BaseItem : Pickupable, IItem
 
     public virtual void AddToInventory(Collider2D player)
     {
-        player?.GetComponent<PlayerInventory>().AddItem(this, _amount);
+        _itemSlot = player?.GetComponent<PlayerInventory>().AddItem(this, _amount);
+        _itemSlot.onItemUse += UseItem;
+        UseItem();
         // _audioSource.Play();
-        Destroy(gameObject);
+    }
+
+    public void SetSlot(Slot newSlot)
+    {
+        _itemSlot = newSlot;
     }
 
     #endregion
 
     #region IItem Methods
 
-    public virtual void Use()
+    public virtual void UseItem()
     {
-        //ActionsManager.InvokeAction(ItemConstants.USE_AMMO);
     }
 
     #endregion
