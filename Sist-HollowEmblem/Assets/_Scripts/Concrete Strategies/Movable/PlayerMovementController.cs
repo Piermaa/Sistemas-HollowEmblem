@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Events;
 //TODO: Remover crouch
@@ -31,6 +32,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	private bool _mustSlam;
 	private bool _canDoubleJump;
 	private bool _canMove = true;
+	private Player _player;
 
 	private Animator _animator;
 	private bool _jumpTransitionDelayOn=false;
@@ -48,6 +50,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	{
 		_animator = GetComponent<Animator>();
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		_player = GetComponent<Player>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -131,7 +134,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	public void Move(float move, bool jump)
 	{
-		if (!_canMove)
+		if (!_player.CanMove())
 		{
 			m_Rigidbody2D.velocity = Vector2.zero;
 			return;

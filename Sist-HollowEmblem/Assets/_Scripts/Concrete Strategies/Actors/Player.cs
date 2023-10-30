@@ -52,7 +52,7 @@ public class Player : Actor
 
         foreach (var abilty in _playerAbilities)
         {
-           abilty.Init(gameObject,_abilityAudioSource);
+            abilty.Init(gameObject, _abilityAudioSource);
         }
     }
 
@@ -72,7 +72,7 @@ public class Player : Actor
     private void FixedUpdate()
     {
         _immunityTimer = _immunityTimer > 0 ? _immunityTimer - Time.deltaTime : 0;
-        _movable.Move(_horizontalMove* Time.fixedDeltaTime, _mustJump);
+        _movable.Move(_horizontalMove * Time.fixedDeltaTime, _mustJump);
         _mustJump = false;
     }
 
@@ -80,12 +80,13 @@ public class Player : Actor
 
     private void InputProcess()
     {
-        if (Input.GetKey(_aim) && _movable.CheckGround())
+        if (Input.GetKeyDown(_aim) && _movable.CheckGround())
         {
             _playerShoot.Aim(true);
             _movable.CanMove = false;
         }
-        else
+
+        if (Input.GetKeyUp(_aim))
         {
             _playerShoot.Aim(false);
             _movable.CanMove = true;
@@ -100,7 +101,7 @@ public class Player : Actor
         {
             _playerAttack.Attack((int)directionsToAttack);
         }
-        
+
         if (Input.GetKeyDown(_reload))
         {
             _playerShoot.Reload();
@@ -120,7 +121,7 @@ public class Player : Actor
 
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
- 
+
         MovementInputs();
     }
 
@@ -130,7 +131,7 @@ public class Player : Actor
         _horizontalMove = Input.GetAxisRaw(_moveAxis) * _actorStats.MovementSpeed;
     }
 
-    
+
     /// <summary>
     /// Updates ability cooldowns and checks if their required input in order to use them 
     /// </summary>
@@ -139,7 +140,7 @@ public class Player : Actor
         foreach (var ability in _playerAbilities)
         {
             ability.AbilityUpdate();
-            
+
             if (Input.GetKeyDown(ability.AbilityKey))
             {
                 ability.Use();
@@ -150,15 +151,14 @@ public class Player : Actor
     public void UnlockAbility(PlayerAbility abilityToUnlock)
     {
         _playerAbilities.Add(abilityToUnlock);
-        abilityToUnlock.Init(gameObject,_abilityAudioSource);
+        abilityToUnlock.Init(gameObject, _abilityAudioSource);
     }
-
 
     #region Actor Methods Overrides
 
     public override void TakeDamage(int damageTaken)
     {
-        if (_immunityTimer<=0)
+        if (_immunityTimer <= 0)
         {
             base.TakeDamage(damageTaken);
             _immunityTimer = _immunityTime;
@@ -170,7 +170,7 @@ public class Player : Actor
     public void Heal()
     {
         //todo heal sound
-        if (_currentHealth<MaxHealth)
+        if (_currentHealth < MaxHealth)
         {
             _currentHealth++;
         }
@@ -194,5 +194,20 @@ public class Player : Actor
         {
             directionsToAttack = DirectionsToAttack.Down;
         }
+    }
+
+    public void ResumePlayerMovement()
+    {
+        _movable.CanMove = true;
+    }
+
+    public void StopPlayerMovement()
+    {
+        _movable.CanMove = false;
+    }
+
+    public bool CanMove()
+    {
+        return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
     }
 }

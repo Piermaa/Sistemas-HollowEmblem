@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     [SerializeField] private Transform _attackStartPosition;
     [SerializeField] private float _damage;
     [SerializeField] private bool _isAiming;
+    [SerializeField] private bool _isReloading;
     [SerializeField] private int _bulletsRemaining; // Es SerializeField para verlo en el Inspector, después lo borro
     private int _maxBullets = 10;
     private Animator _animator;
@@ -28,6 +29,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     #endregion
 
     public bool IsAiming => _isAiming;
+    public bool IsReloading => _isReloading;
 
     private void Awake()
     {
@@ -57,11 +59,26 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
     public void Reload()
     {
-        _bulletsRemaining += _playerInventory.BulletsInInventory;
+        //int bulletsToCharge = _maxBullets - _bulletsRemaining;
 
-        if (_bulletsRemaining >= _maxBullets)
+        //if (_bulletsRemaining >= _maxBullets)
+        //{
+        //    _bulletsRemaining = _maxBullets;
+        //}
+
+        if (_bulletsRemaining <= _maxBullets)
         {
-            _bulletsRemaining = _maxBullets;
+            _animator.SetTrigger("Reload");
         }
+    }
+
+    public void BeginReloadAnimation()
+    {
+        _isReloading = true;
+    }
+
+    public void EndReloadAnimation()
+    {
+        _isReloading = false;
     }
 }
