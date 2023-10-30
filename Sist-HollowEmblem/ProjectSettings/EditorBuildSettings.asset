@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/__old/Scenes/Menues/MenuManagement.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuManagement.unity
     guid: c3196e97c464b9e4a866aafd3271640f
+  - enabled: 1
+    path: Assets/Scenes/TestInventory.unity
+    guid: ab53f455a45e80d458b51ff2e567b991
   - enabled: 0
     path: Assets/__old/Juan Map.unity
     guid: c99e7a4b5cd34d64eadcc55ce90f90b6
@@ -20,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/__old/MAP/MAPv2.unity
     guid: 2cb53d91e75793f4aa1456d35b046ff9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level Build 23 10.unity
     guid: cce9d473cd98bfb479f42cb280a170b7
   m_configObjects: {}
