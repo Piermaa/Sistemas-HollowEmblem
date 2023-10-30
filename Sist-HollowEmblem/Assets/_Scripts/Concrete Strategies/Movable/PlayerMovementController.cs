@@ -134,7 +134,19 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	public void Move(float move, bool jump)
 	{
-		if (!_player.CanMove())
+        if (move > 0 && !_isFacingRight)
+        {
+            // ... flip the player.
+            Flip();
+        }
+        // Otherwise if the input is moving the player left and the player is facing right...
+        else if (move < 0 && _isFacingRight)
+        {
+            // ... flip the player.
+            Flip();
+        }
+
+        if (!_player.CanMove())
 		{
 			m_Rigidbody2D.velocity = Vector2.zero;
 			return;
@@ -150,18 +162,9 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref _velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !_isFacingRight)
-			{
-				// ... flip the player.
-				Flip();
-			}
-			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && _isFacingRight)
-			{
-				// ... flip the player.
-				Flip();
-			}
+			
 		}
+
 		// If the player should jump...
 		if (_isGrounded && jump)
 		{
