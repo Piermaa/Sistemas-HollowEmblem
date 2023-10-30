@@ -77,7 +77,7 @@ public class PlayerInventory : MonoBehaviour
 
                     if (slots[i, j].CompareItems(itemToAdd)) //SI ES EL MISMO TIPO DE ITEM EL DEL SLOT
                     {
-                        if (slots[i, j].AmountToFill()>0) //SI EL SLOT NO EST� LLENO:
+                        if (slots[i, j].AmountToFill() > 0) //SI EL SLOT NO EST� LLENO:
                         {
                             int available = slots[i, j].AmountToFill();
 
@@ -108,13 +108,13 @@ public class PlayerInventory : MonoBehaviour
     {
         slot.Deplete();
         Debug.Log($"Destination slot: {slot.Position.x}, {slot.Position.y}");
-        if (slot.Position.y < _columns-1)
+        if (slot.Position.y < _columns - 1)
         {
             Debug.Log($"Origin slot: {slot.Position.x}, {slot.Position.y+1}");
 
             MoveItem(slots[slot.Position.x, slot.Position.y+1], slot);
         }
-        else if(slot.Position.x < _rows-1)
+        else if(slot.Position.x < _rows - 1)
         {
             Debug.Log($"Origin slot: {0}, {1}");    
         
@@ -168,7 +168,7 @@ public class PlayerInventory : MonoBehaviour
     /// <returns></returns>
     public Slot SearchAmmo()
     {
-        Slot lessAmmoSlot=null;// = slots[0,0];
+        Slot lessAmmoSlot = null;// = slots[0,0];
         
         for (int i = 0; i < _rows; i++)
         {
@@ -198,13 +198,13 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public int GetAmmoFromInventory(bool justChecking)
     {
-        int spaceAvailableOnClip=0; 
+        int spaceAvailableOnClip = 0; 
         Slot newSlot;
         
         do
         {
           //  spaceAvailableOnClip = combat.maxAmmo - combat.currentAmmo; // Se obtiene el espacio en el cargador
-            newSlot = SearchAmmo(); //S busca el slot con menos balas
+            newSlot = SearchAmmo(); //Se busca el slot con menos balas
             if (newSlot != null) // Si se encuentra:
             {
                 if (spaceAvailableOnClip > newSlot.Amount) //Si las balas del slot son menos que las requeridas para llenar el cargador:
@@ -233,8 +233,7 @@ public class PlayerInventory : MonoBehaviour
             }
             //Si quedaban 0 balas en el slot por alguna razon, vaciarlo
         } while (spaceAvailableOnClip > 0 && newSlot != null); // El slot no era null porque se habia encontrado en la busqueda anterior
+        
         return 0;
     }
 }//class
-
-
