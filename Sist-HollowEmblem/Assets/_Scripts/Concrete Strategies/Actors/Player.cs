@@ -22,7 +22,9 @@ public class Player : Actor
     [SerializeField] private KeyCode _attack = KeyCode.Mouse0;
     [SerializeField] private KeyCode _aim = KeyCode.Mouse1;
     [SerializeField] private KeyCode _reload = KeyCode.R;
-    
+    [SerializeField] private KeyCode _openInventory = KeyCode.I;
+    [SerializeField] private KeyCode _openMap = KeyCode.M;
+
     [SerializeField] private KeyCode _jump = KeyCode.Space;
     [SerializeField] private AudioSource _abilityAudioSource;
 
@@ -78,7 +80,6 @@ public class Player : Actor
 
     private void InputProcess()
     {
-        // if (Input.GetKeyDown(_aim)) Aiming();
         if (Input.GetKey(_aim) && _movable.CheckGround())
         {
             _playerShoot.Aim(true);
@@ -103,6 +104,16 @@ public class Player : Actor
         if (Input.GetKeyDown(_reload))
         {
             _playerShoot.Reload();
+        }
+
+        if (Input.GetKeyDown(_openInventory))
+        {
+            //UIManager.Instance.OpenMap(true);
+        }
+
+        if (Input.GetKeyDown(_openMap))
+        {
+            UIManager.Instance.OpenMap();
         }
 
         //  if (Input.GetKeyUp(_aim)) StopAiming();

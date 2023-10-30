@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 
     public DashUIManager GetDashUIManager => _dashUIManager;
     [SerializeField] private DashUIManager _dashUIManager;
+    [SerializeField] private GameObject _inventory;
+    [SerializeField] private GameObject _map;
 
     #endregion
 
@@ -23,6 +25,17 @@ public class UIManager : MonoBehaviour
         }
 
     }
+
+    public void OpenInventory(bool isActive)
+    {
+        _inventory.SetActive(isActive);
+    }
+
+    public void OpenMap()
+    {
+        _map.SetActive(!_map.activeInHierarchy);
+    }
+
 }
 [Serializable]
 public class DashUIManager
