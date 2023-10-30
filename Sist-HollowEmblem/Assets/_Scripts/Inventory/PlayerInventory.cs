@@ -13,6 +13,8 @@ public class PlayerInventory : MonoBehaviour
     private int _bulletsInInventory;
     private int _auxAmount; // REQUERIDA COMO GLOBAL PARA HACER CALCULOS DENTRO DE VARIAS FUNCIONES
     
+    public int BulletsInInventory => _bulletsInInventory;
+
     void Awake()
     {
         slots = new Slot[_rows, _columns];

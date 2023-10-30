@@ -100,7 +100,10 @@ public class Player : Actor
             _playerAttack.Attack((int)directionsToAttack);
         }
         
-        // if (Input.GetKeyDown(_reload)) //GameManager.instance.AddEvents(_cmdReload);
+        if (Input.GetKeyDown(_reload))
+        {
+            _playerShoot.Reload();
+        }
 
         //  if (Input.GetKeyUp(_aim)) StopAiming();
 
