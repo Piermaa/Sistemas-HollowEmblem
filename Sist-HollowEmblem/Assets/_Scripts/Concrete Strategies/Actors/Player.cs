@@ -108,7 +108,7 @@ public class Player : Actor
 
         if (Input.GetKeyDown(_openInventory))
         {
-            //UIManager.Instance.OpenMap(true);
+            UIManager.Instance.OpenInventory();
         }
 
         if (Input.GetKeyDown(_openMap))

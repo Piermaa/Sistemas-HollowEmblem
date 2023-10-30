@@ -26,17 +26,19 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void OpenInventory(bool isActive)
+    public void OpenInventory()
     {
-        _inventory.SetActive(isActive);
+        _inventory.SetActive(!_inventory.activeInHierarchy);
+        _map.SetActive(false);
     }
 
     public void OpenMap()
     {
         _map.SetActive(!_map.activeInHierarchy);
+        _inventory.SetActive(false);
     }
-
 }
+
 [Serializable]
 public class DashUIManager
 {
