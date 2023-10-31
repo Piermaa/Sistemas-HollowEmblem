@@ -2,71 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
-public class VulcanBullet : MonoBehaviour, IPooledProduct, IVulcanBullet
+public class VulcanBullet : MonoBehaviour, IProduct, IVulcanBullet
 {
-    #region IPooledProduct Properties
+    #region IProduct Properties
     
     public GameObject MyGameObject => gameObject;
-
-    public int Direction
-    {
-        get=>_direction; 
-        set=>_direction=value;
-    }
-
-    public ScriptableObject Stats
-    {
-        get =>_vulcanBulletStats;
-    }
 
     public string ObjectPoolerKey => _vulcanBulletStats.ObjectPoolerKey;
 
     #endregion
 
     #region IVulcanBullet Properties
+    public int Damage => _vulcanBulletStats.Damage;
 
-    public Vector2 ImpulseDirection => _vulcanBulletStats.ImpulseDirection;
-    public float Force => _vulcanBulletStats.Force;
     public string ExplosionObjectPoolerKey => _vulcanBulletStats.ExplosionObjectPoolerKey;
-
     #endregion
 
     #region Class Properties
 
-    [SerializeField] private VulcanBulletStats _vulcanBulletStats; 
-    
+    [SerializeField] private VulcanBulletStats _vulcanBulletStats;
     private ObjectPooler _objectPooler;
     private Rigidbody2D rb2D;
-    private int _direction;
     #endregion
-
-    #region IPooledProduct Methods
-
     
-    public void OnObjectSpawn()
-    {
-        if (rb2D==null)
-        {
-            rb2D = GetComponent<Rigidbody2D>();
-        }
-
-        Vector3 theScale = transform.localScale;
-        theScale.x = _direction;
-        transform.localScale=theScale;
-
-        var dir = new Vector2(_vulcanBulletStats.ImpulseDirection.x * _direction,_vulcanBulletStats.ImpulseDirection.y); 
-        
-        rb2D.AddForce(_vulcanBulletStats.Force * dir,ForceMode2D.Impulse);
-    }
-    
-    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction, ScriptableObject stats)
-    {
-        return ObjectPooler.Instance.SpawnFromPool(_vulcanBulletStats.ObjectPoolerKey, position, rotation, direction, stats)
-            .GetComponent<IPooledProduct>();
-    }
-
-    #endregion
-
     #region Monobehaviour Callbacks
 
     private void Start()
@@ -94,6 +52,31 @@ public class VulcanBullet : MonoBehaviour, IPooledProduct, IVulcanBullet
     {
         _vulcanBulletStats=stats as VulcanBulletStats;
     }
+    
+    #endregion
+    
+    #region IVulcanBullet Methods
+    public void Reset(Vector2 spawnPos)
+    {
+        transform.position = spawnPos;
+    }
+    public void Shoot(Vector2 direction, float force)
+    {
+        if (rb2D==null)
+        {
+            rb2D = GetComponent<Rigidbody2D>();
+        }
+        
+        Vector3 theScale = transform.localScale;
+        theScale.x = direction.x > 0? 1:-1;
+        transform.localScale=theScale;
+        
+        rb2D.AddForce(force * direction, ForceMode2D.Impulse);
+    }
+    #endregion
+    
+    #region IProduct Methods
+    public IProduct Clone() => ObjectPooler.Instance.SpawnFromPool(_vulcanBulletStats.ObjectPoolerKey).GetComponent<IProduct>();
     
     #endregion
 }

@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShootAttack", menuName = "Attacks/EnemyAttacks/ShootAttack", order = 0)]
@@ -8,11 +9,11 @@ public class ShootAttack : EnemyAttack
     #region Serialized Properties
 
     [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private BulletStats _bulletStats;
     #endregion
 
     private BulletFactory _bulletFactory;
     private Transform _spawnPos;
+    private Transform _enemy;
     #endregion
     
     #region EnemyAttack Overrides
@@ -21,12 +22,14 @@ public class ShootAttack : EnemyAttack
     {
         _bulletFactory = new BulletFactory(_bulletPrefab.GetComponent<Bullet>());
         _spawnPos = attackOrigin;
+        _enemy = owner.transform;
     }
 
     public override void Attack()
     {
-        _bulletFactory.CreateProduct(_spawnPos.position, Quaternion.identity, 
-             (int)_spawnPos.parent.localScale.x, _bulletStats);
+       var b= _bulletFactory.CreateProduct();
+       b.Reset(_spawnPos.position);
+       b.Shoot(_enemy.localScale);
     }
 
     #endregion

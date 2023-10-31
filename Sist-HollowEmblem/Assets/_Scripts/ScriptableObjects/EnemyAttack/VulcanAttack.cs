@@ -7,8 +7,9 @@ public class VulcanAttack : EnemyAttack
 
     #region Serialized Properties
 
+    [SerializeField] private Vector2 _shootDirection;
+    [SerializeField] private float _shootForce;
     [SerializeField] private GameObject _vulcanBulletPrefab;
-    [SerializeField] private VulcanBulletStats _vulcanBulletStats;
     #endregion
     private VulcanBulletFactory _vulcanBulletFactory;
     private Transform _spawnPos;
@@ -24,8 +25,13 @@ public class VulcanAttack : EnemyAttack
 
     public override void Attack()
     {
-        _vulcanBulletFactory.CreateProduct(_spawnPos.position,_spawnPos.rotation,1,_vulcanBulletStats);
-        _vulcanBulletFactory.CreateProduct(_spawnPos.position,_spawnPos.rotation,-1,_vulcanBulletStats);
+        var l= _vulcanBulletFactory.CreateProduct();
+        l.Reset(_spawnPos.position);
+        l.Shoot(new Vector2(-_shootDirection.x,_shootDirection.y), _shootForce);
+        
+        var r= _vulcanBulletFactory.CreateProduct();
+        r.Reset(_spawnPos.position);
+        r.Shoot(_shootDirection, _shootForce);
     }
 
     #endregion
