@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6efe4b27872385488bd1300247419ee, type: 3}
   m_Name: VulcanAttackNear
   m_EditorClassIdentifier: 
+  _shootDirection: {x: 1.5, y: 4}
+  _shootForce: 1.5
   _vulcanBulletPrefab: {fileID: 8845292994303759772, guid: 91e69aadf774c514e8925dffdbc65198, type: 3}
-  _vulcanBulletStats: {fileID: 11400000, guid: d6c435f77034dfe419dfde6ba24ff47e, type: 2}

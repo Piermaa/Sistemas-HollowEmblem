@@ -136,7 +136,6 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
     
-    
     public GameObject SpawnFromPool(string tag)
     {
         if (!poolDictionary.ContainsKey(tag))
@@ -149,9 +148,7 @@ public class ObjectPooler : MonoBehaviour
         //saca de la cola al objeto a despawnear
         
         objectToSpawn.SetActive(true);
-        //objectToSpawn.transform.position = position;
-        //objectToSpawn.transform.rotation= rotation;
-
+     
         IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();     //busca que haya una interface en el objeto a spawnear
 
         if (pooledObj!= null)

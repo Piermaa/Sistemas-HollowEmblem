@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour, IPooledProduct
+public class Bullet : MonoBehaviour, IProduct, IAirEnemyBullet
 {
-    #region IPooledProduct Properties
-
-    public ScriptableObject Stats => _bulletStats;
-
+    #region IProduct Properties
+    
     public string ObjectPoolerKey => _bulletStats.ObjectPoolerKey;
     public GameObject MyGameObject => gameObject;
-
-    public int Direction
-    {
-        get => _direction;
-        set => _direction = value;
-    }
-
+    
     #endregion
 
+    #region IAirEnemyBullet Properties
+
+    public int Damage => _bulletStats.Damage;
+
+    #endregion
+    
     #region ClassProperties
 
     #region Serialized Properties
@@ -26,7 +24,6 @@ public class Bullet : MonoBehaviour, IPooledProduct
     #endregion
     private Rigidbody2D _rigidbody2D;
     private float _despawnTimer;
-    private int _direction;
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -55,35 +52,35 @@ public class Bullet : MonoBehaviour, IPooledProduct
     }
     #endregion
     
-    #region IPooledProduct Methods
-    public void OnObjectSpawn()
+    #region IProduct Methods
+    public IProduct Clone() => ObjectPooler.Instance.SpawnFromPool(ObjectPoolerKey).GetComponent<IProduct>();
+    
+    #endregion
+
+    #region IAirEnemyBullet Methods
+
+    public void Reset(Vector2 spawnPosition)
+    {
+        transform.position = spawnPosition;
+    }
+
+    public void Shoot(Vector2 direction)
     {
         _rigidbody2D.velocity = Vector3.zero;
         
-        _rigidbody2D.velocity = new Vector2(-_direction * _bulletStats.Speed,0) ;
+        _rigidbody2D.velocity = new Vector2(-direction.x * _bulletStats.Speed,0) ;
 
         var partscale = GetComponentInChildren<ParticleSystem>().gameObject.transform;
         
         Vector3 theScale = transform.localScale;
-        theScale.x = _direction;
+        theScale.x = direction.x;
         transform.localScale = theScale;
         
         theScale = partscale.localScale;
-        theScale.x = _direction;
+        theScale.x = direction.x;
         partscale.localScale = theScale;
     }
 
-    public IPooledProduct Clone(Vector3 position, Quaternion rotation, int direction, ScriptableObject stats)
-    {
-        var product = ObjectPooler.Instance.SpawnFromPool(ObjectPoolerKey,position, rotation, direction, stats)
-            .GetComponent<IPooledProduct>();
-        
-        return product;
-    }
-    
-    public void SetStats(ScriptableObject stats)
-    {
-        _bulletStats= stats as BulletStats;
-    }
     #endregion
+   
 }

@@ -1,8 +1,17 @@
 using UnityEngine;
 
-public interface IVulcanBullet
+public interface IBullet
 {
-    Vector2 ImpulseDirection { get; }
-    float Force{ get; }
-    string ExplosionObjectPoolerKey { get; }
+    int Damage { get; }
+    void Reset(Vector2 spawnPosition);
+}
+
+public interface IVulcanBullet : IBullet
+{
+    void Shoot(Vector2 direction, float force);
+}
+
+public interface IAirEnemyBullet : IBullet
+{
+    void Shoot(Vector2 direction);
 }
