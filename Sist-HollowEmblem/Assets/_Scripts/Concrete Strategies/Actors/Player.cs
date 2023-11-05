@@ -97,7 +97,7 @@ public class Player : Actor
             _playerShoot.Attack((int)directionsToAttack);
         }
 
-        if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming)
+        if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming && _playerAttack.CanAttack())
         {
             _playerAttack.Attack((int)directionsToAttack);
         }

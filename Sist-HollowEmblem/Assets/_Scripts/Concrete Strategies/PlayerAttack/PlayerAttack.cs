@@ -20,7 +20,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     private Rigidbody2D _rigidbody2d;
     [SerializeField] private Transform _attackStartPosition;
     [SerializeField] private float _damage;
-
+    private float _timerToAttack;
+    private float _cooldownToAttack = 0.3f;
 
     #region IPlayerAttack Properties
 
@@ -39,12 +40,28 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     {
         _playerMovementController = GetComponent<PlayerMovementController>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
+        _timerToAttack = _cooldownToAttack;
+    }
+
+    private void Update()
+    {
+        _timerToAttack -= Time.deltaTime;
+
+        if (_timerToAttack <= 0)
+        {
+            _timerToAttack = 0;
+        }
     }
 
     public void Attack(int direction)
     {
+        _timerToAttack = _cooldownToAttack;
         var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[direction].position, _attackDirections[direction].rotation, _rigidbody2d, transform.localScale * -1);
         projectile.GetComponent<Projectile>().Direction = direction;
+    }
 
+    public bool CanAttack()
+    {
+        return _timerToAttack <= 0;
     }
 }

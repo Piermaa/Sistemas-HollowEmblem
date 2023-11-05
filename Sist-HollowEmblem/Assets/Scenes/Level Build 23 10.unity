@@ -8304,7 +8304,7 @@ MonoBehaviour:
     _dashIcon: {fileID: 508102833}
     _cooldownImage: {fileID: 686181886}
   _slamUIManager:
-    _dashIcon: {fileID: 183437742}
+    _slamIcon: {fileID: 183437742}
     _cooldownImage: {fileID: 338694533}
   _inventory: {fileID: 0}
   _map: {fileID: 0}
@@ -23138,6 +23138,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4344375614529401985, guid: f5418dd43b07e724693de562eae993af, type: 3}
+      propertyPath: _cooldownToAttack
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4344375614529402033, guid: f5418dd43b07e724693de562eae993af, type: 3}
       propertyPath: m_Name
       value: Player
@@ -30049,7 +30053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3227075507052733740, guid: 2967dbebce3caea48919272d610d208f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.29
+      value: -12.26
       objectReference: {fileID: 0}
     - target: {fileID: 3227075507052733740, guid: 2967dbebce3caea48919272d610d208f, type: 3}
       propertyPath: m_LocalPosition.y

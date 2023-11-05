@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cooldown: 0.5
   _abilitySound: {fileID: 8300000, guid: 1944661f5689080429d316a131cf28c6, type: 3}
-  _abilityKey: 102
+  _abilityKey: 306
   _slamForce: 20
   _slamRadius: 5
   _slamTimer: 0.3
