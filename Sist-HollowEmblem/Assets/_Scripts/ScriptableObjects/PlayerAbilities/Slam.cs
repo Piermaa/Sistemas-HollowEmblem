@@ -13,13 +13,13 @@ public class Slam : PlayerAbility
     [SerializeField] private float _slamRadius = 5;
     [SerializeField] private float _slamTimer;
     [SerializeField] private LayerMask _whatIsEnemy;
-
     #endregion
 
     private float _slamTimeTimer = 0;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private PlayerMovementController _playerMovementController;
+    private SlamUIManager _slamUIManager;
     #endregion
 
     public override void Init(GameObject playerGameObject, AudioSource audioSource)
@@ -30,6 +30,8 @@ public class Slam : PlayerAbility
         _playerMovementController = _playerGameObject.GetComponent<PlayerMovementController>();
         
         _playerMovementController.OnSlamEvent.AddListener(SlamImpact);
+        _slamUIManager = UIManager.Instance.GetSlamUIManager;
+        _slamUIManager.UnlockAbility();
     }
 
    public override bool CanBeUsed()
@@ -55,6 +57,7 @@ public class Slam : PlayerAbility
     {
         base.AbilityUpdate();
 
+        _slamUIManager.UpdateCooldown(_coolDownTimer, _cooldown);
         _slamTimeTimer -= Time.deltaTime;
 
         if (_slamTimeTimer < 0)

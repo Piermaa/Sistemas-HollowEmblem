@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 
     public DashUIManager GetDashUIManager => _dashUIManager;
     [SerializeField] private DashUIManager _dashUIManager;
+    public SlamUIManager GetSlamUIManager => _slamUIManager;
+    [SerializeField] private SlamUIManager _slamUIManager;
     [SerializeField] private GameObject _inventory;
     [SerializeField] private GameObject _map;
 
@@ -53,5 +55,22 @@ public class DashUIManager
     public void UnlockAbility()
     {
         _dashIcon.SetActive(true);;
+    }
+}
+
+[Serializable]
+public class SlamUIManager
+{
+    [SerializeField] private GameObject _slamIcon;
+    [SerializeField] private Image _cooldownImage;
+
+    public void UpdateCooldown(float currentTime, float maxTime)
+    {
+        _cooldownImage.fillAmount = currentTime / maxTime;
+    }
+
+    public void UnlockAbility()
+    {
+        _slamIcon.SetActive(true); ;
     }
 }
