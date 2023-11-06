@@ -6,10 +6,10 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
     [SerializeField] private Transform _attackStartPosition;
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     [SerializeField] private bool _isAiming;
     [SerializeField] private bool _isReloading;
-    [SerializeField] private int _bulletsRemaining; // Es SerializeField para verlo en el Inspector, después lo borro
+    [SerializeField] private int _bulletsRemaining; // Es SerializeField para verlo en el Inspector, despuï¿½s lo borro
     private int _maxBullets = 10;
     private Animator _animator;
     private PlayerInventory _playerInventory;
@@ -45,7 +45,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
             if (hit2D.transform.CompareTag("Enemy") && hit2D.transform.TryGetComponent<IDamageable>(out var damageable))
             {
-                damageable.TakeDamage(1);
+                damageable.TakeDamage(_damage);
             }
         }
     }
@@ -57,6 +57,16 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         _animator.SetBool("Aiming", _isAiming);
     }
 
+    public void OnReload()
+    {
+        int ammoResquested = _maxBullets - _bulletsRemaining;
+        
+        int ammo= _playerInventory.GetAmmoFromInventory(ammoResquested);
+        
+        print("Ammo gotten from inventory: "+ammo);
+        _bulletsRemaining += ammo;
+    }
+
     public void Reload()
     {
         //int bulletsToCharge = _maxBullets - _bulletsRemaining;
@@ -65,7 +75,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         //{
         //    _bulletsRemaining = _maxBullets;
         //}
-
+        OnReload();
         if (_bulletsRemaining <= _maxBullets)
         {
             _animator.SetTrigger("Reload");

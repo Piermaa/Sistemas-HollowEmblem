@@ -175,7 +175,7 @@ public class PlayerInventory : MonoBehaviour
         {
             for (int j = 0; j < _columns; j++)
             {
-                if (slots[i, j].Item != null) //Si tiene algun item:
+                if (!slots[i, j].IsEmpty()) //Si tiene algun item:
                 {
                     if (slots[i, j].ItemType == ItemTypes.AMMO)
                     {
@@ -192,49 +192,46 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+        print("No encontre balas jaja!");
         return lessAmmoSlot;
     }
     /// <summary>
     /// Agrega municion al cargador del Player, buscar� hasta encontrar mas municion si se vacia el slot
     /// </summary>
-    public int GetAmmoFromInventory(bool justChecking)
+    public int GetAmmoFromInventory(int ammoRequested)
     {
-        int spaceAvailableOnClip = 0; 
-        Slot newSlot;
-        
-        do
+        print("Ammo requested: "+ammoRequested);
+        Slot newSlot=SearchAmmo();
+
+        if (newSlot==null)
         {
-          //  spaceAvailableOnClip = combat.maxAmmo - combat.currentAmmo; // Se obtiene el espacio en el cargador
-            newSlot = SearchAmmo(); //Se busca el slot con menos balas
-            if (newSlot != null) // Si se encuentra:
+            return 0;
+        }
+        else
+        {
+            int ammoFound = newSlot.Amount;
+            
+            if (ammoFound==ammoRequested) // si se encuentra un slot con las mismas balas que las pedidas
             {
-                if (spaceAvailableOnClip > newSlot.Amount) //Si las balas del slot son menos que las requeridas para llenar el cargador:
-                {
-                    int auxAmmo = newSlot.Amount;
-                    if (!justChecking)
-                    {
-                        EmptySlot(newSlot); // Y vaciar el slot
-                    }
-                    Debug.Log("SE RETURNEA newslotSmount: " + newSlot.Amount);
-                    return auxAmmo;
-                }
-                else
-                {
-                    if (!justChecking)
-                    {
-                        newSlot.Amount -= spaceAvailableOnClip; // Y actualizar el monto del slot
-                        if ((newSlot != null) && newSlot.Amount <= 0)
-                        {
-                            EmptySlot(newSlot);
-                        }
-                    }
-                    Debug.Log("SE RETURNEA spaceAvailableOnClip: " + spaceAvailableOnClip);
-                    return spaceAvailableOnClip;
-                }
+                EmptySlot(newSlot);
+                return ammoFound;
             }
-            //Si quedaban 0 balas en el slot por alguna razon, vaciarlo
-        } while (spaceAvailableOnClip > 0 && newSlot != null); // El slot no era null porque se habia encontrado en la busqueda anterior
-        
+            
+            if (ammoFound>ammoRequested) //si el slot tiene mas balas de las requeridas:
+            {
+                print("Eran mas");
+                newSlot.Amount -= ammoRequested;
+                return ammoRequested;
+            }
+            else // si el slot tiene menos balas
+            {
+                int ammoRequestedLeft = ammoRequested - ammoFound;
+                EmptySlot(newSlot);
+            
+                return ammoFound + GetAmmoFromInventory(ammoRequestedLeft);
+            }
+        }
+
         return 0;
     }
 }//class
