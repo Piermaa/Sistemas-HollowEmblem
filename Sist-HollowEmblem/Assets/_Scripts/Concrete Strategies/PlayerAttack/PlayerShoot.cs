@@ -35,8 +35,6 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     {
         _animator = GetComponent<Animator>();
         _playerInventory = GetComponent<PlayerInventory>();
-        
-        
     }
 
     private void Start()
