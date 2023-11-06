@@ -162,6 +162,8 @@ public class Player : Actor
         {
             base.TakeDamage(damageTaken);
             _immunityTimer = _immunityTime;
+
+            UIManager.Instance.GetHealthUIManager.SetHealth(CurrentHealth, MaxHealth);
         }
     }
 

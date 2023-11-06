@@ -1,8 +1,9 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IProjectile, IPooledObject
+public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
 {
     [SerializeField] private float delayTime;
     [SerializeField] private float delayCooldown;
@@ -31,12 +32,9 @@ public class Projectile : MonoBehaviour, IProjectile, IPooledObject
 
     public Rigidbody2D Rb => _rb;
 
+    public int Damage => 1;
+
     #endregion
-
-    public void OnObjectSpawn()
-    {
-
-    }
 
     private void Awake()
     {
@@ -74,5 +72,18 @@ public class Projectile : MonoBehaviour, IProjectile, IPooledObject
         Vector2 moveDirection = new Vector2(x, Direction);
         Vector2 movement = moveDirection.normalized * _speed;
         _rb.velocity = movement;
+    }
+
+    public void Attack(Vector3 direction)
+    {
+        _rb.velocity = direction * Speed;
+        Vector3 scale = transform.localScale;
+        scale.x = direction.x;
+        transform.localScale = scale;
+    }
+
+    public void Reset(Vector2 spawnPosition)
+    {
+        transform.position = spawnPosition;
     }
 }

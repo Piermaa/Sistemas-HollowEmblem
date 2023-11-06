@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private DashUIManager _dashUIManager;
     public SlamUIManager GetSlamUIManager => _slamUIManager;
     [SerializeField] private SlamUIManager _slamUIManager;
+
+    public HealthUIManager GetHealthUIManager => _healthUIManager;
+    [SerializeField] private HealthUIManager _healthUIManager;
+
     [SerializeField] private GameObject _inventory;
     [SerializeField] private GameObject _map;
 
@@ -72,5 +76,16 @@ public class SlamUIManager
     public void UnlockAbility()
     {
         _slamIcon.SetActive(true); ;
+    }
+}
+
+[Serializable]
+public class HealthUIManager
+{
+    [SerializeField] private Slider _healthSlider;
+
+    public void SetHealth(float currentHealth, float maxHealth)
+    {
+        _healthSlider.value = currentHealth / maxHealth;
     }
 }

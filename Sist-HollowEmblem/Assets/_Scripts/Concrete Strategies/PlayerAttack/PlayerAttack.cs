@@ -55,9 +55,32 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
     public void Attack(int direction)
     {
+        Debug.Log("aatacaaa");
+
         _timerToAttack = _cooldownToAttack;
-        var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack", _attackDirections[direction].position, _attackDirections[direction].rotation, _rigidbody2d, transform.localScale * -1);
-        projectile.GetComponent<Projectile>().Direction = direction;
+        var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack");
+        var playerBullet = projectile.GetComponent<IPlayerBullet>();
+        playerBullet.Reset(_attackDirections[direction].position);
+        projectile.transform.rotation = _attackDirections[direction].rotation;
+
+        Vector3 attackDirection = Vector3.zero;
+
+        switch (direction)
+        {
+            case 0:
+                attackDirection = Vector3.forward * transform.localScale.x;
+                break;
+
+            case 1:
+                attackDirection = Vector3.up;
+                break;
+
+            case 2:
+                attackDirection = Vector3.down;
+                break;
+        }
+
+        playerBullet.Attack(attackDirection);
     }
 
     public bool CanAttack()

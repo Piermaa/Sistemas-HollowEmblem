@@ -8306,6 +8306,8 @@ MonoBehaviour:
   _slamUIManager:
     _slamIcon: {fileID: 183437742}
     _cooldownImage: {fileID: 338694533}
+  _healthUIManager:
+    _healthSlider: {fileID: 1399252057}
   _inventory: {fileID: 0}
   _map: {fileID: 0}
 --- !u!4 &449902338
