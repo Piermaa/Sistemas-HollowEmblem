@@ -22,6 +22,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     [SerializeField] private float _damage;
     private float _timerToAttack;
     private float _cooldownToAttack = 0.3f;
+    private int _currentDirection = 0;
+    private Animator _animator;
 
     #region IPlayerAttack Properties
 
@@ -52,35 +54,54 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
             _timerToAttack = 0;
         }
     }
-
-    public void Attack(int direction)
+    
+    public void OnAttack()
     {
-        Debug.Log("aatacaaa");
-
         _timerToAttack = _cooldownToAttack;
         var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack");
+        
         var playerBullet = projectile.GetComponent<IPlayerBullet>();
-        playerBullet.Reset(_attackDirections[direction].position);
-        projectile.transform.rotation = _attackDirections[direction].rotation;
+        playerBullet.Reset(_attackDirections[_currentDirection]);
 
-        Vector3 attackDirection = Vector3.zero;
+        Vector3 attackDirection =Vector3.zero; 
+
+        if (_currentDirection!=0)
+        {
+            attackDirection.y = _currentDirection == 1 ? 1 : -1;
+        }
+        else
+        {
+            attackDirection.x = -transform.localScale.x;
+        }
+
+        playerBullet.Attack(attackDirection);
+    }
+    public void Attack(int direction)
+    {
+        direction = _currentDirection;
+        
+        _animator.SetBool("Jump", false);
 
         switch (direction)
         {
             case 0:
-                attackDirection = Vector3.forward * transform.localScale.x;
+            //    sounds.PlaySound(sounds.attack);
+                _animator.SetTrigger("AttackFront");
                 break;
-
-            case 1:
-                attackDirection = Vector3.up;
-                break;
-
             case 2:
-                attackDirection = Vector3.down;
+
+                if (!_playerMovementController.CheckGround())
+                {
+            //        sounds.PlaySound(sounds.attack);
+                    _animator.SetTrigger("AttackDown");
+                }
+
+                break;
+            case 1:
+            //    sounds.PlaySound(sounds.attack);
+                _animator.SetTrigger("AttackUp");
                 break;
         }
-
-        playerBullet.Attack(attackDirection);
     }
 
     public bool CanAttack()

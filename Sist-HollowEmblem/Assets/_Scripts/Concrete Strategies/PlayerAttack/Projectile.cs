@@ -44,8 +44,6 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
 
     void Update()
     {
-        TranslateProjectile();
-
         delayTime = delayTime > 0 ? delayTime - Time.deltaTime : 0;
 
         if (delayTime <= 0)
@@ -77,13 +75,13 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
     public void Attack(Vector3 direction)
     {
         _rb.velocity = direction * Speed;
-        Vector3 scale = transform.localScale;
-        scale.x = direction.x;
-        transform.localScale = scale;
     }
 
-    public void Reset(Vector2 spawnPosition)
+    public void Reset(Transform spawnPosition)
     {
-        transform.position = spawnPosition;
+        transform.position = spawnPosition.position;
+        transform.rotation = spawnPosition.rotation;
+        transform.localScale = -spawnPosition.parent.parent.localScale;
+        _rb.velocity = Vector2.zero;
     }
 }
