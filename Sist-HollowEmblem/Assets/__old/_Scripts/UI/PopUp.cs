@@ -54,7 +54,7 @@ public class PopUp : MonoBehaviour
 
     private void UseAmmo()
     {
-        InventoryActionsManager.InvokeAction(ItemConstants.USE_AMMO, _slotOwner);
+        ActionsManager.InvokeAction(ItemConstants.USE_AMMO);
     }
 
     public void Discard() // SE añade el listener desde el inspector **
