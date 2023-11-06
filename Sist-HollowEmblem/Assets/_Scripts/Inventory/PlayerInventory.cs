@@ -192,7 +192,6 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
-        print("No encontre balas jaja!");
         return lessAmmoSlot;
     }
     /// <summary>
@@ -200,7 +199,6 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     public int GetAmmoFromInventory(int ammoRequested)
     {
-        print("Ammo requested: "+ammoRequested);
         Slot newSlot=SearchAmmo();
 
         if (newSlot==null)
@@ -219,7 +217,6 @@ public class PlayerInventory : MonoBehaviour
             
             if (ammoFound>ammoRequested) //si el slot tiene mas balas de las requeridas:
             {
-                print("Eran mas");
                 newSlot.Amount -= ammoRequested;
                 return ammoRequested;
             }

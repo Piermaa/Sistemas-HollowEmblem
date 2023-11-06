@@ -35,6 +35,14 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     {
         _animator = GetComponent<Animator>();
         _playerInventory = GetComponent<PlayerInventory>();
+        
+        
+    }
+
+    private void Start()
+    {
+        ActionsManager.RegisterAction(ItemConstants.USE_AMMO);
+        ActionsManager.SubscribeToAction(ItemConstants.USE_AMMO, Reload);
     }
 
     public void Attack(int direction)
@@ -57,26 +65,19 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         _animator.SetBool("Aiming", _isAiming);
     }
 
+    /// <summary>
+    /// Callen on animation event
+    /// </summary>
     public void OnReload()
     {
         int ammoResquested = _maxBullets - _bulletsRemaining;
         
-        int ammo= _playerInventory.GetAmmoFromInventory(ammoResquested);
-        
-        print("Ammo gotten from inventory: "+ammo);
-        _bulletsRemaining += ammo;
+        _bulletsRemaining += _playerInventory.GetAmmoFromInventory(ammoResquested);
     }
 
     public void Reload()
     {
-        //int bulletsToCharge = _maxBullets - _bulletsRemaining;
-
-        //if (_bulletsRemaining >= _maxBullets)
-        //{
-        //    _bulletsRemaining = _maxBullets;
-        //}
-        OnReload();
-        if (_bulletsRemaining <= _maxBullets)
+        if (_bulletsRemaining < _maxBullets)
         {
             _animator.SetTrigger("Reload");
         }
