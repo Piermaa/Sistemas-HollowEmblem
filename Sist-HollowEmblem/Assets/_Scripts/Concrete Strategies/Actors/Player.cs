@@ -82,13 +82,13 @@ public class Player : Actor
     {
         if (Input.GetKeyDown(_aim) && _movable.CheckGround())
         {
-            _playerShoot.Aim(true, directionsToAttack);
+            _playerShoot.Aim(true, (int)directionsToAttack);
             _movable.CanMove = false;
         }
 
         if (Input.GetKeyUp(_aim))
         {
-            _playerShoot.Aim(false, directionsToAttack);
+            _playerShoot.Aim(false, (int)directionsToAttack);
             _movable.CanMove = true;
         }
 
