@@ -56,7 +56,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         }
     }
 
-    public void Aim (bool isTrue)
+    public void Aim (bool isTrue, int direction)
     {
         _isAiming = isTrue;
         _animator.SetTrigger("AimFront");
