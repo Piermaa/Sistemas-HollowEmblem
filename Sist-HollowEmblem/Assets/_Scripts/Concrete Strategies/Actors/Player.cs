@@ -175,6 +175,7 @@ public class Player : Actor
         if (_currentHealth < MaxHealth)
         {
             _currentHealth++;
+            UIManager.Instance.GetHealthUIManager.SetHealth(CurrentHealth, MaxHealth);
         }
     }
 
