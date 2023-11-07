@@ -84,6 +84,11 @@ public class Slam : PlayerAbility
             {
                 damageable.TakeDamage(2);
             }
+
+            if (collided.CompareTag("DestructibleGround"))
+            {
+                collided.GetComponent<Animator>().SetTrigger("Destroy");
+            }
         }
     }
 }

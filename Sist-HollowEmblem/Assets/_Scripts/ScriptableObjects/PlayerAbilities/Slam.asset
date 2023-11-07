@@ -20,4 +20,4 @@ MonoBehaviour:
   _slamTimer: 0.3
   _whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8388736
