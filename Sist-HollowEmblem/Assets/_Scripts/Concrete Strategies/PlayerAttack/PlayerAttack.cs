@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAttack : MonoBehaviour, IPlayerAttack
 {
@@ -13,7 +14,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
     //Rigidbody2D rb;
     //public Rigidbody2D playerRigidBody;
     //float forceMultiplier = 7;
-
+    [FormerlySerializedAs("attackSound")] [SerializeField] private AudioSource _attackSound;
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _attackDirections;
     private PlayerMovementController _playerMovementController;
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _playerMovementController = GetComponent<PlayerMovementController>();
         _rigidbody2d = GetComponent<Rigidbody2D>();
         _timerToAttack = _cooldownToAttack;
@@ -61,7 +63,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
         var projectile = ObjectPooler.Instance.SpawnFromPool("PlayerAttack");
         
         var playerBullet = projectile.GetComponent<IPlayerBullet>();
-        playerBullet.Reset(_attackDirections[_currentDirection]);
+        playerBullet.Reset(_attackDirections[_currentDirection], _rigidbody2d);
 
         Vector3 attackDirection =Vector3.zero; 
 
@@ -76,29 +78,37 @@ public class PlayerAttack : MonoBehaviour, IPlayerAttack
 
         playerBullet.Attack(attackDirection);
     }
+
     public void Attack(int direction)
     {
-        direction = _currentDirection;
-        
-        _animator.SetBool("Jump", false);
+        if (_timerToAttack!=0)
+        {
+            return;
+        }
 
+        _timerToAttack = _cooldownToAttack; 
+        
+        _currentDirection = direction;
+
+        _animator.SetBool("Jump", false);
+        
         switch (direction)
         {
             case 0:
-            //    sounds.PlaySound(sounds.attack);
+                _attackSound.Play();
                 _animator.SetTrigger("AttackFront");
                 break;
             case 2:
 
                 if (!_playerMovementController.CheckGround())
                 {
-            //        sounds.PlaySound(sounds.attack);
+                    _attackSound.Play();
                     _animator.SetTrigger("AttackDown");
                 }
 
                 break;
             case 1:
-            //    sounds.PlaySound(sounds.attack);
+                _attackSound.Play();
                 _animator.SetTrigger("AttackUp");
                 break;
         }

@@ -13,8 +13,7 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
     private int _direction;
     private Rigidbody2D _rb;
     [SerializeField] private float _forceMultiplier;
-
-    
+    [SerializeField] private Rigidbody2D _playerRigidbody;
 
     #region IProjectile Properties
 
@@ -38,7 +37,6 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
 
     private void Awake()
     {
-        //animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -58,18 +56,10 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
         if (collision.CompareTag("Enemy") && collision.TryGetComponent<IDamageable>(out var damageable))
         { 
             damageable.TakeDamage(1);
-            Rb.velocity = Vector2.zero;
-            Rb.AddForce((Rb.gameObject.transform.position - this.gameObject.transform.position).normalized * 5, ForceMode2D.Impulse);
+            _playerRigidbody.velocity = Vector2.zero;
+            _playerRigidbody.AddForce((_playerRigidbody.gameObject.transform.position - this.gameObject.transform.position).normalized * 5, ForceMode2D.Impulse);
+            gameObject.SetActive(false);
         }
-    }
-
-    private void TranslateProjectile()
-    {
-        int x = Direction == 0 ? 1 : 0;
-
-        Vector2 moveDirection = new Vector2(x, Direction);
-        Vector2 movement = moveDirection.normalized * _speed;
-        _rb.velocity = movement;
     }
 
     public void Attack(Vector3 direction)
@@ -77,8 +67,13 @@ public class Projectile : MonoBehaviour, IProjectile, IPlayerBullet
         _rb.velocity = direction * Speed;
     }
 
-    public void Reset(Transform spawnPosition)
+    public void Reset(Transform spawnPosition, Rigidbody2D playerRb)
     {
+        if (_playerRigidbody==null)
+        {
+            _playerRigidbody = playerRb;
+        }
+
         transform.position = spawnPosition.position;
         transform.rotation = spawnPosition.rotation;
         transform.localScale = -spawnPosition.parent.parent.localScale;
