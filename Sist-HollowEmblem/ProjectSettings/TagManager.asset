@@ -40,7 +40,7 @@ TagManager:
   - Items
   - PlayerAmmo
   - PhaseableGround
-  - 
+  - DestructibleGround
   - 
   - 
   - 
@@ -64,6 +64,9 @@ TagManager:
     locked: 0
   - name: Piso
     uniqueID: 828615247
+    locked: 0
+  - name: AbilityStuff
+    uniqueID: 1923813935
     locked: 0
   - name: Saws
     uniqueID: 346451331
