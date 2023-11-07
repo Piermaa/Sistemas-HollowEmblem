@@ -80,7 +80,7 @@ public class Player : Actor
 
     private void InputProcess()
     {
-        if (Input.GetKeyDown(_aim) && _movable.CheckGround())
+        if (Input.GetKey(_aim) && _movable.CheckGround())
         {
             _playerShoot.Aim(true, (int)directionsToAttack);
             _movable.CanMove = false;

@@ -310,12 +310,5 @@ public class PlayerCombat : MonoBehaviour
             reloading = false;
             reloadingC = null;
         }
-
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, shootStart.TransformDirection(Vector3.forward)*100);
     }
 }
