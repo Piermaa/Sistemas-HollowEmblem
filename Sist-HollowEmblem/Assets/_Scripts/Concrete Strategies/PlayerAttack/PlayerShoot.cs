@@ -16,7 +16,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     [SerializeField] private Light2D _shootLight;
     [SerializeField] private float _shootIntensity=1.4f;
     private bool _isReloading;
-    private int _bulletsRemaining = 10;
+    [SerializeField]private int _bulletsRemaining = 10;
     private int _maxBullets = 10;
     private Animator _animator;
     private PlayerInventory _playerInventory;
@@ -50,6 +50,11 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     {
         ActionsManager.RegisterAction(ItemConstants.USE_AMMO);
         ActionsManager.SubscribeToAction(ItemConstants.USE_AMMO, Reload);
+        if (isActiveAndEnabled)
+        {
+            UIManager.Instance.GetBulletsUIManager.UnlockGun();
+            UIManager.Instance.GetBulletsUIManager.UpdateBullets(_bulletsRemaining);
+        }
     }
 
     private void Update()
@@ -88,6 +93,8 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
                 damageable.TakeDamage(_damage);
             }
         }
+        UIManager.Instance.GetBulletsUIManager.UpdateBullets(_bulletsRemaining);
+
     }
 
     public void Aim(bool isTrue, int direction)
@@ -122,6 +129,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     {
         int ammoResquested = _maxBullets - _bulletsRemaining;
         _bulletsRemaining += _playerInventory.GetAmmoFromInventory(ammoResquested);
+        UIManager.Instance.GetBulletsUIManager.UpdateBullets(_bulletsRemaining);
     }
 
     public void Reload()

@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _inventory;
     [SerializeField] private GameObject _map;
 
+    public BulletsUIManager GetBulletsUIManager => _bulletsUIManager;
+    [SerializeField] private BulletsUIManager _bulletsUIManager;
     #endregion
 
     public static UIManager Instance;
@@ -87,5 +89,41 @@ public class HealthUIManager
     public void SetHealth(float currentHealth, float maxHealth)
     {
         _healthSlider.value = currentHealth / maxHealth;
+    }
+}
+
+
+[Serializable]
+public class BulletsUIManager
+{
+    [SerializeField] private GameObject _gunPanel;
+    [SerializeField] private Transform _bulletsParent;
+    [SerializeField] private GameObject[] _ammo;
+    public void UnlockGun()
+    {
+        _gunPanel.SetActive(true);
+        
+        _ammo = new GameObject[_bulletsParent.childCount];
+        
+        for (int i = 0; i < _ammo.Length; i++)
+        {
+            _ammo[i] = _bulletsParent.GetChild(i).gameObject;
+        }
+        Debug.Log("ammos " + _ammo.Length);
+    }
+    
+    public void UpdateBullets(int currentAmmo)
+    {
+        for (int i = 0; i < _ammo.Length; i++)
+        {
+            if (i < currentAmmo)
+            {
+                _ammo[i].SetActive(true);
+            }
+            else
+            {
+                _ammo[i].SetActive(false);
+            }
+        }
     }
 }
