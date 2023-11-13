@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     #endregion
 
     public static UIManager Instance;
+
+
+
     private void Awake()
     {
         if (Instance==null)
@@ -43,6 +46,12 @@ public class UIManager : MonoBehaviour
     public void OpenMap()
     {
         _map.SetActive(!_map.activeInHierarchy);
+        _inventory.SetActive(false);
+    }
+
+    public void CloseUI()
+    {
+        _map.SetActive(false);
         _inventory.SetActive(false);
     }
 }

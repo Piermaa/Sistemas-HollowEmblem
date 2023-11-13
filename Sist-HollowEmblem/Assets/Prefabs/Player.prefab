@@ -15546,8 +15546,10 @@ MonoBehaviour:
   _reload: 114
   _openInventory: 105
   _openMap: 109
+  _toggleUI: 9
   _jump: 32
   _abilityAudioSource: {fileID: 4344375614677067339}
+  _uiDisplayer: {fileID: 909575260}
   _playerAbilities: []
 --- !u!114 &4344375614529401998
 MonoBehaviour:
@@ -15566,7 +15568,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4194368
+    m_Bits: 12582976
   m_GroundCheck: {fileID: 4344375615492727737}
   m_Rigidbody2D: {fileID: 4344375614529401997}
   OnLandEvent:
@@ -15618,6 +15620,7 @@ MonoBehaviour:
   _shootSound: {fileID: 4344375614625334479}
   _shootLight: {fileID: 4344375614688539185}
   _shootIntensity: 1.4
+  _bulletsRemaining: 10
 --- !u!114 &1657819094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21603,8 +21606,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.2831, y: -0.030299902, z: 0}
-    m_Extent: {x: 2.2866998, y: 2.2314, z: 0}
+    m_Center: {x: 0.28359997, y: -0.034200072, z: 0}
+    m_Extent: {x: 2.2856998, y: 2.2385, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -27593,7 +27596,7 @@ GameObject:
   - component: {fileID: 4344375615310686669}
   - component: {fileID: 4344375615310686664}
   - component: {fileID: 4344375615310686667}
-  - component: {fileID: 4344375615310686666}
+  - component: {fileID: 909575260}
   m_Layer: 0
   m_Name: Cortana
   m_TagString: Untagged
@@ -27689,28 +27692,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4344375615310686666
+--- !u!114 &909575260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4344375615310686668}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01560d038332164c8f5e92b3333a246, type: 3}
+  m_Script: {fileID: 11500000, guid: 80231b7c1c1a32348974473533e59cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 0}
-  inventory: {fileID: 0}
-  miniMap: {fileID: 0}
-  secondMiniMapPosition: {fileID: 0}
-  cameraNoZoom: {fileID: 0}
-  cameraWithZoom: {fileID: 0}
-  minimapAnimator: {fileID: 0}
-  rb: {fileID: 4344375614529401997}
-  state: 0
-  canInput: 0
 --- !u!1 &4344375615337712696
 GameObject:
   m_ObjectHideFlags: 0

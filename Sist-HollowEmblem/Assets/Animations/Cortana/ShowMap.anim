@@ -114,6 +114,8 @@ AnimationClip:
       value: {fileID: 7921640115439329844, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
     - time: 0.6333333
       value: {fileID: 3835512622342624290, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
+    - time: 0.7
+      value: {fileID: 3835512622342624290, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -166,12 +168,13 @@ AnimationClip:
     - {fileID: 5033014334983967241, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
     - {fileID: 7921640115439329844, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
     - {fileID: 3835512622342624290, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
+    - {fileID: 3835512622342624290, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.71666664
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -276,29 +279,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: CanNotInput
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: DissappearMiniMap
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.6666667
-    functionName: CanInput
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.6666667
-    functionName: Show
+  - time: 0.68333334
+    functionName: ShowDisplay
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

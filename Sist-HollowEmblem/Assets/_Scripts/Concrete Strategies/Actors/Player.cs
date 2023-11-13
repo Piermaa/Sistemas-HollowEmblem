@@ -7,7 +7,7 @@ public class Player : Actor
     #region Class Properties
 
     #region Public Properties
-
+    
     public enum DirectionsToAttack
     {
         Front, Up, Down,
@@ -24,10 +24,10 @@ public class Player : Actor
     [SerializeField] private KeyCode _reload = KeyCode.R;
     [SerializeField] private KeyCode _openInventory = KeyCode.I;
     [SerializeField] private KeyCode _openMap = KeyCode.M;
-
+    [SerializeField] private KeyCode _toggleUI = KeyCode.Tab;
     [SerializeField] private KeyCode _jump = KeyCode.Space;
     [SerializeField] private AudioSource _abilityAudioSource;
-
+    [SerializeField] private UIDisplayer _uiDisplayer;
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
     private PlayerAttack _playerAttack;
     private PlayerShoot _playerShoot;
@@ -98,27 +98,13 @@ public class Player : Actor
         }
 
         if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming && _playerAttack.CanAttack())
-        {
             _playerAttack.Attack((int)directionsToAttack);
-        }
-
-        if (Input.GetKeyDown(_reload))
-        {
-            _playerShoot.Reload();
-        }
-
-        if (Input.GetKeyDown(_openInventory))
-        {
-            UIManager.Instance.OpenInventory();
-        }
-
-        if (Input.GetKeyDown(_openMap))
-        {
-            UIManager.Instance.OpenMap();
-        }
-
-        //  if (Input.GetKeyUp(_aim)) StopAiming();
-
+        
+        if (Input.GetKeyDown(_reload)) _playerShoot.Reload();
+        
+        if (Input.GetKeyDown(_openInventory)) _uiDisplayer.SetDisplayState(DisplayState.Inventory);
+        if (Input.GetKeyDown(_openMap)) _uiDisplayer.SetDisplayState(DisplayState.Map);
+        if (Input.GetKeyDown(_toggleUI)) _uiDisplayer.ToggleUI();
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
 
@@ -213,4 +199,6 @@ public class Player : Actor
     {
         return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
     }
+
+
 }
