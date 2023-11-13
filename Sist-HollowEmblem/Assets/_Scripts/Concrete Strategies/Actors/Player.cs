@@ -27,25 +27,34 @@ public class Player : Actor
     [SerializeField] private KeyCode _toggleUI = KeyCode.Tab;
     [SerializeField] private KeyCode _jump = KeyCode.Space;
     [SerializeField] private AudioSource _abilityAudioSource;
-    [SerializeField] private UIDisplayer _uiDisplayer;
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
+
+    #endregion
     private PlayerAttack _playerAttack;
     private PlayerShoot _playerShoot;
-
     private float _horizontalMove;
     private float _immunityTime;
     private bool _mustJump;
-    #endregion
-
     private IMovable _movable;
     private float _immunityTimer;
 
     #endregion
 
+    #region Commands
+
+    private ReloadCmd _reloadCmd;
+    private OpenInventoryCmd _openInventoryCmd;
+    private OpenMapCmd _openMapCmd;
+    private ToggleUIDisplayCmd _toggleUIDisplayCmd;
+    private GameManager _gameManager;
+    #endregion
+    
     #region Monobehaviour Callbacks
+
     protected override void Awake()
     {
         base.Awake();
+        _gameManager = GameManager.Instance;
         _movable = GetComponent<IMovable>();
         _playerAttack = GetComponent<PlayerAttack>();
         _playerShoot = GetComponent<PlayerShoot>();
@@ -54,6 +63,13 @@ public class Player : Actor
         {
             abilty.Init(gameObject, _abilityAudioSource);
         }
+
+        var uiDisplayer = GetComponentInChildren<UIDisplayer>();
+        
+        _openInventoryCmd = new(uiDisplayer);
+        _openMapCmd = new(uiDisplayer);
+        _toggleUIDisplayCmd = new(uiDisplayer);
+        _reloadCmd = new ReloadCmd(_playerShoot);
     }
 
     private void Start()
@@ -100,11 +116,11 @@ public class Player : Actor
         if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming && _playerAttack.CanAttack())
             _playerAttack.Attack((int)directionsToAttack);
         
-        if (Input.GetKeyDown(_reload)) _playerShoot.Reload();
+        if (Input.GetKeyDown(_reload)) _gameManager.AddEvent(_reloadCmd);
         
-        if (Input.GetKeyDown(_openInventory)) _uiDisplayer.SetDisplayState(DisplayState.Inventory);
-        if (Input.GetKeyDown(_openMap)) _uiDisplayer.SetDisplayState(DisplayState.Map);
-        if (Input.GetKeyDown(_toggleUI)) _uiDisplayer.ToggleUI();
+        if (Input.GetKeyDown(_openInventory))_gameManager.AddEvent(_openInventoryCmd);
+        if (Input.GetKeyDown(_openMap))_gameManager.AddEvent(_openMapCmd);
+        if (Input.GetKeyDown(_toggleUI))_gameManager.AddEvent(_toggleUIDisplayCmd);
         //=======================debug========================
         if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
 
@@ -199,6 +215,4 @@ public class Player : Actor
     {
         return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
     }
-
-
 }

@@ -7,7 +7,7 @@ public enum DisplayState
 public class UIDisplayer : MonoBehaviour
 {
     private DisplayState _currentDisplayState;
-    private DisplayState _previousDisplayState;
+    private DisplayState _previousDisplayState=DisplayState.Inventory;
     private Animator _cortanaAnimator;
     private void Awake()
     {
