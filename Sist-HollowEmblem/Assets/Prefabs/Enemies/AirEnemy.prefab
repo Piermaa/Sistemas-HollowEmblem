@@ -5005,7 +5005,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1129777159
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 867756240499762090, guid: 6d011568f01e1a64a9292b466107e951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5064,6 +5064,7 @@ GameObject:
   - component: {fileID: 7245139835147682197}
   - component: {fileID: 7245139835147682196}
   - component: {fileID: 7245139835147682199}
+  - component: {fileID: 418007376225649108}
   m_Layer: 7
   m_Name: AirEnemy
   m_TagString: Enemy
@@ -5168,6 +5169,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 9169599550706780984}
   _takingDamageParticles: {fileID: 6005106878015965430}
   _takingDamageSound: {fileID: 4623388001251160176}
+  _canRevive: 0
+  _reviveTime: 0
   _enemyMovements:
   - {fileID: 7245139835147682199}
   - {fileID: 7245139835147682196}
@@ -5202,6 +5205,18 @@ MonoBehaviour:
   _waypoints:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &418007376225649108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426794111383733916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84d113a7f301174fbe6008754e3b44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3426794111952559724
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,7 +5794,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -452163689
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 1182186762331124188, guid: 8c67e40f15076b7439393820ecaa4890, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

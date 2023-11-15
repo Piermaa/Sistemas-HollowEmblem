@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     #region EVENT_QUEUE
     private Queue<ICommand> _events = new Queue<ICommand>();
+    private List<IMemento> _reversibleEvents = new List<IMemento>();
 
     public void AddEvent(ICommand command) => _events.Enqueue(command);
 
@@ -26,6 +27,25 @@ public class GameManager : MonoBehaviour
         {
             var command = _events.Dequeue();
             command.Do();
+
+            if (command is IMemento mementoCmd)
+            {
+                if (mementoCmd.CanUndo)
+                {
+                    _reversibleEvents.Add(mementoCmd);
+                }
+            }
+        }
+
+        for (int i = _reversibleEvents.Count - 1; i >= 0; i--)
+        {
+            _reversibleEvents[i].TimeToUndo -= Time.deltaTime;
+
+            if (_reversibleEvents[i].TimeToUndo <= 0)
+            {
+                _reversibleEvents[i].Undo();
+                _reversibleEvents.Remove(_reversibleEvents[i]);
+            }
         }
     }
     #endregion

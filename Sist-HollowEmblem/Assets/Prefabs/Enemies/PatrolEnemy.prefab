@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 8912817016714868333}
   - component: {fileID: 8912817016714868332}
   - component: {fileID: 8912817016714868330}
+  - component: {fileID: 2766172138226283215}
   m_Layer: 7
   m_Name: PatrolEnemy
   m_TagString: Enemy
@@ -375,6 +376,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 7299225212065242204}
   _takingDamageParticles: {fileID: 8948338878454064610}
   _takingDamageSound: {fileID: 4943660824941292669}
+  _canRevive: 1
+  _reviveTime: 5
   _enemyMovements:
   - {fileID: 8912817016714868330}
   - {fileID: 8912817016714868332}
@@ -408,6 +411,18 @@ MonoBehaviour:
   _waypoints:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2766172138226283215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447590792866336121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84d113a7f301174fbe6008754e3b44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4447590792888078320
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,8 +52,8 @@ public class Actor : MonoBehaviour, IDamageable
     public virtual void TakeDamage(int damageTaken)
     {
         _takingDamageSound.PlayOneShot(_takingDamageSound.clip);
-        if (_currentHealth>0)
-        {   
+   //     if (_currentHealth>0)
+  //      {   
             _currentHealth -= damageTaken;
             _takingDamageParticles.Play();
             StartCoroutine(TakingDamageFlash());
@@ -62,7 +62,7 @@ public class Actor : MonoBehaviour, IDamageable
             {
                 Death();
             }
-        }
+   //     }
     }
 
     public virtual void Death()

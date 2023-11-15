@@ -4878,7 +4878,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1129777159
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: -32177562277668595, guid: 8c67e40f15076b7439393820ecaa4890, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4962,7 +4962,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1129777159
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -1867771082699557143, guid: 1e0cde7f787bf59438a1045d924b4671, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9923,6 +9923,7 @@ GameObject:
   - component: {fileID: 3220689763989010828}
   - component: {fileID: 6398537861417278282}
   - component: {fileID: 6398537861417278285}
+  - component: {fileID: 6104324292973123045}
   m_Layer: 7
   m_Name: VulcanEnemy
   m_TagString: Enemy
@@ -10036,6 +10037,9 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 3220689763484322190}
   _takingDamageParticles: {fileID: 7326744933445964672}
   _takingDamageSound: {fileID: 4080014692258376733}
+  _canRevive: 0
+  _reviveTime: 0
+  _warmUpTime: 0
   _vulcanAttacks:
   - {fileID: 11400000, guid: 5266d4f1084fb104990cd8ab0d8af829, type: 2}
   - {fileID: 11400000, guid: 0f2b136685e27ad4fa886eaf91f53230, type: 2}
@@ -10043,6 +10047,18 @@ MonoBehaviour:
   - {fileID: 5361203925576963348}
   - {fileID: 1610512848281169}
   _attackOrigin: {fileID: 6398537862282253209}
+--- !u!114 &6104324292973123045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6398537861417278284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84d113a7f301174fbe6008754e3b44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6398537862282253222
 GameObject:
   m_ObjectHideFlags: 0

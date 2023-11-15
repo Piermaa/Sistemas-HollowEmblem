@@ -62651,6 +62651,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 178669924}
   _takingDamageParticles: {fileID: 195180222}
   _takingDamageSound: {fileID: 50327899}
+  _canRevive: 0
+  _reviveTime: 0
   _warmUpTime: 0.1
   _vulcanAttacks:
   - {fileID: 11400000, guid: 5266d4f1084fb104990cd8ab0d8af829, type: 2}
@@ -69197,6 +69199,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 1474097460}
   _takingDamageParticles: {fileID: 2095104342}
   _takingDamageSound: {fileID: 364271556}
+  _canRevive: 0
+  _reviveTime: 0
   _warmUpTime: 0.2
   _vulcanAttacks:
   - {fileID: 11400000, guid: 5266d4f1084fb104990cd8ab0d8af829, type: 2}

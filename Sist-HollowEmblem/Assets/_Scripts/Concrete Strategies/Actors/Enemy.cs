@@ -7,12 +7,20 @@ using UnityEngine;
 public class Enemy : Actor
 {
     #region Class Properties
+    
+    public float ReviveTime => _reviveTime;
+    public bool CanRevive  => _canRevive;
+    
 
+    [SerializeField] protected bool _canRevive;
+    [SerializeField] protected float _reviveTime=5;
     protected Animator _animator;
     protected EnemyStats _enemyStats;
     protected float _attackCooldownTimer;
 
     #endregion
+
+    private EnemyDeathCmd _enemyDeathCmd;
 
     #region Monobehaviour Callbacks
 
@@ -21,11 +29,22 @@ public class Enemy : Actor
         base.Awake();
         _animator = GetComponent<Animator>();
         _enemyStats = _actorStats as EnemyStats;
+        _enemyDeathCmd = new(GetComponent<IEnemyDeath>(),this);
     }
 
     protected virtual void Update()
     {
         _attackCooldownTimer = _attackCooldownTimer > 0 ? _attackCooldownTimer - Time.deltaTime : 0;
+    }
+
+    public override void Death()
+    {
+       GameManager.Instance.AddEvent(_enemyDeathCmd);
+    }
+
+    public void DropItem()
+    {
+        Debug.LogWarning("Drop item!");
     }
 
     #endregion
