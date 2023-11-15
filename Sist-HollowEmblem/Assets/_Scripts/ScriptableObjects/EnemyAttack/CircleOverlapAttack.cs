@@ -16,7 +16,6 @@ public class CircleOverlapAttack : EnemyAttack
     #endregion
 
     #endregion
-
     
     #region EnemyAttack Overrides
     public override void Attack(Vector3 origin, Vector3 direction)

@@ -38,10 +38,6 @@ public class StaticEnemy : Enemy
       {
          _vulcanAttackCmd[i] = new(_vulcanAttacks[i],_attackOrigin,gameObject,_shootParticles[i]);
       }
-      foreach (var vulcanAttack in _vulcanAttacks)
-      {
-         vulcanAttack.InitializeEnemyAttack(gameObject);
-      }
    }
    
    protected override void Update()
@@ -64,8 +60,6 @@ public class StaticEnemy : Enemy
    public void Attack(int index)
    {
       GameManager.Instance.AddEvent(_vulcanAttackCmd[index]);
-//      _vulcanAttacks[index].Attack(_attackOrigin.position, transform.localScale);
- //     _shootParticles[index].Play();
    }
 
    #endregion
