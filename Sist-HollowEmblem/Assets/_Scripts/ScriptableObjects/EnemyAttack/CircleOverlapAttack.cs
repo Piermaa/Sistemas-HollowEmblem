@@ -15,21 +15,13 @@ public class CircleOverlapAttack : EnemyAttack
 
     #endregion
 
-    private Transform _attackOrigin;
-
     #endregion
 
     
     #region EnemyAttack Overrides
-
-    public override void InitializeEnemyAttack(Transform attackOrigin, GameObject owner)
+    public override void Attack(Vector3 origin, Vector3 direction)
     {
-        _attackOrigin = attackOrigin;
-    }
-
-    public override void Attack()
-    {
-       Physics2D.OverlapCircle(_attackOrigin.position, _attackRadius, _whatIsPlayer)? // veo si encuentro al player
+       Physics2D.OverlapCircle(origin, _attackRadius, _whatIsPlayer)? // veo si encuentro al player
            .GetComponent<IDamageable>().TakeDamage(_damage); // le hago daño
     }
     #endregion

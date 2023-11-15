@@ -23,6 +23,8 @@ public class PatrollerEnemy : Enemy
     private bool _canAttack = false;
     #endregion
 
+    private EnemyAttackCmd _enemyAttackCmd;
+    
     #region MonoBehaviour Callbacks
     protected override void Awake()
     {
@@ -32,8 +34,8 @@ public class PatrollerEnemy : Enemy
         {
             enemyMovement.InitEnemyMovement(gameObject, _enemyStats as MovableEnemyStats);
         }
-        
-        _enemyAttack.InitializeEnemyAttack(_attackOrigin, gameObject);
+
+        _enemyAttackCmd = new(_enemyAttack, _attackOrigin, gameObject);
         SwitchEnemyMovement(0);
     }
     protected override void Update()
@@ -76,7 +78,7 @@ public class PatrollerEnemy : Enemy
 
     public void Attack()
     {
-        _enemyAttack.Attack();
+        GameManager.Instance.AddEvent(_enemyAttackCmd);
     }
 
     //#################################

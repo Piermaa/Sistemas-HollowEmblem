@@ -12,25 +12,23 @@ public class VulcanAttack : EnemyAttack
     [SerializeField] private GameObject _vulcanBulletPrefab;
     #endregion
     private VulcanBulletFactory _vulcanBulletFactory;
-    private Transform _spawnPos;
     #endregion
     
     #region EnemyAttack Overrides
 
-    public override void InitializeEnemyAttack(Transform attackOrigin, GameObject owner)
+    public override void InitializeEnemyAttack(GameObject owner)
     {
         _vulcanBulletFactory = new VulcanBulletFactory(_vulcanBulletPrefab.GetComponent<VulcanBullet>());
-        _spawnPos = attackOrigin;
     }
 
-    public override void Attack()
+    public override void Attack(Vector3 spawnPos, Vector3 direction)
     {
         var l= _vulcanBulletFactory.CreateProduct();
-        l.Reset(_spawnPos.position);
+        l.Reset(spawnPos);
         l.Shoot(new Vector2(-_shootDirection.x,_shootDirection.y), _shootForce);
         
         var r= _vulcanBulletFactory.CreateProduct();
-        r.Reset(_spawnPos.position);
+        r.Reset(spawnPos);
         r.Shoot(_shootDirection, _shootForce);
     }
 

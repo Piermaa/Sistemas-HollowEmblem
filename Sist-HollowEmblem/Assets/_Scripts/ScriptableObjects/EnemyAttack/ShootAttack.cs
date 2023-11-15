@@ -10,26 +10,21 @@ public class ShootAttack : EnemyAttack
 
     [SerializeField] private GameObject _bulletPrefab;
     #endregion
-
     private BulletFactory _bulletFactory;
-    private Transform _spawnPos;
-    private Transform _enemy;
     #endregion
     
     #region EnemyAttack Overrides
 
-    public override void InitializeEnemyAttack(Transform attackOrigin, GameObject owner)
+    public override void InitializeEnemyAttack(GameObject owner)
     {
         _bulletFactory = new BulletFactory(_bulletPrefab.GetComponent<Bullet>());
-        _spawnPos = attackOrigin;
-        _enemy = owner.transform;
     }
 
-    public override void Attack()
+    public override void Attack(Vector3 spawnPos, Vector3 direction)
     {
        var b= _bulletFactory.CreateProduct();
-       b.Reset(_spawnPos.position);
-       b.Shoot(_enemy.localScale);
+       b.Reset(spawnPos);
+       b.Shoot(direction);
     }
 
     #endregion

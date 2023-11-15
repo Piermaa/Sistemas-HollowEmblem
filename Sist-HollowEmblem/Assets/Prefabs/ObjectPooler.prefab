@@ -50,7 +50,7 @@ MonoBehaviour:
     size: 3
   - tag: VulcanBullet
     prefab: {fileID: 8845292994303759772, guid: 91e69aadf774c514e8925dffdbc65198, type: 3}
-    size: 5
+    size: 50
   - tag: VExplosion
     prefab: {fileID: 2339150073083050807, guid: c89296b5c990f2f4e883571cc04bb234, type: 3}
     size: 10

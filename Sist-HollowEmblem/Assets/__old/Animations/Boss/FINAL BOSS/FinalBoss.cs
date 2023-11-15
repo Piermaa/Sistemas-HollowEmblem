@@ -86,8 +86,6 @@ public class FinalBoss : MonoBehaviour
 
             StartCoroutine(Shooting(rot));
             print("spawning bullet");
-
-
         }
 
 

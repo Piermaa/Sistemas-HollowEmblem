@@ -4,12 +4,12 @@ using UnityEngine;
 public class EnemyAttack : ScriptableObject, IEnemyAttack
 {
     
-    public virtual void Attack()
+    public virtual void Attack(Vector3 attackOrigin, Vector3 direction)
     {
         
     }
 
-    public virtual void InitializeEnemyAttack(Transform attackOrigin, GameObject owner)
+    public virtual void InitializeEnemyAttack(GameObject owner)
     {
         
     }

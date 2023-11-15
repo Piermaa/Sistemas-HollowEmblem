@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IEnemyAttack
 {
-   void Attack();
+   void Attack(Vector3 attackOrigin, Vector3 direction);
    
-   public void InitializeEnemyAttack(Transform attackOrigin, GameObject owner);
+   public void InitializeEnemyAttack(GameObject owner);
 }
