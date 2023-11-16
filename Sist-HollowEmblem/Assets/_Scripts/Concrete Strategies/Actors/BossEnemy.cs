@@ -20,7 +20,7 @@ public class BossEnemy : Enemy
 
     #region Class Properties
 
-    private BossPhase _currentPhase=default;
+    private BossPhase _currentPhase = default;
     private const string PHASE_INTEGER = "Phase";
     private const string ATTACK_ANIMATOR_PARAMETER = "Attack";
     private const string ATTACK_TRIGGER = "Attack";
@@ -39,7 +39,7 @@ public class BossEnemy : Enemy
     {
         base.Update();
 
-        if (_attackCooldownTimer<=0)
+        if (_attackCooldownTimer <= 0)
         {
             _animator.SetTrigger(ATTACK_ANIMATOR_PARAMETER);
             _attackCooldownTimer = _bossAttackCooldown;
@@ -60,7 +60,7 @@ public class BossEnemy : Enemy
         _phase++;
         _attackCooldownTimer = 0;
         _animator.ResetTrigger(ATTACK_TRIGGER);
-        if (_phase>0)
+        if (_phase > 0)
         {
        //     _currentPhase.Effects.SetActive(false);
         }
