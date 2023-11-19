@@ -26,10 +26,6 @@ public class StaticEnemy : Enemy
    protected override void Awake()
    {
       base.Awake();
-      if (_warmUpTime==0)
-      {
-         _warmUpTime = Random.Range(0, 5);
-      }
       _attackCooldownTimer += _warmUpTime;
       
       _vulcanAttackCmd = new VulcanAttackCmd[_vulcanAttacks.Length];

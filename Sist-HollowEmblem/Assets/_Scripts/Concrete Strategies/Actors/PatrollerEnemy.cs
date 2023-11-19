@@ -21,6 +21,7 @@ public class PatrollerEnemy : Enemy
     private EnemyMovement _currentEnemyMovement;
     private bool _canMove = true;
     private bool _canAttack = false;
+    private bool _isDead = false;
     #endregion
 
     private EnemyAttackCmd _enemyAttackCmd;
@@ -41,7 +42,7 @@ public class PatrollerEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if(_canMove)
+        if(_canMove && !_isDead)
             _currentEnemyMovement.Move();
 
         if (_attackCooldownTimer<=0 && _canAttack)
@@ -79,6 +80,11 @@ public class PatrollerEnemy : Enemy
     public void Attack()
     {
         GameManager.Instance.AddEvent(_enemyAttackCmd);
+    }
+
+    public void Death()
+    {
+        _isDead = true;
     }
 
     //#################################
