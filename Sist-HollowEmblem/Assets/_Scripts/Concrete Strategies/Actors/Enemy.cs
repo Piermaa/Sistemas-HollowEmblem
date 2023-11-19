@@ -10,10 +10,12 @@ public class Enemy : Actor
     
     public float ReviveTime => _reviveTime;
     public bool CanRevive  => _canRevive;
-    
+
+    public bool IsDead => _isDead;
 
     [SerializeField] protected bool _canRevive;
     [SerializeField] protected float _reviveTime=5;
+    protected bool _isDead = false;
     protected Animator _animator;
     protected EnemyStats _enemyStats;
     protected float _attackCooldownTimer;
@@ -39,9 +41,15 @@ public class Enemy : Actor
 
     public override void Death()
     {
+        print("Amemuero");
        GameManager.Instance.AddEvent(_enemyDeathCmd);
     }
-
+    
+    public void SetDead()
+    {
+        _isDead = true;
+    }
+    
     public void DropItem()
     {
         Debug.LogWarning("Drop item!");
