@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderBoss : BossEnemy
-{
-    public enum BattleState { SEARCHING, CHARGING, EMBISTING, RECOVERING }
+public enum BattleState { SEARCHING, CHARGING, EMBISTING, RECOVERING }
 
+public class SpiderBoss : MonoBehaviour
+{
     BattleState state;
 
     private Animator animator;
 
-    public GameObject embistingTrigger;
+    [SerializeField] private GameObject embistingTrigger;
 
-    public BoxCollider2D damageCollider;
+    [SerializeField] private BoxCollider2D damageCollider;
 
     [Header("Raycast")]
     RaycastHit2D playerRc;
@@ -27,12 +27,12 @@ public class SpiderBoss : BossEnemy
     public GameObject abUnlocker;
 
     [Header("Bools")]
-    private bool drop;
-    private bool isRight;
-    private bool goingRight;
-    private bool canEmbist;
-    private bool canRecover;
-    private bool isInvulnerable;
+    public bool drop;
+    public bool isRight;
+    public bool goingRight;
+    public bool canEmbist;
+    public bool canRecover;
+    public bool isInvulnerable;
 
     [Header("Transforms")]
     public Transform seekPlayerStart;
@@ -57,12 +57,9 @@ public class SpiderBoss : BossEnemy
     [SerializeField] AudioSource crashSound;
     [SerializeField] AudioSource crash2Sound;
     [SerializeField] AudioSource growlSound;
-    //[SerializeField] AudioSource dieSound;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         gameObject.SetActive(false);
         damageCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
@@ -80,10 +77,8 @@ public class SpiderBoss : BossEnemy
         state = BattleState.SEARCHING;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-
         UpdateCooldown();
         SetInvulnerability();
         BossStateExecution();
@@ -95,8 +90,8 @@ public class SpiderBoss : BossEnemy
         Vector3 theScale = transform.localScale;
 
         if ((playerRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer)) && cooldown <= 0)
-        {
-            state = BattleState.CHARGING;
+        {   
+                state = BattleState.CHARGING;
         }
 
         else
@@ -164,7 +159,7 @@ public class SpiderBoss : BossEnemy
     void Embisting()
     {
         Debug.Log("EMBISTING");
-
+        
         isInvulnerable = false;
         damageCollider.enabled = true;
 
@@ -198,12 +193,12 @@ public class SpiderBoss : BossEnemy
         canRecover = false;
         embistingTrigger.SetActive(false);
         animator.SetBool("Walk", false);
-
+        
         if (goingRight)
         {
             transform.rotation = Quaternion.Euler(0, 0, 10);
         }
-
+        
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, -10);
@@ -238,7 +233,7 @@ public class SpiderBoss : BossEnemy
 
         else
         {
-            damageCollider.enabled = true;
+            damageCollider.enabled = true;  
             invulnerabilityShield.SetActive(false);
         }
     }
@@ -272,12 +267,12 @@ public class SpiderBoss : BossEnemy
                     crash2Sound.Play();
                     StartCoroutine(Recovering());
                 }
-
+        
                 break;
         }
     }
 
-    public override void Death()
+    public void Death()
     {
         crashSound.Play();
         if (drop)
@@ -285,12 +280,10 @@ public class SpiderBoss : BossEnemy
             //GameManager.Instance.StartVictory(this.transform.position, "Dash");
         }
     }
-
     public void StepSoundEffect()
     {
         stepSound.Play();
     }
-
     public void Step2SoundEffect()
     {
         step2Sound.Play();
