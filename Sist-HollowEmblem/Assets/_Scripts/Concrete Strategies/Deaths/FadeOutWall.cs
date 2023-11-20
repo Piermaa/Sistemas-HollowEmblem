@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeOutWall : MonoBehaviour
+public class FadeOutWall : PlayerDetector, IEnemyDeath
 {
-    bool playerEntered=false;
+    [SerializeField] private AudioSource _damageSound;
+    private bool _playerEntered=false;
     public GameObject hideParent;
-    bool mustFade;
+    private bool _mustFade;
     public AudioSource fadeSound;
     public List<SpriteRenderer> sprites=new List<SpriteRenderer>();
     // Start is called before the first frame update
@@ -26,20 +27,32 @@ public class FadeOutWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(mustFade)
+        if(_mustFade)
         {
             StartCoroutine(Awaiting());
         }
     }
+
+    public override void OnPlayerDetect()
+    {
+        base.OnPlayerDetect();
+        Fade();
+    }
+
     public void Fade()
     {
-        if (!playerEntered)
+        if (!_playerEntered)
         {
             fadeSound.Play();
-            mustFade = true;
-            playerEntered = true;
+            _mustFade = true;
+            _playerEntered = true;
         }
-      
+    }
+    
+    private IEnumerator WaitForSound()
+    {
+        yield return new WaitUntil(()=>!_damageSound.isPlaying);
+        gameObject.SetActive(false);
     }
 
     private IEnumerator Awaiting()
@@ -55,6 +68,16 @@ public class FadeOutWall : MonoBehaviour
 
             yield return null;
         }
-        mustFade = false;
+        _mustFade = false;
+    }
+
+    public void InitializeEnemyDeath(Enemy enemy)
+    {
+        
+    }
+
+    public void Death()
+    {
+        StartCoroutine(WaitForSound());
     }
 }

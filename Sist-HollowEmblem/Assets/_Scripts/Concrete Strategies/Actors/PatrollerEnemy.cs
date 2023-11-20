@@ -41,8 +41,12 @@ public class PatrollerEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if(_canMove)
-            _currentEnemyMovement.Move();
+        if(_canMove && !_isDead)
+            {
+                print("Memu evo");
+                 _currentEnemyMovement.Move();
+            }
+           
 
         if (_attackCooldownTimer<=0 && _canAttack)
         {
@@ -80,6 +84,8 @@ public class PatrollerEnemy : Enemy
     {
         GameManager.Instance.AddEvent(_enemyAttackCmd);
     }
+
+  
 
     //#################################
     //### Called in animation event ###
