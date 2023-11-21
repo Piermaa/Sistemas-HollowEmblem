@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     [SerializeField] Transform shootTransform;
     //[SerializeField] GameObject tutorial;
     Animator animator;
-
+     
     [Header("Bools")]
     bool shooting;
     public bool bossInRight;

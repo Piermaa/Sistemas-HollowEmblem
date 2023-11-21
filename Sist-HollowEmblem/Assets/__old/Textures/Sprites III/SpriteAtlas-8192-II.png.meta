@@ -4473,7 +4473,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_245
+      name: 1Walk
       rect:
         serializedVersion: 2
         x: 12570
@@ -4494,7 +4494,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_246
+      name: 2Walk
       rect:
         serializedVersion: 2
         x: 14789
@@ -4536,7 +4536,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_248
+      name: 3Walk
       rect:
         serializedVersion: 2
         x: 2287
@@ -4557,7 +4557,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_249
+      name: 4Walk
       rect:
         serializedVersion: 2
         x: 4335
@@ -4578,7 +4578,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_250
+      name: 5Walk
       rect:
         serializedVersion: 2
         x: 6489
@@ -4599,7 +4599,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_251
+      name: 6Walk
       rect:
         serializedVersion: 2
         x: 8615
@@ -4620,7 +4620,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_252
+      name: 7Walk
       rect:
         serializedVersion: 2
         x: 10500
@@ -4641,7 +4641,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_253
+      name: 8Walk
       rect:
         serializedVersion: 2
         x: 12425
@@ -4662,7 +4662,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_254
+      name: Attack1
       rect:
         serializedVersion: 2
         x: 14536
@@ -4683,7 +4683,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_255
+      name: Attack2
       rect:
         serializedVersion: 2
         x: 219
@@ -4704,11 +4704,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_256
+      name: Attack3
       rect:
         serializedVersion: 2
-        x: 2183
-        y: 465
+        x: 2175
+        y: 473
         width: 1778
         height: 1116
       alignment: 0
@@ -4725,11 +4725,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_257
+      name: Attack4
       rect:
         serializedVersion: 2
         x: 4247
-        y: 465
+        y: 473
         width: 1746
         height: 1116
       alignment: 0
@@ -4746,7 +4746,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_258
+      name: Attack5
       rect:
         serializedVersion: 2
         x: 6313
@@ -4767,7 +4767,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_259
+      name: Attack6
       rect:
         serializedVersion: 2
         x: 8327
@@ -4788,7 +4788,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_260
+      name: Attack7
       rect:
         serializedVersion: 2
         x: 10375
@@ -4809,7 +4809,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteAtlas-8192-II_261
+      name: Attack8
       rect:
         serializedVersion: 2
         x: 12423
@@ -4880,7 +4880,7 @@ TextureImporter:
         width: 655
         height: 298
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -4903,6 +4903,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      1Walk: -4553706093176924689
+      2Walk: -5836664947749749486
+      3Walk: 546207722698515920
+      4Walk: -1387094659622031846
+      5Walk: 820471786351108693
+      6Walk: -3773914613883672452
+      7Walk: 5202671176469380245
+      8Walk: -4446053180486973280
+      Attack1: -6304824434980503804
+      Attack2: 3856604017991863054
+      Attack3: -6069475534812488902
+      Attack4: 2872700382420049630
+      Attack5: -69631686791040153
+      Attack6: 2045369436405032339
+      Attack7: -4859868574113069633
+      Attack8: -5815219166771554323
       SpiderBoss Idle: -714873042312968863
       SpriteAtlas-8192-II_0: 7395841835652901133
       SpriteAtlas-8192-II_1: -4584421608076257010
@@ -5027,25 +5043,9 @@ TextureImporter:
       SpriteAtlas-8192-II_241: -2647430290157890450
       SpriteAtlas-8192-II_242: 3634586969992053251
       SpriteAtlas-8192-II_243: 8506459370622892368
-      SpriteAtlas-8192-II_245: -4553706093176924689
-      SpriteAtlas-8192-II_246: -5836664947749749486
       SpriteAtlas-8192-II_247: 2946558832575825467
-      SpriteAtlas-8192-II_248: 546207722698515920
-      SpriteAtlas-8192-II_249: -1387094659622031846
       SpriteAtlas-8192-II_25: -7220566643498788080
-      SpriteAtlas-8192-II_250: 820471786351108693
-      SpriteAtlas-8192-II_251: -3773914613883672452
-      SpriteAtlas-8192-II_252: 5202671176469380245
-      SpriteAtlas-8192-II_253: -4446053180486973280
-      SpriteAtlas-8192-II_254: -6304824434980503804
-      SpriteAtlas-8192-II_255: 3856604017991863054
-      SpriteAtlas-8192-II_256: -6069475534812488902
-      SpriteAtlas-8192-II_257: 2872700382420049630
-      SpriteAtlas-8192-II_258: -69631686791040153
-      SpriteAtlas-8192-II_259: 2045369436405032339
       SpriteAtlas-8192-II_26: 3851097219752592547
-      SpriteAtlas-8192-II_260: -4859868574113069633
-      SpriteAtlas-8192-II_261: -5815219166771554323
       SpriteAtlas-8192-II_27: 2618953930802145598
       SpriteAtlas-8192-II_28: 7003840502575752414
       SpriteAtlas-8192-II_29: -118026992619120767

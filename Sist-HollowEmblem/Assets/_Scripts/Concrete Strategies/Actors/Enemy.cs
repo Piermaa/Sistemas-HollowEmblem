@@ -41,7 +41,7 @@ public class Enemy : Actor
 
     public override void Death()
     {
-        print("Amemuero");
+       print("Amemuero");
        GameManager.Instance.AddEvent(_enemyDeathCmd);
     }
     

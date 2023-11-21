@@ -4,65 +4,60 @@ using UnityEngine;
 
 public enum BattleState { SEARCHING, CHARGING, EMBISTING, RECOVERING }
 
-public class SpiderBoss : MonoBehaviour
+public class SpiderBoss : BossEnemy
 {
     BattleState state;
-
-    private Animator animator;
 
     [SerializeField] private GameObject embistingTrigger;
 
     [SerializeField] private BoxCollider2D damageCollider;
 
     [Header("Raycast")]
-    RaycastHit2D playerRc;
-    RaycastHit2D wallRc;
+    private RaycastHit2D playerRc;
+    private RaycastHit2D wallRc;
 
     [Header("GameObject")]
-    public GameObject leftSide;
-    public GameObject rightSide;
-    public GameObject waypointA;
-    public GameObject waypointB;
-    public GameObject invulnerabilityShield;
-    public GameObject abUnlocker;
+    [SerializeField] private GameObject leftSide;
+    [SerializeField] private GameObject rightSide;
+    [SerializeField] private GameObject waypointA;
+    [SerializeField] private GameObject waypointB;
+    [SerializeField] private GameObject invulnerableArea;
+    [SerializeField] private GameObject abUnlocker;
 
     [Header("Bools")]
-    public bool drop;
-    public bool isRight;
-    public bool goingRight;
-    public bool canEmbist;
-    public bool canRecover;
-    public bool isInvulnerable;
+    private bool isRight;
+    private bool goingRight;
+    private bool canEmbist;
+    private bool canRecover;
+    private bool isInvulnerable;
 
     [Header("Transforms")]
-    public Transform seekPlayerStart;
-    public Transform playerTransform;
+    [SerializeField] private Transform seekPlayerStart;
 
     [Header("Floats")]
     private float distanceOfRay = 25f;
-    public float distanceOfWallRay = 0.5f;
-    public float speed = 7.5f;
-    public float embistingSpeed = 10f;
-    public float backSpeed = 0.1f;
-    public float cooldown;
+    private float distanceOfWallRay = 0.5f;
+    private float speed = 7.5f;
+    private float embistingSpeed = 10f;
+    private float backSpeed = 0.1f;
+    private float cooldown;
     [SerializeField] private float cooldownTimer = 0.2f;
 
     [Header("LayerMasks")]
-    public LayerMask playerLayer;
-    public LayerMask spikeLayer;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask spikeLayer;
 
     [Header("Sounds")]
-    [SerializeField] AudioSource stepSound;
-    [SerializeField] AudioSource step2Sound;
-    [SerializeField] AudioSource crashSound;
-    [SerializeField] AudioSource crash2Sound;
-    [SerializeField] AudioSource growlSound;
+    [SerializeField] private AudioSource stepSound;
+    [SerializeField] private AudioSource step2Sound;
+    [SerializeField] private AudioSource crashSound;
+    [SerializeField] private AudioSource crash2Sound;
+    [SerializeField] private AudioSource growlSound;
 
-    private void Awake()
+    protected override void Awake()
     {
         gameObject.SetActive(false);
         damageCollider = GetComponent<BoxCollider2D>();
-        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -77,8 +72,10 @@ public class SpiderBoss : MonoBehaviour
         state = BattleState.SEARCHING;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         UpdateCooldown();
         SetInvulnerability();
         BossStateExecution();
@@ -90,13 +87,13 @@ public class SpiderBoss : MonoBehaviour
         Vector3 theScale = transform.localScale;
 
         if ((playerRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer)) && cooldown <= 0)
-        {   
-                state = BattleState.CHARGING;
+        {
+            state = BattleState.CHARGING;
         }
 
         else
         {
-            animator.SetBool("Walk", true);
+            _animator.SetBool("Walk", true);
 
             if (goingRight)
             {
@@ -129,7 +126,7 @@ public class SpiderBoss : MonoBehaviour
         Debug.Log("CHARGING");
 
         canEmbist = false;
-        animator.SetBool("Walk", false);
+        _animator.SetBool("Walk", false);
 
         for (float i = 1.5f; i > 0; i -= Time.deltaTime)
         {
@@ -159,19 +156,19 @@ public class SpiderBoss : MonoBehaviour
     void Embisting()
     {
         Debug.Log("EMBISTING");
-        
+
         isInvulnerable = false;
         damageCollider.enabled = true;
 
         if (wallRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfWallRay, spikeLayer))
         {
-            animator.SetBool("Walk", false);
+            _animator.SetBool("Walk", false);
             state = BattleState.RECOVERING;
         }
 
         else
         {
-            animator.SetBool("Walk", true);
+            _animator.SetBool("Walk", true);
             embistingTrigger.SetActive(true);
 
             if (goingRight)
@@ -192,13 +189,13 @@ public class SpiderBoss : MonoBehaviour
 
         canRecover = false;
         embistingTrigger.SetActive(false);
-        animator.SetBool("Walk", false);
-        
+        _animator.SetBool("Walk", false);
+
         if (goingRight)
         {
             transform.rotation = Quaternion.Euler(0, 0, 10);
         }
-        
+
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, -10);
@@ -228,13 +225,13 @@ public class SpiderBoss : MonoBehaviour
         if (isInvulnerable)
         {
             damageCollider.enabled = false;
-            invulnerabilityShield.SetActive(true);
+            invulnerableArea.SetActive(true);
         }
 
         else
         {
-            damageCollider.enabled = true;  
-            invulnerabilityShield.SetActive(false);
+            damageCollider.enabled = true;
+            invulnerableArea.SetActive(false);
         }
     }
 
@@ -267,23 +264,23 @@ public class SpiderBoss : MonoBehaviour
                     crash2Sound.Play();
                     StartCoroutine(Recovering());
                 }
-        
+
                 break;
         }
     }
 
-    public void Death()
+    public override void Death()
     {
+        base.Death();
+
         crashSound.Play();
-        if (drop)
-        {
-            //GameManager.Instance.StartVictory(this.transform.position, "Dash");
-        }
     }
+
     public void StepSoundEffect()
     {
         stepSound.Play();
     }
+
     public void Step2SoundEffect()
     {
         step2Sound.Play();
