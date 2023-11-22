@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ChangeTextPosition : MonoBehaviour
 {
-    [SerializeField] GameObject textPosition;
+    [SerializeField] private GameObject textPosition;
 
-
-    void Update()
+    void Start()
     {
         transform.position = textPosition.transform.position;
     }

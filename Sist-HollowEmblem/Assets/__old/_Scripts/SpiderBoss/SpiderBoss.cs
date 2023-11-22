@@ -10,8 +10,6 @@ public class SpiderBoss : BossEnemy
 
     [SerializeField] private GameObject embistingTrigger;
 
-    [SerializeField] private BoxCollider2D damageCollider;
-
     [Header("Raycast")]
     private RaycastHit2D playerRc;
     private RaycastHit2D wallRc;
@@ -57,7 +55,6 @@ public class SpiderBoss : BossEnemy
     protected override void Awake()
     {
         gameObject.SetActive(false);
-        damageCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Start()
@@ -158,7 +155,6 @@ public class SpiderBoss : BossEnemy
         Debug.Log("EMBISTING");
 
         isInvulnerable = false;
-        damageCollider.enabled = true;
 
         if (wallRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfWallRay, spikeLayer))
         {
@@ -206,7 +202,6 @@ public class SpiderBoss : BossEnemy
         cooldown = cooldownTimer;
         canRecover = true;
         isInvulnerable = true;
-        damageCollider.enabled = false;
         state = BattleState.SEARCHING;
 
         yield return null;
@@ -224,13 +219,11 @@ public class SpiderBoss : BossEnemy
     {
         if (isInvulnerable)
         {
-            damageCollider.enabled = false;
             invulnerableArea.SetActive(true);
         }
 
         else
         {
-            damageCollider.enabled = true;
             invulnerableArea.SetActive(false);
         }
     }
