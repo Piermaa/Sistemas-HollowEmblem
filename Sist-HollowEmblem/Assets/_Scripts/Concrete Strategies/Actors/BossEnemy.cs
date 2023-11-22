@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossPhase
 {
     public int HealthUmbral;
-    public int AttackCooldown;
+    public float AttackCooldown;
 }
 
 public class BossEnemy : Enemy

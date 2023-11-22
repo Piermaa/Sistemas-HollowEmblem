@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlammerBossController : MonoBehaviour
+public class SlammerBossController : BossEnemy
 {
     private HealthController health;
-    private Animator animator;
     private Rigidbody2D rb;
     private ObjectPooler objectPooler;
-    public GameObject abUnlocker;
+    [SerializeField] private GameObject abUnlocker;
 
     private bool playedJumpSound;
     private bool mustSlam;
@@ -39,7 +38,7 @@ public class SlammerBossController : MonoBehaviour
     const string MIDDLERIGHT = "MiddleRight";
     const string MIDDLELEFT = "MiddleLeft";
 
-    [SerializeField] GameObject tutorial;
+    [SerializeField] private GameObject tutorial;
     public enum BossPosition
     {
         Left,
@@ -51,10 +50,16 @@ public class SlammerBossController : MonoBehaviour
 
     public BossPosition bossPosition;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _currentPhase = _bossPhases[0];
+    }
+
     private void Start()
     {
         gameObject.SetActive(false);
-        animator = GetComponent<Animator>();
 
         for (int i = 0; i < 5; i++)
         {
@@ -64,12 +69,11 @@ public class SlammerBossController : MonoBehaviour
 
         objectPooler = ObjectPooler.Instance;
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         health = GetComponent<HealthController>();
         maxHealth = health.healthPoints;
     }
 
-    private void Update()
+    protected override void Update()
     {
         if(health.healthPoints > maxHealth*7.5f/10)
         {
@@ -128,7 +132,7 @@ public class SlammerBossController : MonoBehaviour
                 playedJumpSound = true;
             }
 
-            animator.SetBool("Jump", true);
+            _animator.SetBool("Jump", true);
             transform.position = Vector2.MoveTowards(transform.position, newPos, Time.deltaTime *
                 (slamSpeed + 1 / 2 * repositionAcc * Time.deltaTime * Time.deltaTime));
 
@@ -141,8 +145,8 @@ public class SlammerBossController : MonoBehaviour
     }
     IEnumerator DisplayingSlam(Collision2D collision)
     {
-        animator.SetBool("Jump", false);
-        animator.SetTrigger("Slam");
+        _animator.SetBool("Jump", false);
+        _animator.SetTrigger("Slam");
         slam.Play();
         playedJumpSound = false;
         yield return new WaitForSeconds(0.1f);
