@@ -57,6 +57,7 @@ public class TelemanBoss : BossEnemy
     {
         base.Awake();
 
+        _currentPhase = _bossPhases[0];
         gameObject.SetActive(false);
 
         rb = GetComponent<Rigidbody2D>();
@@ -68,14 +69,10 @@ public class TelemanBoss : BossEnemy
     {
         canSpawning = true;
         state = FBBattleState.SPAWNING;
-
-        _currentPhase = _bossPhases[0];
     }
 
     protected override void Update()
     {
-        base.Update();
-
         BossStateExecution();
         ChangeScale();
 
@@ -118,7 +115,7 @@ public class TelemanBoss : BossEnemy
 
         else
         {
-            Vector2 playerVector = new Vector2(_playerTransform.position.x, transform.position.y);
+            Vector2 playerVector = new Vector2(_playerTransform.position.x, _playerTransform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, playerVector, speed * Time.deltaTime);
             _animator.SetBool("Walking", true);
         }
