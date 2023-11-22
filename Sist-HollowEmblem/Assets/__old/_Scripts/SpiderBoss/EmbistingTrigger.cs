@@ -10,7 +10,7 @@ public class EmbistingTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.TryGetComponent<IDamageable>(out var playerHealth))
+            if (collision.TryGetComponent<HealthController>(out var playerHealth))
             {
                 playerHealth.TakeDamage(damage);
             }

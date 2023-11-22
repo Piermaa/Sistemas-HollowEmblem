@@ -55,7 +55,6 @@ public class SpiderBoss : BossEnemy
     protected override void Awake()
     {
         base.Awake();
-        _currentHealth = MaxHealth;
         _currentPhase = _bossPhases[0];
         gameObject.SetActive(false);
     }

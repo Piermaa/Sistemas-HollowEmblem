@@ -15497,7 +15497,6 @@ MonoBehaviour:
   _jump: 32
   _abilityAudioSource: {fileID: 4344375614677067339}
   _playerAbilities: []
-  _cameraTarget: {fileID: 4344375614850194137}
 --- !u!114 &4344375614529401998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21553,8 +21552,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0
   m_LocalBounds:
-    m_Center: {x: 0.28485, y: -0.033249974, z: 0}
-    m_Extent: {x: 2.28905, y: 2.23555, z: 0}
+    m_Center: {x: 0.2766999, y: -0.02609992, z: 0}
+    m_Extent: {x: 2.2924, y: 2.2286, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
