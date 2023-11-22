@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum FBBattleState { SPAWNING, IDLE, MELEEATTACK, FLOORATTACK, SHOOTATTACK, DEATH};
 
-public class FinalBossScript : MonoBehaviour
+public class TelemanBoss : BossEnemy
 {
     public FBBattleState state;
 
@@ -14,25 +14,21 @@ public class FinalBossScript : MonoBehaviour
     public LayerMask playerLayer;
     private SceneChanger changer;
 
-    private Animator animator;
-    [SerializeField] Animator[] floorSpots;
-    [SerializeField] Animator player;
+    [SerializeField] private Animator[] _floorSpots;
+    [SerializeField] private Transform _playerTransform;
 
-    [SerializeField] GameObject bulletPrefab;
+    private int attackIndex;
 
-    public int attackIndex;
-
-    [Header("Bools")]
-    public bool canSpawning;
-    public bool canIdle;
-    public bool canMelee;
-    public bool canFly;
-    public bool canFloor;
-    public bool canDie;
-    bool hasFloorAttacked;
-    public bool canShoot;
-    public bool isRight;
-    public bool canChangeScale;
+    private bool canSpawning;
+    private bool canIdle;
+    private bool canMelee;
+    private bool canFly;
+    private bool canFloor;
+    private bool canDie;
+    private bool hasFloorAttacked;
+    private bool canShoot;
+    private bool isRight;
+    private bool canChangeScale;
 
     [Header("Float")]
     private float distanceOfRay = -4f;
@@ -40,29 +36,30 @@ public class FinalBossScript : MonoBehaviour
     private float flySpeed = 5.5f;
 
     [Header ("Transform")]
-    [SerializeField] Transform raycastStart;
-    [SerializeField] Transform hangingSpot;
-    [SerializeField] Transform floorSpot;
-    [SerializeField] Transform shootStartUp;
-    [SerializeField] Transform shootStartDown;
-    [SerializeField] Transform shootStartMiddle;
+    [SerializeField] private Transform raycastStart;
+    [SerializeField] private Transform hangingSpot;
+    [SerializeField] private Transform floorSpot;
+    [SerializeField] private Transform shootStartUp;
+    [SerializeField] private Transform shootStartDown;
+    [SerializeField] private Transform shootStartMiddle;
 
     [Header("Vector3")]
-    Vector3 direction;
-    Vector3 directionDown;
+    private Vector3 direction;
+    private Vector3 directionDown;
 
     [Header("Sounds")]
-    [SerializeField] AudioSource meleeAttackSound;
-    [SerializeField] AudioSource shootAttackSound;
-    [SerializeField] AudioSource floorAttackSound;
-    [SerializeField] AudioSource dieSound;
+    [SerializeField] private AudioSource meleeAttackSound;
+    [SerializeField] private AudioSource shootAttackSound;
+    [SerializeField] private AudioSource floorAttackSound;
+    [SerializeField] private AudioSource dieSound;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         gameObject.SetActive(false);
 
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         objectPooler = ObjectPooler.Instance;
         changer = FindObjectOfType<SceneChanger>();
     }
@@ -71,14 +68,18 @@ public class FinalBossScript : MonoBehaviour
     {
         canSpawning = true;
         state = FBBattleState.SPAWNING;
+
+        _currentPhase = _bossPhases[0];
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         BossStateExecution();
         ChangeScale();
 
-        if (animator.GetBool("Flying"))
+        if (_animator.GetBool("Flying"))
         {
             print("flyng true");
         }
@@ -108,18 +109,18 @@ public class FinalBossScript : MonoBehaviour
 
     void MeleeAttackActivator()
     {
-        if ((hit = Physics2D.Raycast(raycastStart.position, raycastStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer)))
+        if (hit = Physics2D.Raycast(raycastStart.position, raycastStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer))
         {
             canChangeScale = false;
-            animator.SetBool("Walking", false);
-            animator.SetTrigger("MeleeAttack");
+            _animator.SetBool("Walking", false);
+            _animator.SetTrigger("MeleeAttack");
         }
 
         else
         {
-            Vector2 playerVector = new Vector2(player.transform.position.x, transform.position.y);
+            Vector2 playerVector = new Vector2(_playerTransform.position.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, playerVector, speed * Time.deltaTime);
-            animator.SetBool("Walking", true);
+            _animator.SetBool("Walking", true);
         }
     }
 
@@ -129,33 +130,38 @@ public class FinalBossScript : MonoBehaviour
         {
             if (!hasFloorAttacked)
             {
-                animator.SetBool("Flying", false);
-                animator.SetTrigger("FloorAttack");
-                foreach (Animator anim in floorSpots)
+                _animator.SetBool("Flying", false);
+                _animator.SetTrigger("FloorAttack");
+
+                foreach (Animator anim in _floorSpots)
                 {
                     anim.SetTrigger("Attack");
                 }
+
                 hasFloorAttacked = true;
             }
         }
+
         else 
         {
                 transform.position = Vector2.MoveTowards(transform.position, hangingSpot.transform.position, flySpeed * Time.deltaTime);
-                if (!animator.GetBool("Flying"))
+                if (!_animator.GetBool("Flying"))
                 {
                     print("Flying por flooractivator");
-                    animator.SetBool("Flying", true);
+                    _animator.SetBool("Flying", true);
                 }
         }
     }
 
     void ShootAttackActivator()
     {
-        animator.SetTrigger("ShootAttack");
+        _animator.SetTrigger("ShootAttack");
     }
 
-    public void Death()
+    public override void Death()
     {
+        base.Death();
+
         state = FBBattleState.DEATH;
 
         StartCoroutine(FinishingGame());
@@ -190,8 +196,8 @@ public class FinalBossScript : MonoBehaviour
 
     public void CalculatePosition()
     {
-        direction = new Vector3(player.transform.position.x - 2, shootStartUp.transform.position.y, 0);
-        directionDown = new Vector3(player.transform.position.x - 2, shootStartDown.transform.position.y, 0);
+        direction = new Vector3(_playerTransform.position.x - 2, shootStartUp.transform.position.y, 0);
+        directionDown = new Vector3(_playerTransform.position.x - 2, shootStartDown.transform.position.y, 0);
     }
 
     void BossStateExecution()
@@ -212,7 +218,7 @@ public class FinalBossScript : MonoBehaviour
                 if (canIdle)
                 {
                     canFloor = true;
-                    animator.SetBool("Flying", false);
+                    _animator.SetBool("Flying", false);
                     canIdle = false;
                     hasFloorAttacked = false;
                     StartCoroutine(Vulnerable());
@@ -223,7 +229,7 @@ public class FinalBossScript : MonoBehaviour
                     if (Vector2.Distance(transform.position, toFloor) > 0.83f)
                     {
                         print("Flying por idle que no llego al sopi");
-                        animator.SetBool("Flying", true);
+                        _animator.SetBool("Flying", true);
                         transform.position = Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
                     }
                     else 
@@ -232,7 +238,7 @@ public class FinalBossScript : MonoBehaviour
                         hasFloorAttacked = false;
                        
                         canFloor = true;
-                        animator.SetBool("Flying", false);
+                        _animator.SetBool("Flying", false);
                     }
                 }  
 
@@ -253,6 +259,7 @@ public class FinalBossScript : MonoBehaviour
                 break;
 
             case FBBattleState.SHOOTATTACK:
+                
                 if (canShoot)
                 {
                     CalculatePosition();
@@ -276,10 +283,10 @@ public class FinalBossScript : MonoBehaviour
 
                     else
                     {
-                        animator.SetBool("Walking", false);
-                        animator.SetBool("Flying", false);
+                        _animator.SetBool("Walking", false);
+                        _animator.SetBool("Flying", false);
                         canDie = false;
-                        animator.SetTrigger("Death");
+                        _animator.SetTrigger("Death");
                     }
                 }
                 
@@ -309,7 +316,7 @@ public class FinalBossScript : MonoBehaviour
     {
         if (canChangeScale)
         {
-            isRight = (player.transform.position.x < transform.position.x);
+            isRight = (_playerTransform.position.x < transform.position.x);
             float dirMultpiplier = isRight ? -1 : 1;
 
             Vector3 theScale = transform.localScale;
