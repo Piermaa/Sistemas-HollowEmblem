@@ -50,7 +50,7 @@ public class Enemy : Actor
         _isDead = true;
     }
     
-    public void DropItem()
+    public virtual void DropItem()
     {
         Debug.LogWarning("Drop item!");
     }
