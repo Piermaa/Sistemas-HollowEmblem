@@ -27,7 +27,7 @@ public class Actor : MonoBehaviour, IDamageable
 
     #endregion
     
-    protected int _currentHealth;
+   [SerializeField] protected int _currentHealth;
     private Material _baseMaterial;
     
     #endregion

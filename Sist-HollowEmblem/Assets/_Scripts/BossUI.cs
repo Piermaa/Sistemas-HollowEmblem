@@ -13,12 +13,18 @@ public class BossUI : MonoBehaviour
 
    private bool _hasTakenDamage=false;
    private BossEnemy _bossEnemy;
-   
+
+   private void Awake()
+   {
+      _panel.SetActive(false);
+   }
+
    public void InitializeBossUI(BossEnemy bossEnemy)
    {
       _bossEnemy = bossEnemy;
       _panel.SetActive(true);
       _bossNameText.text = bossEnemy.name;
+      _bossEnemy.onCurrentHealthValueChange += UpdateHealthSlider;
    }
 
    private void Update()
@@ -26,10 +32,11 @@ public class BossUI : MonoBehaviour
       TakingDamage();
    }
 
-   private void UpdateHealthSlider()
+   private void UpdateHealthSlider(int currentHealth)
    {
+      print("yes");
       _hasTakenDamage = true;
-      _healthSlider.value = _bossEnemy.CurrentHealth;
+      _healthSlider.value = currentHealth /_bossEnemy.MaxHealth;
    }
 
    public void TakingDamage()

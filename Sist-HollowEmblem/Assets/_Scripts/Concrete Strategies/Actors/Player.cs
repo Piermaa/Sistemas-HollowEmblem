@@ -7,12 +7,15 @@ public class Player : Actor
     #region Class Properties
 
     #region Public Properties
+
+    public Vector3 RespawnPos => _respawnPos;
+    public Transform CameraTarget => _cameraTarget;
     
     public enum DirectionsToAttack
     {
         Front, Up, Down,
     }
-    private DirectionsToAttack directionsToAttack;
+  
     #endregion
     #region Serialized Properties
 
@@ -28,10 +31,14 @@ public class Player : Actor
     [SerializeField] private KeyCode _jump = KeyCode.Space;
     [SerializeField] private AudioSource _abilityAudioSource;
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
-
+    [SerializeField] private Transform _cameraTarget;
+    
     #endregion
+
+    private Vector3 _respawnPos;
     private PlayerAttack _playerAttack;
     private PlayerShoot _playerShoot;
+    private DirectionsToAttack directionsToAttack;
     private float _horizontalMove;
     private float _immunityTime;
     private bool _mustJump;
@@ -47,6 +54,7 @@ public class Player : Actor
     private OpenMapCmd _openMapCmd;
     private ToggleUIDisplayCmd _toggleUIDisplayCmd;
     private GameManager _gameManager;
+    
     #endregion
     
     #region Monobehaviour Callbacks
