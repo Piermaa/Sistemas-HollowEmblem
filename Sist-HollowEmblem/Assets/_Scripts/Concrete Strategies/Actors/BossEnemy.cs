@@ -13,14 +13,14 @@ public class BossEnemy : Enemy
 {
     #region Serialized Variables
 
-    [SerializeField] private List<BossPhase> _bossPhases;
+    [SerializeField] protected List<BossPhase> _bossPhases;
     [SerializeField] private int _phase=-1;
 
     #endregion
 
     #region Class Properties
 
-    private BossPhase _currentPhase = default;
+    protected BossPhase _currentPhase = default;
     private const string PHASE_INTEGER = "Phase";
     private const string ATTACK_ANIMATOR_PARAMETER = "Attack";
     private const string ATTACK_TRIGGER = "Attack";
@@ -38,12 +38,6 @@ public class BossEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-
-        if (_attackCooldownTimer <= 0)
-        {
-            _animator.SetTrigger(ATTACK_ANIMATOR_PARAMETER);
-            _attackCooldownTimer = _bossAttackCooldown;
-        }
     }
     
     #endregion

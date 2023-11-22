@@ -54,6 +54,8 @@ public class SpiderBoss : BossEnemy
 
     protected override void Awake()
     {
+        base.Awake();
+        _currentPhase = _bossPhases[0];
         gameObject.SetActive(false);
     }
 
@@ -71,8 +73,6 @@ public class SpiderBoss : BossEnemy
 
     protected override void Update()
     {
-        base.Update();
-
         UpdateCooldown();
         SetInvulnerability();
         BossStateExecution();
@@ -83,7 +83,7 @@ public class SpiderBoss : BossEnemy
         Debug.Log("SEARCHING");
         Vector3 theScale = transform.localScale;
 
-        if ((playerRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer)) && cooldown <= 0)
+        if ((playerRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.right), distanceOfRay, playerLayer)) && cooldown <= 0)
         {
             state = BattleState.CHARGING;
         }
@@ -127,7 +127,6 @@ public class SpiderBoss : BossEnemy
 
         for (float i = 1.5f; i > 0; i -= Time.deltaTime)
         {
-
             if (goingRight)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 10);

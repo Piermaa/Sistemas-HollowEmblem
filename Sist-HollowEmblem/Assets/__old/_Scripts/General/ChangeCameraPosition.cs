@@ -38,7 +38,6 @@ public class ChangeCameraPosition : MonoBehaviour
     private void Awake()
     {
         changeAmbientMusic = FindObjectOfType<ChangeAmbientMusic>();
-        //print("Found Ambient m");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
