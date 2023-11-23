@@ -59,8 +59,6 @@ public class SlamBoss : BossEnemy
 
     private void Start()
     {
-        gameObject.SetActive(false);
-
         for (int i = 0; i < 5; i++)
         {
             positions[i] = positionsTransforms[i].position;

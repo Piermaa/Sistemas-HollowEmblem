@@ -11,8 +11,6 @@ public class BossPhase
 
 public class BossEnemy : Enemy
 {
-    public Action<int> onCurrentHealthValueChange;
-    
     #region Serialized Variables
 
     [SerializeField] protected List<BossPhase> _bossPhases;
@@ -30,6 +28,13 @@ public class BossEnemy : Enemy
     #endregion
 
     #region Unity Callbacks
+
+    protected override void Awake()
+    {
+        base.Awake();
+        IntActionsManager.RegisterAction(gameObject.name+ActionConstants.TAKE_DAMAGE);
+        ActionsManager.RegisterAction(gameObject.name+ActionConstants.DEATH);
+    }
 
     private void Start()
     {
@@ -76,11 +81,18 @@ public class BossEnemy : Enemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        onCurrentHealthValueChange.Invoke(CurrentHealth);
+        IntActionsManager.InvokeAction(gameObject.name+ActionConstants.TAKE_DAMAGE, _currentHealth);
         if (CheckPhaseChange())
         {
             ChangePhase();
         }
+    }
+
+    public override void Death()
+    {
+        ActionsManager.InvokeAction(gameObject.name+ActionConstants.DEATH);
+        DropItem();
+        gameObject.SetActive(false);
     }
 
     #endregion

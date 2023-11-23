@@ -33,6 +33,8 @@ public class BossSpawnerPlayerDetector : PlayerDetector
         _bossUI.InitializeBossUI(_boss);
         _cameraLockPositionPlayer = _playerTransform.GetComponent<Player>().CameraTarget;
         
+        ActionsManager.SubscribeToAction(_boss.gameObject.name + ActionConstants.DEATH, SetPlayerCamera);
+        
         foreach (Collider2D wall in _invisibleWalls)
         {
             wall.gameObject.SetActive(false);
@@ -51,5 +53,8 @@ public class BossSpawnerPlayerDetector : PlayerDetector
 
     //    changeAmbientMusic.ChangeSong();
         _vcam.Follow = _cameraLockPositionPlayer;
+
+        ActionsManager.UnsubscribeToAction(_boss.gameObject.name + ActionConstants.DEATH, SetPlayerCamera);
+
     }
 }
