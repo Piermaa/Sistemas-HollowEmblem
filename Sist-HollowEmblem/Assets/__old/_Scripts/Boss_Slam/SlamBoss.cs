@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlammerBossController : BossEnemy
+public class SlamBoss : BossEnemy
 {
     private HealthController health;
     private Rigidbody2D rb;
@@ -75,6 +75,8 @@ public class SlammerBossController : BossEnemy
 
     protected override void Update()
     {
+        base.Update();
+
         if(health.healthPoints > maxHealth*7.5f/10)
         {
             if (slamTimer < 0)
@@ -87,7 +89,7 @@ public class SlammerBossController : BossEnemy
         {
             slamCoolDown = 5;
 
-            if (slamTimer<0)
+            if (slamTimer < 0)
             {
                 StartCoroutine(TwoSlams());
             }
@@ -201,7 +203,7 @@ public class SlammerBossController : BossEnemy
     }
     void StartSlam(int repetitions)
     {
-        for(int i=0; i<repetitions;i++)
+        for(int i = 0; i < repetitions; i++)
         {
             string dir = DecideSlam();
 
@@ -284,7 +286,7 @@ public class SlammerBossController : BossEnemy
         objectPooler.SpawnFromPool(ammunition, transform.position, Quaternion.Euler(Vector3.zero));
     }
 
-    public void Death()
+    public override void Death()
     {
         var drop = Instantiate(abUnlocker, transform.position, transform.rotation);
         drop.TryGetComponent<AbilityUnlocker>(out var ability);
