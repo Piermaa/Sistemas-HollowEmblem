@@ -11,6 +11,8 @@ public class BossPhase
 
 public class BossEnemy : Enemy
 {
+    public Action<int> onCurrentHealthValueChange;
+    
     #region Serialized Variables
 
     [SerializeField] protected List<BossPhase> _bossPhases;
@@ -74,6 +76,7 @@ public class BossEnemy : Enemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        onCurrentHealthValueChange.Invoke(CurrentHealth);
         if (CheckPhaseChange())
         {
             ChangePhase();
