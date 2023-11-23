@@ -5,10 +5,25 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Lines
+    {
+        [SerializeField] public Transform _newPosition;
+        [SerializeField] public string[] _lines;
+    }
+
+    private GameObject _teleman;
+    [SerializeField] private Lines[] _dialogues;
     [SerializeField] private TextMeshProUGUI textComponent;
-    [SerializeField] private string[] lines;
     [SerializeField] private float _textSpeed = 0.1f;
-    private int _index;
+    private int _dialogueIndex;
+    private int _linesIndex;
+
+    private void Awake()
+    {
+        _teleman = GameObject.FindGameObjectWithTag("Teleman");
+        gameObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -20,28 +35,29 @@ public class Dialogue : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (textComponent.text == lines[_index])
+            if (textComponent.text == _dialogues[_dialogueIndex]._lines[_linesIndex])
             {
                 NextLine();
             }
+
             else
             {
                 StopAllCoroutines();
-                textComponent.text = lines[_index];
+                textComponent.text = _dialogues[_dialogueIndex]._lines[_linesIndex];
             }
         }
     }
 
     void StartDialogue()
     {
-        _index = 0;
+        _linesIndex = 0;
 
         StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
     {
-        foreach(char c in lines[_index].ToCharArray())
+        foreach(char c in _dialogues[_dialogueIndex]._lines[_linesIndex].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(_textSpeed);
@@ -50,15 +66,25 @@ public class Dialogue : MonoBehaviour
 
     void NextLine()
     {
-        if (_index < lines.Length - 1)
+        if (_linesIndex < _dialogues[_dialogueIndex]._lines.Length - 1)
         {
-            _index++;
+            _linesIndex++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
+
         else
         { 
             gameObject.SetActive(false);
         }
+    }
+
+    public void SetNextDialogue()
+    {
+        textComponent.text = string.Empty;
+        _dialogueIndex++;
+        _linesIndex = 0;
+        _teleman.transform.position = _dialogues[_dialogueIndex]._newPosition.position;
+        StartDialogue();
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - MiniMap
   - PlatForm
   - EnemyStop
+  - Teleman
   layers:
   - Default
   - TransparentFX

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class TelemanTransport : MonoBehaviour
 {
-    [SerializeField] private GameObject _teleman;
-    [SerializeField] private Transform _newPosition;
+    [SerializeField] private Dialogue _dialogue;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            _teleman.transform.position = _newPosition.position;
+            Debug.Log("Aaa me estan llamandoo");
+            _dialogue.SetNextDialogue();
+            gameObject.SetActive(false);
         }
     }
 }
