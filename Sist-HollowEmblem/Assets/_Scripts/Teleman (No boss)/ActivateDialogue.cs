@@ -14,4 +14,12 @@ public class ActivateDialogue : MonoBehaviour
             _dialoguePanel.SetActive(true);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            _dialoguePanel.SetActive(false);
+        }
+    }
 }
