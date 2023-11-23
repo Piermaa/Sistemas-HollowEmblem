@@ -34,9 +34,9 @@ public class BossUI : MonoBehaviour
 
    private void UpdateHealthSlider(int currentHealth)
    {
-      print("yes");
+      print($"currentHealth: {currentHealth} / _bossEnemy.MaxHealth {_bossEnemy.MaxHealth}");
       _hasTakenDamage = true;
-      _healthSlider.value = currentHealth /_bossEnemy.MaxHealth;
+      _healthSlider.value =(float)currentHealth /_bossEnemy.MaxHealth;
    }
 
    public void TakingDamage()
