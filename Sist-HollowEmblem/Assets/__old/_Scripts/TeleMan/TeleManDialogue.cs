@@ -56,6 +56,7 @@ public class TeleManDialogue : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !playerCombat.canShoot && !playerMovement.dashUnlocked && !playerAbilities.slamUnlocked && !nearEnd)
         {
             telemanText.text = "Hi There!";
+
             textTutorial.SetActive(true);
             talkAudio.Play();
         }
