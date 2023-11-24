@@ -188,19 +188,5 @@ public class BossController : MonoBehaviour
 
         }
     }
-
-    public void Death()
-    {
-        var drop = Instantiate(abUnlocker, transform.position,transform.rotation);
-        drop.TryGetComponent<AbilityUnlocker>(out var ability);
-        ability.unlockedAb = "Slime";
-
-        //if (tutorial!=null)
-        //{
-        //    tutorial.SetActive(true);
-        //}
-                {
-            SceneChanger.Instance.GameOver();
-        }
-    }
+    
 }

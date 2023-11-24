@@ -55,8 +55,7 @@ public class GameManagerNO : MonoBehaviour
         animator.SetTrigger("Victory");
 
         var auO= Instantiate(abUnlockerPrefab,position,Quaternion.identity);
-        auO.TryGetComponent<AbilityUnlocker>(out var au);
-        au.unlockedAb = AbilityName;
+        auO.TryGetComponent<ShootUnlocker>(out var au);
     }
 
     public void StartDefeat()

@@ -27,7 +27,7 @@ public class ChangeAmbientMusic : MonoBehaviour
 
         if (mustMute)
         {
-            StartCoroutine(Silencing());       
+            StartCoroutine(Silencing());
         }
     }
 
@@ -80,21 +80,23 @@ public class ChangeAmbientMusic : MonoBehaviour
     {
         mustMute = true;
     }
+
     IEnumerator Silencing()
     {
-       
-            // Colocar el audio del ascensor
 
-            for (float i = audioSource.volume; i >= 0; i -= Time.deltaTime/25)
-            {
-                
-                    audioSource.volume = i;
-                
+        // Colocar el audio del ascensor ???????????????????????????????
 
-                yield return null;
-            }
-            audioSource.Stop();
-            mustMute = false;
-        
+        for (float i = audioSource.volume; i >= 0; i -= Time.deltaTime / 25)
+        {
+
+            audioSource.volume = i;
+
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        mustMute = false;
+
     }
 }

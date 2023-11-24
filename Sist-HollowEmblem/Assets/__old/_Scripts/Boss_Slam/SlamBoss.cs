@@ -6,8 +6,6 @@ public class SlamBoss : BossEnemy
 {
     private HealthController health;
     private Rigidbody2D rb;
-    private ObjectPooler objectPooler;
-    [SerializeField] private GameObject abUnlocker;
 
     private bool playedJumpSound;
     private bool mustSlam;
@@ -66,7 +64,6 @@ public class SlamBoss : BossEnemy
             slamPositions[i] = new Vector3(positions[i].x, positions[i].y-5);
         }
 
-        objectPooler = ObjectPooler.Instance;
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<HealthController>();
         maxHealth = health.healthPoints;
@@ -277,17 +274,8 @@ public class SlamBoss : BossEnemy
         return finalDirection;
     }
 
-    void Shot()
+    private void Shot()
     {
         _vulcanAttack.Attack(transform.position, Vector3.up);
-    }
-
-    public override void Death()
-    {
-        var drop = Instantiate(abUnlocker, transform.position, transform.rotation);
-        drop.TryGetComponent<AbilityUnlocker>(out var ability);
-        ability.unlockedAb = "Slam";
-
-        tutorial.SetActive(true);
     }
 }
