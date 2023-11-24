@@ -14,6 +14,7 @@ public class SlamBoss : BossEnemy
     private bool mustReposition;
     private int maxHealth;
 
+    [SerializeField] private VulcanAttack _vulcanAttack;
     [SerializeField] private float slamRange=5;
     [SerializeField] private int damage;
     [SerializeField] private GameObject slamFX;
@@ -53,7 +54,7 @@ public class SlamBoss : BossEnemy
     protected override void Awake()
     {
         base.Awake();
-
+        _vulcanAttack.InitializeEnemyAttack(gameObject);
         _currentPhase = _bossPhases[0];
     }
 
@@ -163,9 +164,7 @@ public class SlamBoss : BossEnemy
         {
             if (collider.CompareTag("Player")) 
             {
-                HealthController healthController;
-                collider.TryGetComponent<HealthController>(out healthController);
-                healthController.TakeDamage(damage);
+                collider.GetComponent<IDamageable>().TakeDamage(damage);
             }
         }
      
@@ -280,8 +279,7 @@ public class SlamBoss : BossEnemy
 
     void Shot()
     {
-        objectPooler.SpawnFromPool(ammunition,transform.position, Quaternion.Euler(Vector3.forward));
-        objectPooler.SpawnFromPool(ammunition, transform.position, Quaternion.Euler(Vector3.zero));
+        _vulcanAttack.Attack(transform.position, Vector3.up);
     }
 
     public override void Death()

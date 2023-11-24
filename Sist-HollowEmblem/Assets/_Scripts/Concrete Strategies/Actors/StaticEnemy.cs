@@ -39,7 +39,7 @@ public class StaticEnemy : Enemy
    protected override void Update()
    {
       base.Update();
-      if (_attackCooldownTimer<=0)
+      if (_attackCooldownTimer<=0 && !_isDead)
       {
          _animator.SetTrigger(ATTACK_ANIMATOR_PARAMETER);
          _attackCooldownTimer = _enemyStats.AttackCooldown;

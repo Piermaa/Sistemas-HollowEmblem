@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
+    [SerializeField] private LayerMask _whatIsShooteable;
     [SerializeField] private Transform _attackStartPosition;
     [SerializeField] private Transform[] _attackStartDirections;
     [SerializeField] private int _damage;
@@ -82,17 +83,14 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
             _shootLight.intensity = _shootIntensity;
             
             RaycastHit2D hit2D = Physics2D.Raycast(_attackStartPosition.position,
-                _attackStartPosition.right, 100);
+                _attackStartPosition.TransformDirection(Vector2.left), 100,_whatIsShooteable);
 
-            if (hit2D == null)
-            {
-                return;
-            }
-
-            if (hit2D.transform.CompareTag("Enemy") && hit2D.transform.TryGetComponent<IDamageable>(out var damageable))
-            {
-                damageable.TakeDamage(_damage);
-            }
+                print($"Hitted: {hit2D.collider.name}");
+            
+                if (hit2D.transform.CompareTag("Enemy") && hit2D.transform.TryGetComponent<IDamageable>(out var damageable))
+                {
+                    damageable.TakeDamage(_damage);
+                }
         }
         UIManager.Instance.GetBulletsUIManager.UpdateBullets(_bulletsRemaining);
 

@@ -39,6 +39,14 @@ public class Enemy : Actor
         _attackCooldownTimer = _attackCooldownTimer > 0 ? _attackCooldownTimer - Time.deltaTime : 0;
     }
 
+    public override void TakeDamage(int damageTaken)
+    {
+        if (_currentHealth>0)
+        {
+            base.TakeDamage(damageTaken);
+        }
+    }
+
     public override void Death()
     {
        print("Amemuero");

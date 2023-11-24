@@ -16,6 +16,11 @@ public class AnimatedEnemyDeath : MonoBehaviour, IEnemyDeath
        
     }
 
+    public void OnDeathFinish()
+    {
+        Destroy(gameObject);
+    }
+
     public void Death()
     {
         _animator.SetTrigger("Death");
