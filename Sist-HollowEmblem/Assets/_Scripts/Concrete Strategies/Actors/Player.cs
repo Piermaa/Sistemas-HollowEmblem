@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,8 @@ public class Player : Actor
     [SerializeField] private AudioSource _abilityAudioSource;
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
     [SerializeField] private Transform _cameraTarget;
-    
+    [SerializeField] private CinemachineVirtualCamera _vcam;
+     
     #endregion
 
     private Vector3 _respawnPos;
@@ -223,5 +225,17 @@ public class Player : Actor
     public bool CanMove()
     {
         return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
+    }
+
+    public override void Death()
+    {
+        transform.position = RespawnPos;
+        _currentHealth = MaxHealth;
+        _vcam.Follow = _cameraTarget;
+    }
+
+    public void SetRespawnPosition(Transform newRespawnPosition)
+    {
+        _respawnPos = newRespawnPosition.position;
     }
 }
