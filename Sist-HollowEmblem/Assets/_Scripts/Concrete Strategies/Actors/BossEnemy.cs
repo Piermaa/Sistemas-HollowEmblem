@@ -13,6 +13,7 @@ public class BossEnemy : Enemy
 {
     #region Serialized Variables
 
+    [SerializeField] private AbilityUnlockerPickupable _abilityUnlocker;
     [SerializeField] protected List<BossPhase> _bossPhases;
     [SerializeField] private int _phase=-1;
 
@@ -86,6 +87,11 @@ public class BossEnemy : Enemy
         {
             ChangePhase();
         }
+    }
+
+    public override void DropItem()
+    {
+        Instantiate(_abilityUnlocker, transform.position, transform.rotation);
     }
 
     public override void Death()

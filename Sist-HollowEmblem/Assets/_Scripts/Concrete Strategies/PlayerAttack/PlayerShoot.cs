@@ -13,6 +13,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     [SerializeField] private bool _isAiming;
     [SerializeField] private ParticleSystem _shootParticleSystem;
     [SerializeField] private AudioSource _shootSound;
+    [SerializeField] private AudioSource _reloadSound;
     [SerializeField] private Light2D _shootLight;
     [SerializeField] private float _shootIntensity=1.4f;
     private bool _isReloading;
@@ -136,6 +137,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     {
         if (_bulletsRemaining < _maxBullets && _playerInventory.SearchAmmo())
         {
+            _reloadSound.Play();
             _animator.SetTrigger("Reload");
         }
     }

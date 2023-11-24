@@ -40,7 +40,7 @@ public class Player : Actor
     private PlayerShoot _playerShoot;
     private DirectionsToAttack directionsToAttack;
     private float _horizontalMove;
-    private float _immunityTime;
+    private float _immunityTime=.2f;
     private bool _mustJump;
     private IMovable _movable;
     private float _immunityTimer;
@@ -62,7 +62,6 @@ public class Player : Actor
     protected override void Awake()
     {
         base.Awake();
-        _gameManager = GameManager.Instance;
         _movable = GetComponent<IMovable>();
         _playerAttack = GetComponent<PlayerAttack>();
         _playerShoot = GetComponent<PlayerShoot>();
@@ -85,6 +84,7 @@ public class Player : Actor
     {
         ActionsManager.RegisterAction(ItemConstants.USE_HEAL);
         ActionsManager.SubscribeToAction(ItemConstants.USE_HEAL, Heal);
+        _gameManager = GameManager.Instance;
     }
 
     private void Update()

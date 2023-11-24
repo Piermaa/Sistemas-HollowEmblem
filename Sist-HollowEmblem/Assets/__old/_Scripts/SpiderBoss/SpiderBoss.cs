@@ -278,4 +278,12 @@ public class SpiderBoss : BossEnemy
     {
         step2Sound.Play();
     }
+
+    public override void TakeDamage(int damage)
+    {
+        if (!isInvulnerable)
+        {
+            base.TakeDamage(damage);
+        }
+    }
 }

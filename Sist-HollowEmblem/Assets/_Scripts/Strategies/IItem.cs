@@ -10,7 +10,7 @@ public interface IItem
 {
    Slot ItemSlot { get; }
    ItemTypes ItemType { get; }
-   int Amount { get; }
+   int Amount { get; set; }
    int MaxStackeable { get; }
    int UnitsPerUse { get; }
    Sprite ItemSprite { get; }

@@ -52,7 +52,8 @@ public class Enemy : Actor
     
     public virtual void DropItem()
     {
-        Debug.LogWarning("Drop item!");
+        GameManager.Instance.GetItemGameManager.SpawnItem()
+            .gameObject.transform.position= transform.position;
     }
 
     #endregion

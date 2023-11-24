@@ -5,9 +5,13 @@ public class BaseItem : Pickupable, IItem
 {
     #region IItem Properties
 
-    public Slot ItemSlot { get; }
+    public Slot ItemSlot => _itemSlot;
     public ItemTypes ItemType => _itemType;
-    public int Amount => _amount;
+    public int Amount
+    {
+        set => _amount = value;
+        get => _amount;
+    }
     public int MaxStackeable => _maxStackeable;
     public int UnitsPerUse => _unitsPerUse;
     public Sprite ItemSprite => _spriteRenderer.sprite;

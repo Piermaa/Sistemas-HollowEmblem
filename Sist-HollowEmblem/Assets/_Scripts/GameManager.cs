@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region Facade
+
+    public ItemGameManager GetItemGameManager => _itemGameManager;
+    [SerializeField] private ItemGameManager _itemGameManager;
+
+    #endregion
+    
     #region Singleton
     static public GameManager Instance;
 
@@ -64,5 +71,19 @@ public class GameManager : MonoBehaviour
     {
         // What happens when victory
         // animator.SetTrigger("Victory");
+    }
+}
+
+[System.Serializable]
+public class ItemGameManager
+{
+    [SerializeField] private BaseItem _bulletItem;
+    [SerializeField] private BaseItem _healItem;
+
+    public BaseItem SpawnItem()
+    {
+        BaseItem item=GameObject.Instantiate(Random.Range(0, 2) == 1 ? _bulletItem : _healItem);
+        item.Amount = Random.Range(1, item.MaxStackeable);
+        return item;
     }
 }
