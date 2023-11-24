@@ -82,7 +82,7 @@ public class BossEnemy : Enemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        IntActionsManager.InvokeAction(gameObject.name+ActionConstants.TAKE_DAMAGE, _currentHealth);
+        IntActionsManager.InvokeAction(gameObject.name + ActionConstants.TAKE_DAMAGE, _currentHealth);
         if (CheckPhaseChange())
         {
             ChangePhase();

@@ -67,7 +67,16 @@ public class Bullet : MonoBehaviour, IProduct, IAirEnemyBullet
     public void Shoot(Vector2 direction)
     {
         _rigidbody2D.velocity = Vector3.zero;
-        
+
+        if (direction.x > 0 )
+        {
+            direction.x = 1;
+        }
+        else
+        {
+            direction.x = -1;
+        }
+
         _rigidbody2D.velocity = new Vector2(-direction.x * _bulletStats.Speed,0) ;
 
         var partscale = GetComponentInChildren<ParticleSystem>().gameObject.transform;

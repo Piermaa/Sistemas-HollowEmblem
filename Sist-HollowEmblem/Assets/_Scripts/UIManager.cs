@@ -110,7 +110,7 @@ public class BulletsUIManager
     [SerializeField] private GameObject[] _ammo;
     public void UnlockGun()
     {
-        _gunPanel.SetActive(true);
+            _gunPanel.SetActive(true);
         
         _ammo = new GameObject[_bulletsParent.childCount];
         

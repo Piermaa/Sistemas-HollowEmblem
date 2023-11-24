@@ -16,39 +16,35 @@ public class TelemanBoss : BossEnemy
 
     [SerializeField] private Animator[] _floorSpots;
     [SerializeField] private Transform _playerTransform;
-
+    [SerializeField] private EnemyAttack _shootAttack;
     private int attackIndex;
 
-    private bool canSpawning;
-    private bool canIdle;
-    private bool canMelee;
-    private bool canFly;
-    private bool canFloor;
-    private bool canDie;
-    private bool hasFloorAttacked;
-    private bool canShoot;
-    private bool isRight;
-    private bool canChangeScale;
+    [SerializeField] private bool canSpawning;
+    [SerializeField] private bool canIdle;
+    [SerializeField] private bool canMelee;
+    [SerializeField] private bool canFly;
+    [SerializeField] private bool canFloor;
+    [SerializeField] private bool canDie;
+    [SerializeField] private bool hasFloorAttacked;
+    [SerializeField] private bool canShoot;
+    [SerializeField] private bool isRight;
+    [SerializeField] private bool canChangeScale;
 
-    [Header("Float")]
-    private float distanceOfRay = -4f;
+    [Header("Float")] private float distanceOfRay = -4f;
     private float speed = 5f;
     private float flySpeed = 5.5f;
 
-    [Header ("Transform")]
-    [SerializeField] private Transform raycastStart;
+    [Header("Transform")] [SerializeField] private Transform raycastStart;
     [SerializeField] private Transform hangingSpot;
     [SerializeField] private Transform floorSpot;
     [SerializeField] private Transform shootStartUp;
     [SerializeField] private Transform shootStartDown;
     [SerializeField] private Transform shootStartMiddle;
 
-    [Header("Vector3")]
-    private Vector3 direction;
+    [Header("Vector3")] private Vector3 direction;
     private Vector3 directionDown;
 
-    [Header("Sounds")]
-    [SerializeField] private AudioSource meleeAttackSound;
+    [Header("Sounds")] [SerializeField] private AudioSource meleeAttackSound;
     [SerializeField] private AudioSource shootAttackSound;
     [SerializeField] private AudioSource floorAttackSound;
     [SerializeField] private AudioSource dieSound;
@@ -56,7 +52,8 @@ public class TelemanBoss : BossEnemy
     protected override void Awake()
     {
         base.Awake();
-
+    
+        _shootAttack.InitializeEnemyAttack(gameObject);
         _currentPhase = _bossPhases[0];
         gameObject.SetActive(false);
 
@@ -75,11 +72,6 @@ public class TelemanBoss : BossEnemy
     {
         BossStateExecution();
         ChangeScale();
-
-        if (_animator.GetBool("Flying"))
-        {
-            print("flyng true");
-        }
     }
 
     IEnumerator SpawningAnimation()
@@ -97,16 +89,17 @@ public class TelemanBoss : BossEnemy
         yield return new WaitForSeconds(1.2f);
 
         attackIndex = Random.Range(0, 3);
-        AttackExecution();
+        SetAttackState();
         canIdle = true;
-        
+
         yield return null;
-        
+
     }
 
     void MeleeAttackActivator()
     {
-        if (hit = Physics2D.Raycast(raycastStart.position, raycastStart.TransformDirection(Vector2.left), distanceOfRay, playerLayer))
+        if (hit = Physics2D.Raycast(raycastStart.position, raycastStart.TransformDirection(Vector2.left), distanceOfRay,
+                playerLayer))
         {
             canChangeScale = false;
             _animator.SetBool("Walking", false);
@@ -115,7 +108,7 @@ public class TelemanBoss : BossEnemy
 
         else
         {
-            Vector2 playerVector = new Vector2(_playerTransform.position.x, _playerTransform.position.y);
+            Vector2 playerVector = new Vector2(_playerTransform.position.x, this.transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, playerVector, speed * Time.deltaTime);
             _animator.SetBool("Walking", true);
         }
@@ -139,14 +132,14 @@ public class TelemanBoss : BossEnemy
             }
         }
 
-        else 
+        else
         {
-                transform.position = Vector2.MoveTowards(transform.position, hangingSpot.transform.position, flySpeed * Time.deltaTime);
-                if (!_animator.GetBool("Flying"))
-                {
-                    print("Flying por flooractivator");
-                    _animator.SetBool("Flying", true);
-                }
+            transform.position = Vector2.MoveTowards(transform.position, hangingSpot.transform.position,
+                flySpeed * Time.deltaTime);
+            if (!_animator.GetBool("Flying"))
+            {
+                _animator.SetBool("Flying", true);
+            }
         }
     }
 
@@ -175,26 +168,20 @@ public class TelemanBoss : BossEnemy
 
     public void InitializeShootOne()
     {
-     //   objectPooler.SpawnFromPool("Bullet", shootStartUp.position, shootStartUp.rotation, direction); COMENTADO BY PIERMA WHEN HIZO EL DISPARO DEL AIR ENEMY
+        _shootAttack.Attack(shootStartUp.position,-transform.localScale);
         shootAttackSound.Play();
     }
 
     public void InitializeShootTwo()
     {
-      //  objectPooler.SpawnFromPool("Bullet", shootStartDown.position, shootStartDown.rotation, directionDown);
+        _shootAttack.Attack(shootStartDown.position, -transform.localScale);
         shootAttackSound.Play();
     }
 
     public void InitializeShootThree()
     {
-      //  objectPooler.SpawnFromPool("Bullet", shootStartMiddle.position, shootStartMiddle.rotation, directionDown);
+        _shootAttack.Attack(shootStartMiddle.position, -transform.localScale);
         shootAttackSound.Play();
-    }
-
-    public void CalculatePosition()
-    {
-        direction = new Vector3(_playerTransform.position.x - 2, shootStartUp.transform.position.y, 0);
-        directionDown = new Vector3(_playerTransform.position.x - 2, shootStartDown.transform.position.y, 0);
     }
 
     void BossStateExecution()
@@ -225,19 +212,19 @@ public class TelemanBoss : BossEnemy
                     Vector2 toFloor = new Vector2(transform.position.x, floorSpot.transform.position.y);
                     if (Vector2.Distance(transform.position, toFloor) > 0.83f)
                     {
-                        print("Flying por idle que no llego al sopi");
                         _animator.SetBool("Flying", true);
-                        transform.position = Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
+                        transform.position =
+                            Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
                     }
-                    else 
+                    else
                     {
                         canIdle = false;
                         hasFloorAttacked = false;
-                       
+
                         canFloor = true;
                         _animator.SetBool("Flying", false);
                     }
-                }  
+                }
 
                 break;
 
@@ -251,15 +238,14 @@ public class TelemanBoss : BossEnemy
                 break;
 
             case FBBattleState.FLOORATTACK:
-                 FloorAttackActivator();
-                
+                FloorAttackActivator();
+
                 break;
 
             case FBBattleState.SHOOTATTACK:
-                
+
                 if (canShoot)
                 {
-                    CalculatePosition();
                     canShoot = false;
                     ShootAttackActivator();
                 }
@@ -271,11 +257,12 @@ public class TelemanBoss : BossEnemy
                 {
                     Vector2 toFloor = new Vector2(transform.position.x, floorSpot.transform.position.y);
 
-                    
+
 
                     if (Vector2.Distance(transform.position, toFloor) > 0.83f)
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
+                        transform.position =
+                            Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
                     }
 
                     else
@@ -286,12 +273,12 @@ public class TelemanBoss : BossEnemy
                         _animator.SetTrigger("Death");
                     }
                 }
-                
+
                 break;
         }
     }
 
-    void AttackExecution()
+    void SetAttackState()
     {
         switch (attackIndex)
         {
@@ -349,6 +336,7 @@ public class TelemanBoss : BossEnemy
     {
         floorAttackSound.Play();
     }
+
     public void DieSoundEffect()
     {
         dieSound.Play();

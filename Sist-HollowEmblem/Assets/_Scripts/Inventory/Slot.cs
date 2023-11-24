@@ -53,7 +53,6 @@ public class Slot: MonoBehaviour
     
     private void OnMouseEnter()
     {
-        print("atroden");
         _slotPopUp.ActivatePanel();
     }
 

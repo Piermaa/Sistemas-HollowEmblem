@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletStatsValues:
     Damage: 1
-    Speed: 3
+    Speed: 15
     TimeLimit: 5
     ObjectPoolerKey: AirBullet
