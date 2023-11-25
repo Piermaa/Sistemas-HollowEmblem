@@ -11,11 +11,14 @@ public class BossPhase
 
 public class BossEnemy : Enemy
 {
+    public GameObject BossSpawner => _bossSpawner;
+
     #region Serialized Variables
 
     [SerializeField] private AbilityUnlockerPickupable _abilityUnlocker;
     [SerializeField] protected List<BossPhase> _bossPhases;
-    [SerializeField] private int _phase=-1;
+    [SerializeField] private int _phase = -1;
+    [SerializeField] private GameObject _bossSpawner;
 
     #endregion
 

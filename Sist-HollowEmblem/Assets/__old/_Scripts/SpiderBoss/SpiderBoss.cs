@@ -276,6 +276,7 @@ public class SpiderBoss : BossEnemy
         base.Death();
 
         crashSound.Play();
+        BossSpawner.SetActive(false);
     }
 
     public void StepSoundEffect()
