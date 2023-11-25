@@ -6,18 +6,15 @@ public class ChangeAmbientMusic : MonoBehaviour
 {
     [SerializeField] GameObject[] bosses;
 
-    public AudioSource audioSource;
+    private AudioSource _audioSource;
     bool mustMute;
     [SerializeField] AudioClip ambientClip;
-    [SerializeField] AudioClip spiderBossFightMusic;
-    [SerializeField] AudioClip slamBossFightMusic;
-    [SerializeField] AudioClip finalBossFightMusic;
     float defaultVolume;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        defaultVolume = audioSource.volume;
+        _audioSource = GetComponent<AudioSource>();
+        defaultVolume = _audioSource.volume;
     }
 
     private void Update()
@@ -32,48 +29,10 @@ public class ChangeAmbientMusic : MonoBehaviour
     }
 
 
-    public void ChangeSong()
+    public void SetAmbienceMusic()
     {
-        if (ChangeCameraPosition.bossIsActive)
-        {
-            if (bosses[0] != null)
-            {
-                if (bosses[0].activeInHierarchy)
-                {
-                    audioSource.clip = spiderBossFightMusic;
-                    audioSource.Play();
-                    print("boss1plays");
-                }
-
-
-            }
-
-            if (bosses[1] != null)
-            {
-                if (bosses[1].activeInHierarchy)
-                {
-                    audioSource.clip = slamBossFightMusic;
-                    audioSource.Play();
-                }
-            }
-
-            if (bosses[2] != null)
-            {
-                if (bosses[2].activeInHierarchy)
-                {
-                    audioSource.clip = finalBossFightMusic;
-                    audioSource.Play();
-                }
-            }
-        }
-
-        else
-        {
-            audioSource.clip = ambientClip;
-            audioSource.Play();
-        }
-
-        audioSource.volume = defaultVolume;
+        _audioSource.clip = ambientClip;
+        _audioSource.volume = defaultVolume;
     }
 
     public void SetSilence()
@@ -83,19 +42,16 @@ public class ChangeAmbientMusic : MonoBehaviour
 
     IEnumerator Silencing()
     {
-
-        // Colocar el audio del ascensor ???????????????????????????????
-
-        for (float i = audioSource.volume; i >= 0; i -= Time.deltaTime / 25)
+        for (float i = _audioSource.volume; i >= 0; i -= Time.deltaTime / 25)
         {
 
-            audioSource.volume = i;
+            _audioSource.volume = i;
 
 
             yield return null;
         }
 
-        audioSource.Stop();
+        _audioSource.Stop();
         mustMute = false;
 
     }

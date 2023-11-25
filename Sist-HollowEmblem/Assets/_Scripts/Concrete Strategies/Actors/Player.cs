@@ -46,6 +46,7 @@ public class Player : Actor
     private bool _mustJump;
     private IMovable _movable;
     private float _immunityTimer;
+    private Camera _cam;
 
     #endregion
 
@@ -67,6 +68,7 @@ public class Player : Actor
         _movable = GetComponent<IMovable>();
         _playerAttack = GetComponent<PlayerAttack>();
         _playerShoot = GetComponent<PlayerShoot>();
+        _cam = Camera.main;
 
         foreach (var abilty in _playerAbilities)
         {
@@ -232,6 +234,8 @@ public class Player : Actor
         transform.position = RespawnPos;
         _currentHealth = MaxHealth;
         _vcam.Follow = _cameraTarget;
+        _cam.GetComponent<ChangeAmbientMusic>().SetAmbienceMusic();
+        _cam.GetComponent<AudioSource>().Play();
     }
 
     public void SetRespawnPosition(Transform newRespawnPosition)

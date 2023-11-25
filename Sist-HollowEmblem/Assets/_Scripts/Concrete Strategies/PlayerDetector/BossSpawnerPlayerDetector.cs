@@ -12,6 +12,7 @@ public class BossSpawnerPlayerDetector : PlayerDetector
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private BossEnemy _boss;
     [SerializeField] private Collider2D[] _invisibleWalls;
+    [SerializeField] private AudioClip _bossAudioClip;
 
     [Space]
     [Header("Prefab Elements")]
@@ -20,10 +21,17 @@ public class BossSpawnerPlayerDetector : PlayerDetector
     [SerializeField] private BossUI _bossUI;
     
     private Transform _cameraLockPositionPlayer;
+    private Camera _cam;
+    private AudioSource _cameraAudioSource;
+    private ChangeAmbientMusic _camMusicChanger;
 
     private void Awake()
     {
         _boss.gameObject.SetActive(false);
+
+        _cam = Camera.main;
+        _cameraAudioSource = _cam.GetComponent<AudioSource>();
+        _camMusicChanger = _cam.GetComponent<ChangeAmbientMusic>();
     }
 
     public override void OnPlayerDetect()
@@ -32,7 +40,10 @@ public class BossSpawnerPlayerDetector : PlayerDetector
         _boss.gameObject.SetActive(true);
         _bossUI.InitializeBossUI(_boss);
         _cameraLockPositionPlayer = _playerTransform.GetComponent<Player>().CameraTarget;
-        
+        _cameraAudioSource.clip = _bossAudioClip;
+        _cameraAudioSource.Play();
+
+
         ActionsManager.SubscribeToAction(_boss.gameObject.name + ActionConstants.DEATH, SetPlayerCamera);
         
         foreach (Collider2D wall in _invisibleWalls)
@@ -41,7 +52,6 @@ public class BossSpawnerPlayerDetector : PlayerDetector
         }
         
         _vcam.Follow = _cameraLockPosition;
-        //    changeAmbientMusic.ChangeSong();
     }
     
     private void SetPlayerCamera()
@@ -51,8 +61,10 @@ public class BossSpawnerPlayerDetector : PlayerDetector
             wall.gameObject.SetActive(false);
         }
 
-    //    changeAmbientMusic.ChangeSong();
+        _camMusicChanger.SetAmbienceMusic();
         _vcam.Follow = _cameraLockPositionPlayer;
+        _camMusicChanger.SetAmbienceMusic();
+        _cameraAudioSource.Play();
 
         ActionsManager.UnsubscribeToAction(_boss.gameObject.name + ActionConstants.DEATH, SetPlayerCamera);
 

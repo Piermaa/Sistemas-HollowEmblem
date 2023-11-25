@@ -50,7 +50,7 @@ public class ChangeCameraPosition : MonoBehaviour
             bossCanvas.SetActive(true);
             vcam.Follow = bossTarget;
             bossIsActive = true;
-            changeAmbientMusic.ChangeSong();
+            //changeAmbientMusic.ChangeSong();
             print("changedmusic");
 
             foreach (GameObject wall in invisibleWalls)
@@ -92,7 +92,7 @@ public class ChangeCameraPosition : MonoBehaviour
         PutMaxHealth();
 
         bossIsActive = false;
-        changeAmbientMusic.ChangeSong();
+        //changeAmbientMusic.ChangeSong();
         vcam.Follow = playerTarget;
         bossCanvas.SetActive(false);
 

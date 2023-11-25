@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlamBoss
   m_EditorClassIdentifier: 
   _stats:
-    MaxLife: 100
+    MaxLife: 30
     MovementSpeed: 10
   _enemyStats:
     AttackCooldown: 3
