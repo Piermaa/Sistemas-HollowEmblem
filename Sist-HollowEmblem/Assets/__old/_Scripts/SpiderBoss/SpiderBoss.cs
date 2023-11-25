@@ -52,12 +52,17 @@ public class SpiderBoss : BossEnemy
     [SerializeField] private AudioSource crash2Sound;
     [SerializeField] private AudioSource growlSound;
 
+    private CapsuleCollider2D _capsuleCol;
+    private Rigidbody2D _rb;
+
     protected override void Awake()
     {
         base.Awake();
         _currentHealth = MaxHealth;
         _currentPhase = _bossPhases[0];
         gameObject.SetActive(false);
+        _capsuleCol = GetComponent<CapsuleCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -125,19 +130,21 @@ public class SpiderBoss : BossEnemy
 
         canEmbist = false;
         _animator.SetBool("Walk", false);
+        _capsuleCol.isTrigger = true;
+        _rb.gravityScale = 0;
 
         for (float i = 1.5f; i > 0; i -= Time.deltaTime)
         {
             if (goingRight)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 10);
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.005f, transform.position.y), backSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.015f, transform.position.y), backSpeed * Time.deltaTime);
             }
 
             else
             {
                 transform.rotation = Quaternion.Euler(0, 0, -10);
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.005f, transform.position.y), backSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.015f, transform.position.y), backSpeed * Time.deltaTime);
             }
             yield return new WaitForEndOfFrame();
         }
@@ -155,6 +162,8 @@ public class SpiderBoss : BossEnemy
         Debug.Log("EMBISTING");
 
         isInvulnerable = false;
+        _capsuleCol.isTrigger = false;
+        _rb.gravityScale = 1;
 
         if (wallRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfWallRay, spikeLayer))
         {
