@@ -151,7 +151,7 @@ public class Player : Actor
 
     private void UIInputs()
     {
-        if (Input.GetKeyDown(_openInventory))_gameManager.AddEvent(_openInventoryCmd);
+        if (Input.GetKeyDown(_openInventory)) _gameManager.AddEvent(_openInventoryCmd);
         if (Input.GetKeyDown(_openMap))_gameManager.AddEvent(_openMapCmd);
         if (Input.GetKeyDown(_toggleUI))_gameManager.AddEvent(_toggleUIDisplayCmd);
     }
