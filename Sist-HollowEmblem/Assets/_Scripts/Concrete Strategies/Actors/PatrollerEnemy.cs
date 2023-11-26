@@ -11,11 +11,16 @@ public class PatrollerEnemy : Enemy
         get => _canAttack;
         set => _canAttack = value;
     }
+
+    public bool IsChasing => _currentEnemyMovement == _enemyMovements[1];
     
     #region Serialized Properties
     [SerializeField] [Tooltip("0: Patrol, 1: Chase")] private EnemyMovement[] _enemyMovements;
     [SerializeField] private EnemyAttack _enemyAttack;
     [SerializeField] private Transform _attackOrigin;
+    [SerializeField] private bool _isFootPatroller;
+    [SerializeField] private Transform _floorCheckRaycastOrigin;
+    [SerializeField] private LayerMask _whatIsFloor;
     #endregion
     private const string ATTACK_ANIMATOR_PARAMETER = "Attack";
     private EnemyMovement _currentEnemyMovement;
@@ -38,17 +43,27 @@ public class PatrollerEnemy : Enemy
         _enemyAttackCmd = new(_enemyAttack, _attackOrigin, gameObject);
         SwitchEnemyMovement(0);
     }
+
     protected override void Update()
     {
         base.Update();
-        if(_canMove && !_isDead)
+        if (_canMove && !_isDead)
+        {
+            if (_isFootPatroller)
             {
-                print("Memu evo");
-                 _currentEnemyMovement.Move();
+                if (Physics2D.Raycast(_floorCheckRaycastOrigin.position,Vector2.down,.5f,_whatIsFloor).collider!=null)
+                {
+                    print(Physics2D.Raycast(_floorCheckRaycastOrigin.position,Vector2.down,.5f,_whatIsFloor).collider.name);
+                    _currentEnemyMovement.Move();
+                }
             }
-           
-
-        if (_attackCooldownTimer<=0 && _canAttack)
+            else
+            {
+                _currentEnemyMovement.Move();
+            }
+        }
+        
+        if (_attackCooldownTimer <= 0 && _canAttack)
         {
             _animator.SetTrigger(ATTACK_ANIMATOR_PARAMETER);
             _attackCooldownTimer = _enemyStats.AttackCooldown;
@@ -66,6 +81,7 @@ public class PatrollerEnemy : Enemy
     private void SwitchEnemyMovement(int index)
     {
         _currentEnemyMovement = _enemyMovements[index];
+        _currentEnemyMovement.SetScale();
     }
 
     #region Exposed Methods
@@ -77,6 +93,7 @@ public class PatrollerEnemy : Enemy
 
     public void StopChase()
     {
+        print("Chase stopped");
         SwitchEnemyMovement(0);
     }
 
@@ -84,9 +101,7 @@ public class PatrollerEnemy : Enemy
     {
         GameManager.Instance.AddEvent(_enemyAttackCmd);
     }
-
-  
-
+    
     //#################################
     //### Called in animation event ###
     //#################################
@@ -103,4 +118,9 @@ public class PatrollerEnemy : Enemy
 
     #endregion
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay( _floorCheckRaycastOrigin.position,Vector2.down*.2f);
+    }
 }

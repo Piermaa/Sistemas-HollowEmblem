@@ -80,7 +80,6 @@ public class Player : Actor
         _openInventoryCmd = new(uiDisplayer);
         _openMapCmd = new(uiDisplayer);
         _toggleUIDisplayCmd = new(uiDisplayer);
-        print("playerShoot");
         _reloadCmd = new ReloadCmd(_playerShoot);
     }
 

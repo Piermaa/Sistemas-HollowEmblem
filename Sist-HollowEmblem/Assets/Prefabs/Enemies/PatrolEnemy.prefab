@@ -34,6 +34,37 @@ Transform:
   m_Father: {fileID: 4447590792866336123}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &350918113378255388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5637031445529580838}
+  m_Layer: 7
+  m_Name: FloorCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5637031445529580838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350918113378255388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.338, y: -1.815, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4447590792866336123}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2409046420241838346
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +319,7 @@ Transform:
   - {fileID: 1773175382191467960}
   - {fileID: 7940551101289959625}
   - {fileID: 9146529484169408225}
+  - {fileID: 5637031445529580838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,6 +408,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 7299225212065242204}
   _takingDamageParticles: {fileID: 8948338878454064610}
   _takingDamageSound: {fileID: 4943660824941292669}
+  _currentHealth: 0
   _canRevive: 1
   _reviveTime: 5
   _enemyMovements:
@@ -383,6 +416,11 @@ MonoBehaviour:
   - {fileID: 8912817016714868332}
   _enemyAttack: {fileID: 11400000, guid: 6371a14f184bd6641a99d2dd8e06c3de, type: 2}
   _attackOrigin: {fileID: 4447590794080445711}
+  _isFootPatroller: 1
+  _floorCheckRaycastOrigin: {fileID: 5637031445529580838}
+  _whatIsFloor:
+    serializedVersion: 2
+    m_Bits: 8388672
 --- !u!114 &8912817016714868332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrollerEnemy: {fileID: 8912817016714868333}
   _enemyFootChase: {fileID: 8912817016714868332}
+  _looseDistance: 15
 --- !u!1001 &1781085682257034095
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5169,6 +5169,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 9169599550706780984}
   _takingDamageParticles: {fileID: 6005106878015965430}
   _takingDamageSound: {fileID: 4623388001251160176}
+  _currentHealth: 0
   _canRevive: 0
   _reviveTime: 0
   _enemyMovements:
@@ -5176,6 +5177,8 @@ MonoBehaviour:
   - {fileID: 7245139835147682196}
   _enemyAttack: {fileID: 11400000, guid: 6529071ff61a9d64d9e99b2589d7f867, type: 2}
   _attackOrigin: {fileID: 3426794110940668956}
+  _isFootPatroller: 0
+  _floorCheckRaycastOrigin: {fileID: 3426794111383733913}
 --- !u!114 &7245139835147682196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5291,6 +5294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrollerEnemy: {fileID: 7245139835147682197}
   _enemyFootChase: {fileID: 7245139835147682196}
+  _looseDistance: 6
 --- !u!114 &3426794111952559725
 MonoBehaviour:
   m_ObjectHideFlags: 0

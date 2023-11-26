@@ -35,16 +35,15 @@ public class VulcanBullet : MonoBehaviour, IProduct, IVulcanBullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!(collision.CompareTag("Enemy")|| collision.CompareTag("Bomb")))
-        {
-            _objectPooler.SpawnFromPool(_vulcanBulletStats.ExplosionObjectPoolerKey, transform.position, transform.rotation);
-            this.gameObject.SetActive(false);
-        }
-
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.TryGetComponent<IDamageable>(out var target);
             target.TakeDamage(_vulcanBulletStats.Damage);
+        }
+        if (!collision.CompareTag("Enemy") && !collision.CompareTag("Bomb"))
+        {
+            _objectPooler.SpawnFromPool(_vulcanBulletStats.ExplosionObjectPoolerKey, transform.position, transform.rotation);
+            this.gameObject.SetActive(false);
         }
     }
 
