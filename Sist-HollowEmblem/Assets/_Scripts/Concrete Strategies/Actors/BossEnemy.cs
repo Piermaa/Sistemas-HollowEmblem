@@ -19,6 +19,7 @@ public class BossEnemy : Enemy
     [SerializeField] protected List<BossPhase> _bossPhases;
     [SerializeField] private int _phase = -1;
     [SerializeField] private GameObject _bossSpawner;
+    [SerializeField] private GameObject _victoryObject;
 
     #endregion
 
@@ -102,6 +103,7 @@ public class BossEnemy : Enemy
         ActionsManager.InvokeAction(gameObject.name+ActionConstants.DEATH);
         DropItem();
         gameObject.SetActive(false);
+        _victoryObject.GetComponent<Animator>().SetTrigger("Victory");
     }
 
     #endregion
