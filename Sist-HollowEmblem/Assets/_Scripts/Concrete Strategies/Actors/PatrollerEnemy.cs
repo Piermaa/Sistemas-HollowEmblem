@@ -53,7 +53,6 @@ public class PatrollerEnemy : Enemy
             {
                 if (Physics2D.Raycast(_floorCheckRaycastOrigin.position,Vector2.down,.5f,_whatIsFloor).collider!=null)
                 {
-                    print(Physics2D.Raycast(_floorCheckRaycastOrigin.position,Vector2.down,.5f,_whatIsFloor).collider.name);
                     _currentEnemyMovement.Move();
                 }
             }

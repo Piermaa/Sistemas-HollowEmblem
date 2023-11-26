@@ -6,6 +6,8 @@ public enum DisplayState
 
 public class UIDisplayer : MonoBehaviour
 {
+    public bool IsDisplayOpen => _currentDisplayState != DisplayState.None;
+    
     private DisplayState _currentDisplayState;
     private DisplayState _previousDisplayState=DisplayState.Inventory;
     private Animator _cortanaAnimator;

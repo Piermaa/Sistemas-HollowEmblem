@@ -37,6 +37,7 @@ public class Player : Actor
      
     #endregion
 
+    private UIDisplayer _uiDisplayer;
     private Vector3 _respawnPos;
     private PlayerAttack _playerAttack;
     private PlayerShoot _playerShoot;
@@ -75,11 +76,11 @@ public class Player : Actor
             abilty.Init(gameObject, _abilityAudioSource);
         }
 
-        var uiDisplayer = GetComponentInChildren<UIDisplayer>();
+        _uiDisplayer = GetComponentInChildren<UIDisplayer>();
         
-        _openInventoryCmd = new(uiDisplayer);
-        _openMapCmd = new(uiDisplayer);
-        _toggleUIDisplayCmd = new(uiDisplayer);
+        _openInventoryCmd = new(_uiDisplayer);
+        _openMapCmd = new(_uiDisplayer);
+        _toggleUIDisplayCmd = new(_uiDisplayer);
         _reloadCmd = new ReloadCmd(_playerShoot);
     }
 
@@ -108,6 +109,23 @@ public class Player : Actor
 
     private void InputProcess()
     {
+        UIInputs();
+
+        if (!_uiDisplayer.IsDisplayOpen)
+        {
+            CombatInputs();
+            MovementInputs();
+        }
+    }
+
+    private void MovementInputs()
+    {
+        if (Input.GetKeyDown(_jump)) _mustJump = true;
+        _horizontalMove = Input.GetAxisRaw(_moveAxis) * _actorStats.MovementSpeed;
+    }
+
+    private void CombatInputs()
+    {
         if (Input.GetKey(_aim) && _movable.CheckGround())
         {
             _playerShoot.Aim(true, (int)directionsToAttack);
@@ -127,24 +145,16 @@ public class Player : Actor
 
         if (Input.GetKeyDown(_attack) && !_playerShoot.IsAiming && _playerAttack.CanAttack())
             _playerAttack.Attack((int)directionsToAttack);
-        
+
         if (Input.GetKeyDown(_reload)) _gameManager.AddEvent(_reloadCmd);
-        
+    }
+
+    private void UIInputs()
+    {
         if (Input.GetKeyDown(_openInventory))_gameManager.AddEvent(_openInventoryCmd);
         if (Input.GetKeyDown(_openMap))_gameManager.AddEvent(_openMapCmd);
         if (Input.GetKeyDown(_toggleUI))_gameManager.AddEvent(_toggleUIDisplayCmd);
-        //=======================debug========================
-        if (Input.GetKeyDown(KeyCode.T)) TakeDamage(1);
-
-        MovementInputs();
     }
-
-    private void MovementInputs()
-    {
-        if (Input.GetKeyDown(_jump)) _mustJump = true;
-        _horizontalMove = Input.GetAxisRaw(_moveAxis) * _actorStats.MovementSpeed;
-    }
-
 
     /// <summary>
     /// Updates ability cooldowns and checks if their required input in order to use them 

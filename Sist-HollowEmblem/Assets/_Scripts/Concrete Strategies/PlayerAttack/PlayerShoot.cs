@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
+    
     [SerializeField] private LayerMask _whatIsShooteable;
     [SerializeField] private Transform _attackStartPosition;
     [SerializeField] private Transform[] _attackStartDirections;
@@ -133,7 +134,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
     public void Reload()
     {
-        if (_isUnlocked && _bulletsRemaining < _maxBullets && _playerInventory.SearchAmmo())
+        if (_isUnlocked && _bulletsRemaining < _maxBullets && _playerInventory.SearchAmmo() && !_isReloading)
         {
             _reloadSound.Play();
             _animator.SetTrigger("Reload");

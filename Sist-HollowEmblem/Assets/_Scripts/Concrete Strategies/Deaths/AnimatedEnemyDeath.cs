@@ -23,6 +23,8 @@ public class AnimatedEnemyDeath : MonoBehaviour, IEnemyDeath
 
     public void Death()
     {
+        _animator.ResetTrigger("Attack");
+        _animator.ResetTrigger("Shoot");
         _animator.SetTrigger("Death");
     }
 

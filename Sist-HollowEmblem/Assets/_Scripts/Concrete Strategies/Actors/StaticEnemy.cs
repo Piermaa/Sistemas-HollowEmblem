@@ -15,7 +15,7 @@ public class StaticEnemy : Enemy
 
    #endregion
    
-   private const string ATTACK_ANIMATOR_PARAMETER = "Shoot";
+   private const string ATTACK_ANIMATOR_PARAMETER = "Attack";
 
    #endregion
 
@@ -57,6 +57,6 @@ public class StaticEnemy : Enemy
    {
       GameManager.Instance.AddEvent(_vulcanAttackCmd[index]);
    }
-
+   
    #endregion
 }
