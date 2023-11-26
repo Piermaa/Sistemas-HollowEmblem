@@ -192,6 +192,9 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 
 	#endregion
 
+	#region Class Methods
+
+	
 	private IEnumerator JumpTransitionDelay()
 	{
 		yield return new WaitForSeconds(.1f);
@@ -217,4 +220,5 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+	#endregion
 }
