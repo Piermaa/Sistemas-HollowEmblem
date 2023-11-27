@@ -63,6 +63,9 @@ public class BossEnemy : Enemy
 
     private void ChangePhase()
     {
+        if (_currentHealth <= 0)
+            return;
+
         _phase++;
         _attackCooldownTimer = 0;
         _animator.ResetTrigger(ATTACK_TRIGGER);

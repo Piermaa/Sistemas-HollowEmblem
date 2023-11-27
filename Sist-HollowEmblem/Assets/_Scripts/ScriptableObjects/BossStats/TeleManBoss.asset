@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TeleManBoss
   m_EditorClassIdentifier: 
   _stats:
-    MaxLife: 50
+    MaxLife: 2
     MovementSpeed: 10
   _enemyStats:
     AttackCooldown: 3

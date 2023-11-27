@@ -150,10 +150,8 @@ public class TelemanBoss : BossEnemy
 
     public override void Death()
     {
-        //base.Death();
         ActionsManager.InvokeAction(gameObject.name + ActionConstants.DEATH);
         canDie = true;
-
         state = FBBattleState.DEATH;
 
         StartCoroutine(FinishingGame());
@@ -259,12 +257,9 @@ public class TelemanBoss : BossEnemy
                 {
                     Vector2 toFloor = new Vector2(transform.position.x, floorSpot.transform.position.y);
 
-
-
                     if (Vector2.Distance(transform.position, toFloor) > 0.83f)
                     {
-                        transform.position =
-                            Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
+                        transform.position = Vector2.MoveTowards(transform.position, toFloor, flySpeed * Time.deltaTime);
                     }
 
                     else
