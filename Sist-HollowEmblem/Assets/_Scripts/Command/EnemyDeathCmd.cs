@@ -30,6 +30,6 @@ public class EnemyDeathCmd : IMemento
     {
         _canUndo = false;
         (_enemyDeath as AnimatedEnemyDeath).Revive();
-        _enemy.TakeDamage(-(int)(_enemy.MaxHealth *.25f));
+        _enemy.CurrentHealth=(int)(_enemy.MaxHealth *.5f);
     }
 }

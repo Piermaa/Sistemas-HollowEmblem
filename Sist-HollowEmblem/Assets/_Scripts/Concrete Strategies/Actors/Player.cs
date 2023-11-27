@@ -31,6 +31,7 @@ public class Player : Actor
     [SerializeField] private KeyCode _toggleUI = KeyCode.Tab;
     [SerializeField] private KeyCode _jump = KeyCode.Space;
     [SerializeField] private AudioSource _abilityAudioSource;
+    [SerializeField] private AudioSource _healSound;
     [SerializeField] private List<PlayerAbility> _playerAbilities = new();
     [SerializeField] private Transform _cameraTarget;
     [SerializeField] private CinemachineVirtualCamera _vcam;
@@ -101,11 +102,18 @@ public class Player : Actor
     private void FixedUpdate()
     {
         _immunityTimer = _immunityTimer > 0 ? _immunityTimer - Time.deltaTime : 0;
-        _movable.Move(_horizontalMove * Time.fixedDeltaTime, _mustJump);
+        
+        if (!_uiDisplayer.IsDisplayOpen)
+            _movable.Move(_horizontalMove * Time.fixedDeltaTime, _mustJump);
+        
         _mustJump = false;
     }
 
     #endregion
+
+    #region Class Methods
+
+    #region Input
 
     private void InputProcess()
     {
@@ -115,6 +123,10 @@ public class Player : Actor
         {
             CombatInputs();
             MovementInputs();
+        }
+        else
+        {
+            _movable.StopMovement();
         }
     }
 
@@ -156,6 +168,10 @@ public class Player : Actor
         if (Input.GetKeyDown(_toggleUI))_gameManager.AddEvent(_toggleUIDisplayCmd);
     }
 
+    #endregion
+
+    #region Abilities
+
     /// <summary>
     /// Updates ability cooldowns and checks if their required input in order to use them 
     /// </summary>
@@ -178,6 +194,33 @@ public class Player : Actor
         abilityToUnlock.Init(gameObject, _abilityAudioSource);
     }
 
+
+    #endregion
+
+    #region Movement
+
+    public void ResumePlayerMovement()
+    {
+        _movable.CanMove = true;
+    }
+
+    public void StopPlayerMovement()
+    {
+        _movable.CanMove = false;
+    }
+
+    public bool CanMove()
+    {
+        return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
+    }
+    
+
+    public void SetRespawnPosition(Transform newRespawnPosition)
+    {
+        _respawnPos = newRespawnPosition.position;
+    }
+
+    #endregion
     #region Actor Methods Overrides
 
     public override void TakeDamage(int damageTaken)
@@ -190,12 +233,21 @@ public class Player : Actor
             UIManager.Instance.GetHealthUIManager.SetHealth(CurrentHealth, MaxHealth);
         }
     }
+    
+    public override void Death()
+    {
+        transform.position = RespawnPos;
+        _currentHealth = MaxHealth;
+        _vcam.Follow = _cameraTarget;
+        _cam.GetComponent<ChangeAmbientMusic>().SetAmbienceMusic();
+        _cam.GetComponent<AudioSource>().Play();
+    }
 
     #endregion
 
     public void Heal()
     {
-        //todo heal sound
+        _healSound.Play();
         if (_currentHealth < MaxHealth)
         {
             _currentHealth++;
@@ -223,32 +275,5 @@ public class Player : Actor
         }
     }
 
-    public void ResumePlayerMovement()
-    {
-        _movable.CanMove = true;
-    }
-
-    public void StopPlayerMovement()
-    {
-        _movable.CanMove = false;
-    }
-
-    public bool CanMove()
-    {
-        return !_playerShoot.IsAiming && !_playerShoot.IsReloading;
-    }
-
-    public override void Death()
-    {
-        transform.position = RespawnPos;
-        _currentHealth = MaxHealth;
-        _vcam.Follow = _cameraTarget;
-        _cam.GetComponent<ChangeAmbientMusic>().SetAmbienceMusic();
-        _cam.GetComponent<AudioSource>().Play();
-    }
-
-    public void SetRespawnPosition(Transform newRespawnPosition)
-    {
-        _respawnPos = newRespawnPosition.position;
-    }
+    #endregion
 }

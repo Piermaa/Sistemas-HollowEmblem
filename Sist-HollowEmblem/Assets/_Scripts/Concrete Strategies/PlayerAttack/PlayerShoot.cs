@@ -7,7 +7,10 @@ using UnityEngine.Serialization;
 
 public class PlayerShoot : MonoBehaviour, IPlayerAttack
 {
-    
+    #region Class Properties
+
+    #region Serialized Properties
+
     [SerializeField] private LayerMask _whatIsShooteable;
     [SerializeField] private Transform _attackStartPosition;
     [SerializeField] private Transform[] _attackStartDirections;
@@ -18,6 +21,11 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     [SerializeField] private AudioSource _reloadSound;
     [SerializeField] private Light2D _shootLight;
     [SerializeField] private float _shootIntensity=1.4f;
+
+    #endregion
+
+    #region Private Properties
+
     private bool _isReloading;
     private int _bulletsRemaining = 10;
     private bool _isUnlocked;
@@ -25,24 +33,22 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     private Animator _animator;
     private PlayerInventory _playerInventory;
 
+    #endregion
+
+
     #region IPlayerAttack properties
-
-    public PlayerMovementController PlayerMovementController => throw new System.NotImplementedException();
-
-    public GameObject Projectile => throw new System.NotImplementedException();
-
-    public Rigidbody2D Rigidbody2d => throw new System.NotImplementedException();
-
     public Transform AttackStartPosition => _attackStartPosition;
-
-    public float Speed => throw new System.NotImplementedException();
-
+    
     public float Damage => _damage;
 
     #endregion
 
     public bool IsAiming => _isAiming;
     public bool IsReloading => _isReloading;
+
+    #endregion
+
+    #region Monobehaviour Callbacks
 
     private void Awake()
     {
@@ -69,6 +75,9 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         }
     }
 
+    #endregion
+  
+    #region IPlayerAttack Methods
     public void Attack(int direction)
     {
         if (_bulletsRemaining > 0 && _isUnlocked)
@@ -93,6 +102,10 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
 
         UIManager.Instance.GetBulletsUIManager.UpdateBullets(_bulletsRemaining);
     }
+
+    #endregion
+
+    #region Class Methods
 
     public void Aim(bool isTrue, int direction)
     {
@@ -156,4 +169,6 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
         _isUnlocked = true;
         UIManager.Instance.GetBulletsUIManager.UnlockGun();
     }
+
+    #endregion
 }

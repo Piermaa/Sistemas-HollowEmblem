@@ -9,6 +9,7 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 	#region Class Properties
 
 	public bool MustSlam => _mustSlam;
+
 	public bool CanMove { get { return _canMove; } set { _canMove = value; } }
 	
 	#region Class Serialized Properties
@@ -190,6 +191,12 @@ public class PlayerMovementController : MonoBehaviour, IMovable
 		}
 	}
 
+	public void StopMovement()
+	{
+		m_Rigidbody2D.velocity = new Vector2(0 ,m_Rigidbody2D.velocity.y); 
+		_animator.SetBool(RUN_ANIMATOR_PARAMETER, false);
+	}
+	
 	#endregion
 
 	#region Class Methods

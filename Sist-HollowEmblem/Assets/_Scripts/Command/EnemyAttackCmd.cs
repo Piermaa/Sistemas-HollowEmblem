@@ -17,6 +17,6 @@ public class EnemyAttackCmd : ICommand
 
     public void Do()
     {
-        _enemyAttack.Attack(_attackOrigin.position,_owner.transform.localScale);
+        _enemyAttack.Attack(_attackOrigin.position,-_owner.transform.localScale);
     }
 }

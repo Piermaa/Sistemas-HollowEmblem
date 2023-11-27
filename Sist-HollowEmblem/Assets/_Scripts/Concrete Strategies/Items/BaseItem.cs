@@ -47,9 +47,11 @@ public class BaseItem : Pickupable, IItem
     public virtual void AddToInventory(Collider2D player)
     {
         _itemSlot = player?.GetComponent<PlayerInventory>().AddItem(this, _amount);
-        _itemSlot.onItemUse += UseItem;
-        UseItem();
-        // _audioSource.Play();
+        if (_itemSlot!=null)
+        {
+            _itemSlot.onItemUse += UseItem;
+            base.OnPickup(player);
+        }
     }
 
     public void SetSlot(Slot newSlot)
@@ -72,7 +74,6 @@ public class BaseItem : Pickupable, IItem
     public override void OnPickup(Collider2D player)
     {
         AddToInventory(player);
-        base.OnPickup(player);
     }
 
     #endregion

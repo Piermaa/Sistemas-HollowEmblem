@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private AudioSource _pickUpSound;
     [SerializeField] private GameObject[] rows;
     [SerializeField] private int _rows = 2;
     [SerializeField] private int _columns = 4;
@@ -47,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
         if (_currentSlot != null)
         {
             _currentSlot.AddItem(itemToAdd, amountToAdd);
+            _pickUpSound.Play();
         }
 
         return _currentSlot;

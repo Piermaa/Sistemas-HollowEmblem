@@ -6,15 +6,22 @@ public enum DisplayState
 
 public class UIDisplayer : MonoBehaviour
 {
+    #region Class Properties
+
     public bool IsDisplayOpen => _currentDisplayState != DisplayState.None;
     
     private DisplayState _currentDisplayState;
     private DisplayState _previousDisplayState=DisplayState.Inventory;
     private Animator _cortanaAnimator;
+
+    #endregion
+  
     private void Awake()
     {
         _cortanaAnimator = GetComponent<Animator>();
     }
+
+    #region Class Methods
 
     private void ChangeState(DisplayState newDisplayState)
     {
@@ -80,4 +87,7 @@ public class UIDisplayer : MonoBehaviour
         _cortanaAnimator.SetTrigger("Disappear");
         ChangeState(DisplayState.None);
     }
+
+    #endregion
+    
 }

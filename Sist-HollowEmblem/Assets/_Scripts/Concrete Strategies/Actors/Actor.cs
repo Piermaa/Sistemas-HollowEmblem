@@ -7,7 +7,12 @@ public class Actor : MonoBehaviour, IDamageable
 {
     #region IDamageable Properties
 
-    public int CurrentHealth => _currentHealth;
+    public int CurrentHealth
+    {
+        get => _currentHealth;
+        set => _currentHealth = value;
+    }
+    
     public int MaxHealth => _actorStats.MaxLife;
     public SpriteRenderer ActorSprite => _spriteRenderer;
     public Material FlashingWhiteMaterial => _flashingWhiteMaterial;

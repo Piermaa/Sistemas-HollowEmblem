@@ -30,7 +30,7 @@ public class AmbienceSounds : MonoBehaviour
             {
                 cooldown = Random.Range(minTime,maxTime);
 
-                audioSource.clip = sounds[Random.Range(0, sounds.Length+1)];
+                audioSource.clip = sounds[Random.Range(0, sounds.Length)];
                 audioSource.Play();
             }
         }

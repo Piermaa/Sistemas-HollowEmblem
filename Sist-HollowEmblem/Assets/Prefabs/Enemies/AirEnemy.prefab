@@ -5009,7 +5009,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 867756240499762090, guid: 6d011568f01e1a64a9292b466107e951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 21.199999, y: 22.01}
@@ -5081,7 +5081,7 @@ Transform:
   m_GameObject: {fileID: 3426794111383733916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3426794111952559723}
@@ -5172,6 +5172,7 @@ MonoBehaviour:
   _currentHealth: 0
   _canRevive: 0
   _reviveTime: 0
+  _isDead: 0
   _enemyMovements:
   - {fileID: 7245139835147682199}
   - {fileID: 7245139835147682196}
@@ -5179,6 +5180,9 @@ MonoBehaviour:
   _attackOrigin: {fileID: 3426794110940668956}
   _isFootPatroller: 0
   _floorCheckRaycastOrigin: {fileID: 3426794111383733913}
+  _whatIsFloor:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7245139835147682196
 MonoBehaviour:
   m_ObjectHideFlags: 0

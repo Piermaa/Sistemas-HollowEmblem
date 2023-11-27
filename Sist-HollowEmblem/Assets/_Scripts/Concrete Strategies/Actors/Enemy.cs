@@ -17,7 +17,7 @@ public class Enemy : Actor
 
     [SerializeField] protected bool _canRevive;
     [SerializeField] protected float _reviveTime=5;
-    protected bool _isDead = false;
+    [SerializeField] protected bool _isDead = false;
     protected Animator _animator;
     protected EnemyStats _enemyStats;
     protected float _attackCooldownTimer;
@@ -58,7 +58,12 @@ public class Enemy : Actor
     {
         _isDead = true;
     }
-    
+
+    public void SetAlive()
+    {
+        _isDead = false;
+    }
+
     public virtual void DropItem()
     {
         GameManager.Instance.GetItemGameManager.SpawnItem()

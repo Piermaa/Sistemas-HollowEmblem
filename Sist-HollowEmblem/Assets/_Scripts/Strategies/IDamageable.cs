@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    int CurrentHealth { get; }
+    int CurrentHealth { get; set; } 
     int MaxHealth { get; }
     SpriteRenderer ActorSprite { get; } // el sprite que flashea a blanco
     Material FlashingWhiteMaterial { get; }
