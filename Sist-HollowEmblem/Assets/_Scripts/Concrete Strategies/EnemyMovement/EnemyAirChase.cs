@@ -41,9 +41,9 @@ public class EnemyAirChase : EnemyFootChase
         Vector3 dir = _playerTransform.position - transform.position;
         Vector3 theScale = transform.localScale;
 
-        theScale.x = dir.x > 0 ? -1 : 1;
-        
-        if (theScale==transform.localScale)
+        theScale.x = dir.x < 0 ? -1 : 1;
+
+        if (theScale == transform.localScale)
             return;
         
         transform.localScale = theScale;
