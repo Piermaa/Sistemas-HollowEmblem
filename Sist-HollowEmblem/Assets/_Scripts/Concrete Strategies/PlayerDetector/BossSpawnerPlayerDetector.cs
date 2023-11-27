@@ -48,7 +48,7 @@ public class BossSpawnerPlayerDetector : PlayerDetector
         
         foreach (Collider2D wall in _invisibleWalls)
         {
-            wall.gameObject.SetActive(false);
+            wall.gameObject.SetActive(true);
         }
         
         _vcam.Follow = _cameraLockPosition;
