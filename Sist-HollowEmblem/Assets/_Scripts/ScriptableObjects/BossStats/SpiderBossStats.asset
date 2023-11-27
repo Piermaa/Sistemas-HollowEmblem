@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpiderBossStats
   m_EditorClassIdentifier: 
   _stats:
-    MaxLife: 20
+    MaxLife: 30
     MovementSpeed: 10
   _enemyStats:
     AttackCooldown: 3
