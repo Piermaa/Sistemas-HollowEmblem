@@ -104,7 +104,7 @@ public class SceneChanger : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
 

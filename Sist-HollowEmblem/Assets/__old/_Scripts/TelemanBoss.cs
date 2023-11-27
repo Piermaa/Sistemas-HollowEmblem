@@ -150,7 +150,9 @@ public class TelemanBoss : BossEnemy
 
     public override void Death()
     {
-        base.Death();
+        //base.Death();
+        ActionsManager.InvokeAction(gameObject.name + ActionConstants.DEATH);
+        canDie = true;
 
         state = FBBattleState.DEATH;
 
