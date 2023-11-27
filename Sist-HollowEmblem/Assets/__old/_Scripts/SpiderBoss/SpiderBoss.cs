@@ -132,6 +132,7 @@ public class SpiderBoss : BossEnemy
         _animator.SetBool("Walk", false);
         _capsuleCol.isTrigger = true;
         _rb.gravityScale = 0;
+        _rb.simulated = false;
 
         for (float i = 1.5f; i > 0; i -= Time.deltaTime)
         {
@@ -164,6 +165,7 @@ public class SpiderBoss : BossEnemy
         isInvulnerable = false;
         _capsuleCol.isTrigger = false;
         _rb.gravityScale = 1;
+        _rb.simulated = true;
 
         if (wallRc = Physics2D.Raycast(seekPlayerStart.position, seekPlayerStart.TransformDirection(Vector2.left), distanceOfWallRay, spikeLayer))
         {

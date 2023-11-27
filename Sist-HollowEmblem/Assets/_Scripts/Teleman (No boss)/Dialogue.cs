@@ -22,7 +22,6 @@ public class Dialogue : MonoBehaviour
     private void Awake()
     {
         _teleman = GameObject.FindGameObjectWithTag("Teleman");
-        gameObject.SetActive(false);
     }
 
     void Start()
@@ -74,8 +73,8 @@ public class Dialogue : MonoBehaviour
         }
 
         else
-        { 
-            gameObject.SetActive(false);
+        {
+            textComponent.text = string.Empty;
         }
     }
 
