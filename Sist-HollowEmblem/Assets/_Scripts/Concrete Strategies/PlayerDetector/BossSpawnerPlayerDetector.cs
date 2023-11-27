@@ -21,15 +21,19 @@ public class BossSpawnerPlayerDetector : PlayerDetector
     [SerializeField] private BossUI _bossUI;
     
     private Transform _cameraLockPositionPlayer;
-    private Camera _cam;
+    [SerializeField] private Camera _cam;
     private AudioSource _cameraAudioSource;
     private ChangeAmbientMusic _camMusicChanger;
 
     private void Awake()
     {
         _boss.gameObject.SetActive(false);
+        
+        if (_bossUI == null)
+        {
+            _bossUI = GetComponentInChildren<BossUI>();
+        }
 
-        _cam = Camera.main;
         _cameraAudioSource = _cam.GetComponent<AudioSource>();
         _camMusicChanger = _cam.GetComponent<ChangeAmbientMusic>();
     }

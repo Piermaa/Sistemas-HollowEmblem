@@ -129,7 +129,7 @@ RectTransform:
   m_GameObject: {fileID: 1151402706462727917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.3333334, z: 1}
+  m_LocalScale: {x: 0.73771805, y: 0.98362416, z: 0.73771805}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5075553999571738134}
@@ -645,7 +645,7 @@ RectTransform:
   m_GameObject: {fileID: 3794733686293820574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.3333334, z: 1}
+  m_LocalScale: {x: 0.73771805, y: 0.98362416, z: 0.73771805}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4181686478123179394}
@@ -910,6 +910,7 @@ MonoBehaviour:
   _invisibleWalls:
   - {fileID: 5564709210811531000}
   - {fileID: 6761334983586886380}
+  _bossAudioClip: {fileID: 0}
   _cameraLockPosition: {fileID: 702898862474702083}
   _bossUI: {fileID: 8820205370344879894}
 --- !u!61 &8915754709085719983
@@ -965,7 +966,7 @@ RectTransform:
   m_GameObject: {fileID: 6373305717122303206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.73771805, y: 0.73771805, z: 0.73771805}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6335606006120992919}
@@ -1081,7 +1082,7 @@ RectTransform:
   m_GameObject: {fileID: 7408951706927285551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.73771805, y: 0.73771805, z: 0.73771805}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6335606006120992919}
