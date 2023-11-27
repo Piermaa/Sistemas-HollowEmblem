@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VulcanStats
   m_EditorClassIdentifier: 
   _stats:
-    MaxLife: 5
+    MaxLife: 4
     MovementSpeed: 0
   _enemyStats:
     AttackCooldown: 4

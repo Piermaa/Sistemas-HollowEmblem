@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MovableEnemyStats
   m_EditorClassIdentifier: 
   _stats:
-    MaxLife: 5
+    MaxLife: 6
     MovementSpeed: 3
   _enemyStats:
     AttackCooldown: 4

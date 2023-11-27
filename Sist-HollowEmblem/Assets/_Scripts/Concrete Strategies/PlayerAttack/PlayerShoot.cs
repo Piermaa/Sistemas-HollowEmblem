@@ -80,7 +80,7 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     #region IPlayerAttack Methods
     public void Attack(int direction)
     {
-        if (_bulletsRemaining > 0 && _isUnlocked)
+        if (_bulletsRemaining > 0 && _isUnlocked && !_isReloading)
         {
             _bulletsRemaining--;
             _shootParticleSystem.Play();
@@ -157,11 +157,13 @@ public class PlayerShoot : MonoBehaviour, IPlayerAttack
     public void BeginReloadAnimation()
     {
         _isReloading = true;
+        _animator.SetBool("IsReloading",_isReloading);
     }
 
     public void EndReloadAnimation()
     {
         _isReloading = false;
+        _animator.SetBool("IsReloading",_isReloading);
     }
 
     public void UnlockShoot()
